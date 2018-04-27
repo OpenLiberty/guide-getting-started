@@ -143,7 +143,7 @@
           <assemblyArtifact>
             <groupId>io.openliberty</groupId>
             <artifactId>openliberty-runtime</artifactId>
-            <version>RELEASE</version>
+            <version>17.0.0.4</version>
             <type>zip</type>
           </assemblyArtifact>
           <serverName>${project.artifactId}Server</serverName>

@@ -1,0 +1,16 @@
+# Maven generated
+target/
+
+# Eclipse generated
+.apt_generated/
+.settings/
+.project
+.classpath
+.factorypath
+MANIFEST.MF
+
+# MacOS system files
+.DS_Store
+
+# Zip files
+*.zip

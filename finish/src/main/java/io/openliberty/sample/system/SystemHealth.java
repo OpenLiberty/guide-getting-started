@@ -23,10 +23,6 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 @ApplicationScoped
 public class SystemHealth implements HealthCheck {
 	
-	public boolean isHealthy() {
-	     return true;
-	  }
-	
   @Override
   public HealthCheckResponse call() {
 		if (!System.getProperty("wlp.server.name").equals("GettingStartedServer")) {

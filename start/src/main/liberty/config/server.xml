@@ -1,10 +1,13 @@
 <server description="Sample Liberty server">
+  <!-- tag::features[] -->
   <featureManager>
     <feature>jaxrs-2.0</feature>
     <feature>jsonp-1.0</feature>
     <feature>cdi-1.2</feature>
     <feature>mpMetrics-1.0</feature>
+    <feature>mpHealth-1.0</feature>
   </featureManager>
+  <!-- end::features[] -->
   <applicationManager autoExpand="true" />
   <quickStartSecurity userName="admin" userPassword="adminpwd"/>
   <keyStore id="defaultKeyStore" password="mpKeystore"/>

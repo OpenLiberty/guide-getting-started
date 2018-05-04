@@ -12,19 +12,10 @@
 // end::copyright[]
 package io.openliberty.sample.system;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.ws.rs.ApplicationPath;
-// JAX-RS
 import javax.ws.rs.core.Application;
 
 @ApplicationPath("system")
 public class SystemApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> resources = new HashSet<>();
-        resources.add(SystemResource.class);
-        return resources;
-    }
+
 }

@@ -228,10 +228,10 @@ appear in the server log:
 
 [source, role="no_copy"]
 ----
-[INFO] [AUDIT   ] CWWKT0017I: Web application removed (default_host): http://foo:9080/
-[INFO] [AUDIT   ] CWWKZ0009I: The application io.openliberty.guides.getting-started has stopped successfully.
-[INFO] [AUDIT   ] CWWKT0016I: Web application available (default_host): http://foo:9080/
-[INFO] [AUDIT   ] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.136 seconds.
+[INFO] [AUDIT] CWWKT0017I: Web application removed (default_host): http://foo:9080/
+[INFO] [AUDIT] CWWKZ0009I: The application io.openliberty.guides.getting-started has stopped successfully.
+[INFO] [AUDIT] CWWKT0016I: Web application available (default_host): http://foo:9080/
+[INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.136 seconds.
 ----
 
 Try to access the `/health` endpoint again by visiting the http://localhost:9080/health URL. This time
@@ -248,31 +248,39 @@ you should see the overall status of your server and the microservice that it ru
                 "services": "available"
             },
             "name": "SystemResource",
-            "state":"UP"
+            "state": "UP"
         }
     ],
-    "outcome":"UP"}
+    "outcome": "UP"
+}
 ----
 
 
 // =================================================================================================
-//
+// Checking the Open Liberty server logs
 // =================================================================================================
 
 == Checking the Open Liberty server logs
 
-You can find the logs for the application's Open Liberty server in the `target/liberty/wlp/usr/servers/GettingStartedServer/logs` directory, which is created automatically when the server first starts. There are `console.log` and `messages.log` files in the directory which contain the console output of the running application so far. Additional logs are created in the same location if serious errors occur.
+If you need to check the complete server logs, you can find them under the server's directory:
+`target/liberty/wlp/usr/servers/defaultServer/logs`. This directory is created automatically when the
+server first starts. There are `console.log` and `messages.log` files in the directory which contain
+the console output of the running application so far. Additional logs are created in the same location
+if serious errors occur. These can be found under the `ffdc` directory, which will also be created
+automatically if the server encounters any errors.
 
 
 // =================================================================================================
-//
+// Starting and stopping the Open Liberty server in the background
 // =================================================================================================
 
-== Starting and stopping the server in the background
+== Starting and stopping the Open Liberty server in the background
 
-In the previous sections, you started and stopped the server in the foreground using Maven. You can also start and stop the server in the background using Maven:
+In the previous sections, you started and stopped the server in the foreground by using the Maven
+`liberty:run-server` goal. Alternatively, you can also start and stop the server in the background
+using the Maven `liberty:start-server` and `liberty:stop-server` goals:
 
-[source,role="no_copy"]
+[source, role="no_copy"]
 ----
 mvn liberty:start-server
 mvn liberty:stop-server

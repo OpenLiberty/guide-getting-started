@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>GettingStarted</artifactId>
+    <artifactId>getting-started</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -67,7 +67,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <repository>openliberty-getting-started</repository>
+                            <repository>openliberty-${project.artifactId}</repository>
                             <tag>${project.version}</tag>
                         </configuration>
                     </plugin>
@@ -184,7 +184,7 @@
                         <version>${version.openliberty-runtime}</version>
                         <type>zip</type>
                     </assemblyArtifact>
-                    <serverName>${project.artifactId}Server</serverName>
+                    <serverName>GettingStartedServer</serverName>
                     <stripVersion>true</stripVersion>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <looseApplication>true</looseApplication>

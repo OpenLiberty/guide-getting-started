@@ -12,7 +12,7 @@
 // :page-releasedate: 2017-09-19
 :page-description: Learn how to deploy and update an application on Open Liberty using Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker']
-:page-related-guides: []
+:page-related-guides: ['docker', 'rest-intro']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 // :seo-title: Test
@@ -28,25 +28,18 @@ Liberty server using Maven.
 
 Open Liberty is an application server designed for the cloud. It's small, lightweight, and designed
 with modern cloud-native application development in mind. It supports the full MicroProfile and Java
-EE APIs and is composable, so you can use just enough application server for your applications, which
-is great for microservices. It also deploys to every major developer platform, including Docker,
-Kubernetes, and Cloud Foundry.
+EE APIs and is composable, meaning that you can use only the features that you need, keeping the
+server lightweight, which is great for microservices. It also deploys to every major developer platform,
+including Docker, Kubernetes, and Cloud Foundry.
 
-Maven is an efficient way to start developing applications for Open Liberty. Using Maven, you will
-create a simple microservice that collects basic system properties from your laptop and displays them
-on an endpoint that you can access in your web browser.  After running this simple microservice on an
-Open Liberty server, you will modify the microservice code and server configuration to experience
-developing for Open Liberty.
+Maven is an automation build tool that provides an efficient way to develop applications for Open Liberty.
+Using Maven, you will build a simple microservice that collects basic system properties from your
+laptop and displays them on an endpoint that you can access in your web browser. You will then make
+configuration and code changes and see how they are picked up by a running server. You'll also explore
+how to package your the application with the server runtime so that it can be deployed anywhere in one go.
 
-You'll then try out the Open Liberty server command to manage and package the application with the
-server, including minifying the server package so it includes only what the application needs to run
-and nothing else.
+Finally, you will then containerize the application along with the server configration to run it in Docker.
 
-Finally, you will then use the supplied Dockerfile to build a Docker image that includes the application
-and server configuration and run it in Docker.
-
-
-// explain what application does
 
 // =================================================================================================
 // Prerequisites
@@ -54,28 +47,19 @@ and server configuration and run it in Docker.
 
 == Prerequisites
 
-Before you begin, make sure to have
+Before you begin, make sure that you have the following tools installed:
+
+- `Maven` - a build automation tool. You will use Maven to build your Java application and then run
+it on Open Liberty. For installation instructions see https://maven.apache.org/install.html
+- `Docker` - a containerization software. You will use Docker to build an image that holds your Java
+application and then run that image as a container. For installation instructions see https://docs.docker.com/install/
 
 
 // =================================================================================================
 // Getting Started
 // =================================================================================================
 
-//include::{common-includes}/gitclone.adoc[]
-
-== Getting started
-
-From command line, run the following commands to clone the repository containing a simple MicroProfile
-application and then navigate into its directory:
-
-[subs="attributes"]
-----
-git clone https://github.com/openliberty/guide-{projectid}.git
-cd guide-{projectid}
-----
-
-The `start` directory contains a starting Java project that you will build upon, while the `finish`
-directory contains the finished Java project, which is what you will build.
+include::{common-includes}/gitclone.adoc[]
 
 // There's not really any value (in this particular guide) of including the 'try it first' section.
 // The start version of the application works in much the same way as the finish version. It's the
@@ -88,6 +72,14 @@ directory contains the finished Java project, which is what you will build.
 // =================================================================================================
 
 == Building and running the application
+
+Your application is configured to be built using Maven. Maven is a build automation tool that is
+primarily used for Java projects. Every Maven-configured project contains a `pom.xml` file, which is
+where the project configuration, its dependencies, and various Maven plugins are configured and defined.
+To learn more about Maven, check out our https://openliberty.io/guides/maven-intro.html[Maven guide].
+
+Your `pom.xml` file contains the Liberty Maven plugin (`liberty-maven-plugin`), which allows you to
+install applications into WebSphere Liberty and Open Liberty as well as manage the server instances.
 
 Navigate into the `start` directory and run the following command to build and run the application:
 
@@ -154,7 +146,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 To add the MicroProfile Health capability to the server, add the `mpHealth-1.0` feature to the
 `src/main/liberty/config/server.xml` server configuration file:
 
-[source,xml,indent=0]
+[source, xml, indent=0]
 ----
 include::finish/src/main/liberty/config/server.xml[tag=features]
 ----
@@ -223,8 +215,13 @@ Create a new file `src/main/java/io/openliberty/sample/system/SystemHealth.java`
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
 
-Next, run the `mvn compile` command to recompile the applicatino. You should see the following messages
-appear in the server log:
+Next, run recompile the application by running the following command:
+
+```
+mvn compile
+```
+
+You should see the following messages appear in the server log:
 
 [source, role="no_copy"]
 ----
@@ -288,62 +285,139 @@ mvn liberty:stop-server
 
 
 // =================================================================================================
-//
+// Running the application from a minimal runnable JAR
 // =================================================================================================
 
-== Try the minimal runnable JAR
+== Running the application from a minimal runnable JAR
 
-So far, Open Liberty has been running out of the `target/liberty` directory. This directory effectively
-contains an installed Liberty server and deployed application. The final product of the Maven build is
-a 'server package' for use in a Continuous Integration (CI) pipeline and, ultimately, a production deployment.
+So far, Open Liberty has been running out of the `target/liberty/wlp` directory. This directory effectively
+contains an installed Open Liberty server and deployed application. The final product of the Maven build is
+a "server package" for use in a Continuous Integration (CI) pipeline and, ultimately, a production deployment.
 
-Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package; the package contains only the servers and the application to be exracted on to an Open Liberty installation. You can see this in the following line in the `pom.xml`:
+Open Liberty supports a number of different server packages. The sample application currently generates
+a `usr` package that contains only the servers and the application to be extracted on to an Open Liberty
+installation. You can see this in the following line in the `pom.xml`:
 
-[source,xml,indent=0]
+[source, xml, indent=0, role="no_copy"]
 ----
-include::finish/pom.xml[tag=packagingtype]
+<include>usr</include>
 ----
 
 You can, alternatively, package the server with a full installation of Open Liberty in a runnable JAR file.
+To do this, run the following command:
 
-**LC: Hmm the following commands are now not working for me. The profiles are defined in the `pom.xml` and they worked last week. Wonder if there's something in conflict now using 17.0.0.4? Can't see why there would be...**
+```
+mvn install -P runnable-package
+```
 
-Run the following command to package your app as a runnable JAR: `mvn -P runnable-package install`
+The `-P` flag specifies a profile to be run during the build. In this case, the `runnable-package`
+profile is invoked, which temporarily overrides the `packaging.type` Maven property from `usr` to
+`runnable`:
 
-This command uses the `runnable-package` profile (defined in `pom.xml`) to temporarily override the `packaging.type` value of `usr` with `runnable` instead.
+[source,xml,indent=0, role="no_copy"]
+----
+include::finish/pom.xml[tags=profile-runnable-package]
+----
 
-The `GettingStarted.jar` file, instead of a ZIP file, is put in the `target` directory. By default, the runnable JAR includes all the features installed with Open Liberty (the whole of Java EE 7 and MicroProfile 1.3) so the JAR file is about 97 MB. You can instead create a minimal server package that contains only the features configured in the server by running the following command: `mvn -P minify-runnable-package install`
+This property is then passed into the `liberty-maven-plugin` to specify what server package type
+Open Liberty should generate:
 
-The `server.xml` includes only the features needed by the application and so only those capabilities are included in the package (as well as any they depend on and any required for production deployment). This means the original 97 MB Open Liberty package is now about 39 MB.
+[source, XML, role="no_copy"]
+----
+<plugin>
+    <groupId>net.wasdev.wlp.maven.plugins</groupId>
+    <artifactId>liberty-maven-plugin</artifactId>
+    <version>2.3</version>
+    <configuration>
+        ...
+        <packageFile>${package.file}</packageFile>
+        ...
+    </configuration>
+</plugin>
+----
 
-**LC: Check the file sizes when minify is working.**
+After the build is finished, you can find the runnable `GettingStarted.jar` file under the `target`
+directory. By default, this JAR comes with all the features available in Open Liberty (the whole of
+Java EE 7 and MicroProfile 1.3), so it ends up being JAR file is about 93 MB in size. We recommend
+that you omit the features that you don't need and package the JAR only with the features defined
+in your `server.xml` file. To do this, run the following command:
 
-If the server is already running, stop it (`mvn liberty:stop-server` or CTRL + C).
+```
+mvn install -P minify-runnable-package
+```
 
-Go into the `target` directory and run the runnable JAR: `java -jar GettingStarted.jar`
+Here you are invoking the `minify-runnable-package`, which override the `package.type` property form
+`usr` to `minify,runnable`. This generates a runnable JAR file that only contains the features
+you've explicitly enabled in your `server.xml` file. As a result, the generated JAR is only about 39 MB.
 
-Access the application again: http://localhost:9080/system/properties The app is running from the minimal runnable JAR.
+To run the JAR, first stop the server if its running (`mvn liberty:stop-server` or CTRL + C),
+then navigate to the `target` directory and run the following command:
+
+```
+java -jar GettingStarted.jar
+```
+
+Then visit the http://localhost:9080/system/properties URL to access the application that is running
+from the minimal runnable JAR.
 
 
 // =================================================================================================
-//
+// Running the application in a Docker container
 // =================================================================================================
 
-== Run the application in a Docker container
+== Running the application in a Docker container
 
-There is a Dockerfile in root of the project. This Dockerfile is based on the Open Liberty docker image from Docker Hub and adds in the project's server configuration and applications from an Open Liberty 'usr server package'. A usr server package contains only an application and server configuration (not a runnable server) and is designed to be unzipped over an existing Open Liberty installation.
+To containerize the application, you'll need a `Dockerfile`, which is a collection of instructions
+that define how a Docker image is built, what files are packaged into it, whats executed, etc. We are
+providing you with a complete `Dockerfile` under the `start` directory. This `Dockerfile` builds an
+image that contains an Open Liberty runtime and the `usr` server package, which itself is made up
+of the application and the server configuration.
 
-Build a usr server package by running the original packaging command: `mvn clean package`
+We configured your `pom.xml` file to use the `dockerfile-maven` plugin, which automatically builds a
+Docker image from a `Dockerfile` located in the same directory as the `pom.xml` file. This plugin
+is defined inside the following profile:
 
-This creates a `target/GettingStarted.zip` containing just the `usr` directory and its contents which you can now run in Docker.
+[source, XML, role="no_copy"]
+----
+include::finish/pom.xml[tags=profile-docker-image]
+----
 
-If the server is already running, stop it (`mvn liberty:stop-server` or CTRL + C).
+To build and containerize the application, invoke the profile by running the following command
 
-In the `start` directory, build the Docker image from the `Dockerfile`: `docker build -t openliberty:gettingstarted .`
+```
+mvn clean package -P docker-image
+```
 
-Run the Docker image: `docker run -p 9080:9080 -p 9443:9443 openliberty:gettingstarted`
+This command generates a `usr` server package to the `target` directory and builds a `openliberty-getting-started:1.0-SNAPSHOT`
+Docker image from containing this server package. Verify that this image has been built by running
+the following command to list all local Docker image:
 
-Access the application again: http://localhost:9080/system/properties The app is running in Docker.
+```
+docker images
+```
+
+To run the image as a container, run the following command:
+
+```
+docker run -d --name gettingstarted-app -p 9080:9080 -p 9443:9443 openliberty-getting-started:1.0-SNAPSHOT
+```
+
+This command starts a `gettingstarted-app` container in the background. To access the application
+running in this container, visit the http://localhost:9080/system/properties URL.
+
+To stop and remove the container, run the following commands:
+
+```
+docker stop gettingstarted-app && docker rm gettingstarted-app
+```
+
+To remove the image, run the following command:
+
+```
+docker rmi openliberty-getting-started:1.0-SNAPSHOT
+```
+
+If you want to learn more about Docker, check out our https://openliberty.io/guides/docker.html[Docker guide].
 
 
 // =================================================================================================

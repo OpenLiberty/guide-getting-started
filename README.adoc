@@ -377,7 +377,7 @@ We configured your `pom.xml` file to use the `dockerfile-maven` plugin, which au
 Docker image from a `Dockerfile` located in the same directory as the `pom.xml` file. This plugin
 is defined inside the following profile:
 
-[source, XML, role="no_copy"]
+[source, XML, role="no_copy", indent=0]
 ----
 include::finish/pom.xml[tags=profile-docker-image]
 ----

@@ -24,16 +24,15 @@ import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 
 @RequestScoped
-@Path("properties")
+@Path("/properties")
 public class SystemResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Timed(name = "getPropertiesTime", description = "Time needed to get the properties of a system")
-	@Counted(absolute = true, monotonic = true, description = "Number of times the properties of a systems is requested")
+	@Timed(name = "getPropertiesTime", description = "Time needed to get the JVM system properties")
+	@Counted(absolute = true, monotonic = true, description = "Number of times the JVM system properties are requested")
 	public Response getProperties() {
-
-			return Response.ok(System.getProperties()).build();
+	    return Response.ok(System.getProperties()).build();
 	}
 
 }

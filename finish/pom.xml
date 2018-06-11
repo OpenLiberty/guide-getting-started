@@ -35,21 +35,21 @@
 
     <!-- Profiles for temporarily switching packaging types -->
     <profiles>
-        <!--tag::profile-runnable-package[]-->
+        <!-- tag::profile-runnable-package[] -->
         <profile>
             <id>runnable-package</id>
             <properties>
                 <packaging.type>runnable</packaging.type>
             </properties>
         </profile>
-        <!--end::profile-runnable-package[]-->
+        <!-- end::profile-runnable-package[] -->
         <profile>
             <id>minify-runnable-package</id>
             <properties>
                 <packaging.type>minify,runnable</packaging.type>
             </properties>
         </profile>
-        <!--tag::profile-docker-image[]-->
+        <!-- tag::profile-docker-image[] -->
         <profile>
             <id>docker-image</id>
             <build>
@@ -74,7 +74,7 @@
                 </plugins>
             </build>
         </profile>
-        <!--end::profile-docker-image[]-->
+        <!-- end::profile-docker-image[] -->
     </profiles>
 
     <!-- Clean these up later -->

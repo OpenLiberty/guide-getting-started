@@ -1,4 +1,4 @@
-// tag::comment[]
+// tag::copyright[]
 /*******************************************************************************
  * Copyright (c) 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  * Contributors:
  *     IBM Corporation - Initial implementation
  *******************************************************************************/
-// end::comment[]
-// tag::HealthTest[]
+// end::copyright[]
 package it.io.openliberty.sample;
 
 import static org.junit.Assert.assertEquals;
@@ -29,7 +28,7 @@ public class PropertiesEndpointTest {
   @Test
   public void testGetProperties() {
 
-    // system properties
+      // system properties
       String port = System.getProperty("liberty.test.port");
       String url = "http://localhost:" + port + "/" ;
 
@@ -52,4 +51,5 @@ public class PropertiesEndpointTest {
 
       response.close();
   }
+  
 }

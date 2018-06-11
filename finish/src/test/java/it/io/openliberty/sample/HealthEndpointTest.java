@@ -14,6 +14,7 @@ package it.io.openliberty.sample;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.json.JsonObject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -32,7 +33,7 @@ public class HealthEndpointTest {
     private Client client;
     
     @BeforeClass
-    public void oneTimeSetup() {
+    public static void oneTimeSetup() {
         String port = System.getProperty("liberty.test.port");
         baseUrl = "http://localhost:" + port;
     }
@@ -54,7 +55,14 @@ public class HealthEndpointTest {
         Response r = this.getResponse(baseUrl + HEALTH_ENDPOINT);
         this.assertResponse(healthURL, r);
         
+        JsonObject healthJson = r.readEntity(JsonObject.class);
         
+        String expectedOutcome = "UP";
+        String actualOutcome = healthJson.getString("outcome");
+        assertEquals("Application should be healthy", expectedOutcome, actualOutcome);
+        
+        actualOutcome = healthJson.getJsonArray("checks").getJsonObject(0).getString("state");
+        assertEquals("First array element was expected to be SystemResource and it wasn't healthy", expectedOutcome, actualOutcome);
     }
     
     /**

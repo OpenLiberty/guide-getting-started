@@ -199,7 +199,7 @@ you should see the following JSON:
 
 == Updating the source code without restarting the Open Liberty server
 
-Your Java application is configured as a "loose application", meaning that it runs in a server from
+Your Java application is configured as a `loose application`, meaning that it runs in a server from
 its `.class` file and other artifacts. Open Liberty automatically monitors these artifacts and whenever
 they are updated, the server updates the running application without needing to be restarted. This is
 convenient because you don't need to repeatedly stop and start the server whenever you make code changes.
@@ -317,7 +317,7 @@ mvn liberty:stop-server
 
 So far, Open Liberty has been running out of the `target/liberty/wlp` directory, which effectively
 contains a installed Open Liberty server installation and the deployed application. The final product
-of the Maven build is a "server package" for use in a Continuous Integration (CI) pipeline and, ultimately,
+of the Maven build is a `server package` for use in a Continuous Integration (CI) pipeline and, ultimately,
 a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates

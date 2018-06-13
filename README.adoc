@@ -15,6 +15,7 @@
 :page-related-guides: ['rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:source-highlighter: prettify
 // :seo-title: Test
 // :seo-description: description
 = Getting started with the Open Liberty application server

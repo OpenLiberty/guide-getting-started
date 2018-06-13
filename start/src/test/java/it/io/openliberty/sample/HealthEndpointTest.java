@@ -31,6 +31,7 @@ public class HealthEndpointTest {
     private static final String HEALTH_ENDPOINT = "/health";
     
     private Client client;
+    private Response response;
     
     @BeforeClass
     public static void oneTimeSetup() {
@@ -40,22 +41,24 @@ public class HealthEndpointTest {
     
     @Before
     public void setup() {
+        response = null;
         client = ClientBuilder.newClient();
         client.register(JsrJsonpProvider.class);
     }
     
     @After
     public void teardown() {
+        response.close();
         client.close();
     }
 
     @Test
     public void testHealthEndpoint() {
         String healthURL = baseUrl + HEALTH_ENDPOINT;
-        Response r = this.getResponse(baseUrl + HEALTH_ENDPOINT);
-        this.assertResponse(healthURL, r);
+        response = this.getResponse(baseUrl + HEALTH_ENDPOINT);
+        this.assertResponse(healthURL, response);
         
-        JsonObject healthJson = r.readEntity(JsonObject.class);
+        JsonObject healthJson = response.readEntity(JsonObject.class);
         
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("outcome");

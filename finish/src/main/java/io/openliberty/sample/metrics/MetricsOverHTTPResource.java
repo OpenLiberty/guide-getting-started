@@ -33,8 +33,10 @@ import javax.ws.rs.core.UriInfo;
  * The original metrics API remains available at /metrics with the credentials provided in the server.xml (default: admin/adminpwd)
  */
 @RequestScoped
-@Path("{scope: .*}")
+@Path("/{scope: .*}")
 public class MetricsOverHTTPResource {
+    
+    private static final String METRICS_PATH = "/metrics/";
 
     @Context
     UriInfo uriInfo;
@@ -42,12 +44,13 @@ public class MetricsOverHTTPResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMetrics(@PathParam("scope") String scope) {
-        String metricsPath = "/metrics/";
-        String url = "https://" + uriInfo.getBaseUri().getHost() + ":" + 9443 + metricsPath + scope;
+        String url = "https://" + uriInfo.getBaseUri().getHost() + ":" + 9443 + METRICS_PATH + scope;
         String credentials = "admin:adminpwd";
         String base64encoded = Base64.getEncoder().encodeToString(credentials.getBytes());
+        
         Client client = ClientBuilder.newClient();
         Response response = client.target(url).request().header(HttpHeaders.AUTHORIZATION, "Basic " + base64encoded).get();
         return response;
-  }
+    }
+    
 }

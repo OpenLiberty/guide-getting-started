@@ -24,9 +24,8 @@ Learn how to deploy and update an application on Open Liberty with Maven and Doc
 
 == What you'll learn
 
-You will learn how to run a simple REST microservice that exposes the JVM's system properties on an
-Open Liberty server. You will use Maven to build and run this microservice, as well as to control
-the Open Liberty server.
+You will learn how to run a simple REST microservice on an Open Liberty server. You will use Maven to
+build and run this microservice, as well as to control the Open Liberty server.
 
 Open Liberty is an application server designed for the cloud. It's small, lightweight, and designed
 with modern cloud-native application development in mind. It supports the full MicroProfile and Java
@@ -37,11 +36,12 @@ including Docker, Kubernetes, and Cloud Foundry.
 Maven is an automation build tool that provides an efficient way to develop applications for Open Liberty.
 Using Maven, you will build a simple microservice that collects basic system properties from your
 laptop and displays them on an endpoint that you can access in your web browser. You will then make
-configuration and code changes and see how they are picked up by a running server. You'll also explore
-how to package your the application with the server runtime so that it can be deployed anywhere in one go.
+server configuration and code changes and see how they are picked up by a running server. You'll also
+explore how to package your the application with the server runtime so that it can be deployed anywhere
+in one go.
 
 Finally, you will package the application along with the server configuration into a Docker image and
-then run that image as a container.
+run that image as a container.
 
 
 // =================================================================================================
@@ -78,24 +78,24 @@ Your application is configured to be built using Maven. Every Maven-configured p
 file, which defines the project configuration, dependencies, plugins, etc. To learn more about Maven,
 check out our https://openliberty.io/guides/maven-intro.html[Maven guide].
 
-Your `pom.xml` file has been configured to include the Liberty Maven plugin (`liberty-maven-plugin`),
-which allows you to install applications into WebSphere Liberty and Open Liberty as well as manage
-the server instances.
+Navigate into the `start` directory where your `pom.xml` file is located. Your `pom.xml` file has been
+configured to include the Liberty Maven plugin (`liberty-maven-plugin`), which allows you to install
+applications into WebSphere Liberty and Open Liberty as well as manage the server instances.
 
-To begin, build the microservice we've provided and then run it in Open Liberty. To do this, navigate
-into the `start` directory and run the following command:
+To begin, build the simple REST microservice we've provided and run it in Open Liberty. To do this,
+run the following command from the `start` directory:
 
 ```
 mvn install liberty:run-server
 ```
 
-The `mvn` command runs a Maven build, during which, the `target` directory is created to hold all
+The `mvn` command runs a Maven build, during which the `target` directory is created to store all
 build-related files.
 
 The `install` argument specifies the Maven `install` phase, during which the application is built and
 packaged into a `.war` file, the Open Liberty server runtime is downloaded and installed to `target/liberty/wlp`,
 an Open Liberty server is created and configured under `target/liberty/wlp/usr/servers/GettingStartedServer`,
-the application is installed into that server via loose config.
+and the application is installed into that server via loose config.
 
 The `liberty:run-server` argument specifies the `run-server` goal thats part of the `liberty-maven-plugin`.
 This goal starts an Open Liberty server in the foreground.
@@ -141,7 +141,7 @@ and your `pom.xml` file is configured to run the `liberty:package-server` goal d
 phase, then the `liberty:package-server` goal will fail unless you specify a different output directory
 for the archive.
 
-Let's try updating the source code while the server is running. The `system` microservice does
+Let's try updating the server configuration while the server is running. The `system` microservice does
 not currently include health monitoring to report whether the server and the microservice that it runs
 are healthy. Health reports can be easily added with the MicroProfile Health feature.
 
@@ -156,15 +156,14 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
 To add the MicroProfile Health feature to the server, add the `mpHealth-1.0` feature to the
-`src/main/liberty/config/server.xml` server configuration file:
+`src/main/liberty/config/server.xml` server configuration file that is located in the `start` directory:
 
 [source, xml, indent=0]
 ----
 include::finish/src/main/liberty/config/server.xml[tag=features]
 ----
 
-Next, while the server is still running, open a new shell session and repackage the server with the
-`mvn package` command.
+Next, open a new shell session and repackage the server with the `mvn package` command.
 
 When enabled, the `mpHealth-1.0` feature adds a `/health` endpoint to the application automatically.
 You can see the server being updated in the server log thats being displayed in your first shell session:
@@ -204,22 +203,22 @@ Your Java application is configured as a `loose application`, meaning that it ru
 its `.class` file and other artifacts. Open Liberty automatically monitors these artifacts and whenever
 they are updated, the server updates the running application without needing to be restarted. This is
 convenient because you don't need to repeatedly stop and start the server whenever you make code changes.
-If your IDE is configured to recompile each time you save your changes, you don't even need to recompile
-yourself through Maven.
+If your IDE is configured to recompile each time you save your changes, you don't even need to manually
+recompile through Maven.
 
-Take a look at the `pom.xml` file for the sample application. The loose application support is enabled
-using the `<looseApplication>` setting under the `liberty-maven-plugin`.
+Take a look at your `pom.xml` file. The loose application support is enabled using the `<looseApplication>`
+setting under the `liberty-maven-plugin`.
 
-At the moment, the `/health` endpoint reports that the server is running but it doesn't provide any
-details of the microservice that runs inside the server. To report on the health status of the microservice,
-create a new file `src/main/java/io/openliberty/sample/system/SystemHealth.java`:
+Let's try updating the source code while the server is running. At the moment, the `/health` endpoint
+reports that the server is running but it doesn't provide any details of the microservice that runs
+inside the server. To report on the health status of the microservice, create a new file `src/main/java/io/openliberty/sample/system/SystemHealth.java`:
 
 [source, java]
 ----
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
 
-Next, run recompile the application by running the following command:
+Next, recompile the application by running the following command:
 
 ```
 mvn compile
@@ -283,14 +282,21 @@ file in the following form:
 Where the `component` is a Java package or class and the `level` is one of the following logging levels:
 off, fatal, severe, warning, audit, info, config, detail, fine, finer, finest, all.
 
-For example, to enable detailed logging of the `mpHealth` feature you added earlier, use the following
-element:
+Try enabling detailed logging of the `mpHealth` feature you added earlier. To do this, add the following
+element to your `src/main/liberty/config/server.xml` configuration file:
+
+[source, XML]
+----
+include::finish/src/main/liberty/config/server.xml[tags=**]
+----
+
+Next, repackage the server:
 
 ```
-<logging traceSpecificatio="com.ibm.ws.microprofile.health.*=all"/>
+mvn package
 ```
 
-When you visit the `/health` endpoint, additional traces will be logged into the `trace.log` file.
+Now when you visit the `/health` endpoint, additional traces will be logged into the `trace.log` file.
 
 
 // =================================================================================================
@@ -347,7 +353,7 @@ profile is invoked, which temporarily overrides the `packaging.type` Maven prope
 include::finish/pom.xml[tags=profile-runnable-package]
 ----
 
-When the build completes, you can find the runnable `GettingStarted.jar` file under the `target`
+When the build completes, you can find the runnable `getting-started.jar` file under the `target`
 directory. By default, this JAR comes with all the features available in Open Liberty, which include
 the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR comes out to be about 93 MB in
 size. To omit the features that you don't need and package the JAR only with the features that you
@@ -367,11 +373,13 @@ To run the JAR, first stop the server if its running, then navigate to the `targ
 the following command:
 
 ```
-java -jar GettingStarted.jar
+java -jar getting-started.jar
 ```
 
 Once the server starts, visit the http://localhost:9080/system/properties URL to access the application
 that is now running from the minimal runnable JAR.
+
+Feel free to stop the server at this point by hitting `CTRL+C`.
 
 
 // =================================================================================================

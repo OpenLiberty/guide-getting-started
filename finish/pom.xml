@@ -187,7 +187,9 @@
                     <serverName>GettingStartedServer</serverName>
                     <stripVersion>true</stripVersion>
                     <configFile>src/main/liberty/config/server.xml</configFile>
+                    <!-- tag::loose-app[] -->
                     <looseApplication>true</looseApplication>
+                    <!-- end::loose-app[] -->
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>
                     <bootstrapProperties>

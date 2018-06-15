@@ -71,6 +71,7 @@ configured to include the Liberty Maven plugin (`liberty-maven-plugin`), which a
 applications into Open Liberty as well as manage the server instances.
 
 To begin, build the `system` microservice we've provided and deploy it to Open Liberty. To do this,
+
 run the following command from the `start` directory:
 
 ```
@@ -416,6 +417,15 @@ Docker images:
 ```
 docker images
 ```
+
+You should see your image in the list of all Docker images:
+
+[source, role="no_copy"]
+----
+REPOSITORY                     TAG             IMAGE ID        CREATED         SIZE
+openliberty-getting-started    1.0-SNAPSHOT    85085141269b    21 hours ago    487MB
+open-liberty                   latest          ba15c5b7d54d    8 days ago      487MB
+----
 
 To run the image as a container, run the following command:
 

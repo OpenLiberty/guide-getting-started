@@ -211,7 +211,7 @@ you don't even need to manually recompile through Maven.
 Take a look at your `pom.xml` file. The loose application support is enabled using the `<looseApplication>`
 setting under the `liberty-maven-plugin`:
 
-[source, XML, role="no_copy"]
+[source, XML, indent=0, role="no_copy"]
 ----
 include::finish/pom.xml[tags=loose-app]
 ----

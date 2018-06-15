@@ -12,5 +12,8 @@ MANIFEST.MF
 # MacOS system files
 .DS_Store
 
+# Asciidoc rendered
+README.html
+
 # Zip files
 *.zip

@@ -402,7 +402,8 @@ image from a `Dockerfile` located in the same directory as the `pom.xml` file:
 include::finish/pom.xml[tags=profile-docker-image]
 ----
 
-To build and containerize the application, invoke the profile as before by using the `-P` flag:
+To build and containerize the application, start your Docker daemon, and then invoke the profile as
+before by using the `-P` flag:
 
 ```
 mvn clean package -P docker-image

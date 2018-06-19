@@ -12,7 +12,7 @@
 // :page-releasedate: 2017-09-19
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker']
-:page-related-guides: ['rest-intro', 'docker']
+:page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
@@ -35,26 +35,14 @@ server lightweight, which is great for microservices. It also deploys to every m
 including Docker, Kubernetes, and Cloud Foundry.
 
 Maven is an automation build tool that provides an efficient way to develop applications for Open Liberty.
-Using Maven, you will build a simple `system` microservice that collects basic system properties from your
+Using Maven, you will build a simple microservice, called `system`, that collects basic system properties from your
 laptop and displays them on an endpoint that you can access in your web browser. You will then make
 server configuration and code changes and see how they are picked up by a running server. You'll also
-explore how to package your the application with the server runtime so that it can be deployed anywhere
+explore how to package your application with the server runtime so that it can be deployed anywhere
 in one go.
 
 Finally, you will package the application along with the server configuration into a Docker image and
 run that image as a container.
-
-
-// =================================================================================================
-// Prerequisites
-// =================================================================================================
-
-== Prerequisites
-
-Before you begin, make sure that you have the following tools installed:
-
-- `Maven` - a build automation tool. For installation instructions see https://maven.apache.org/install.html
-- `Docker` - a containerization software. For installation instructions see https://docs.docker.com/install/
 
 
 // =================================================================================================
@@ -76,14 +64,14 @@ include::{common-includes}/gitclone.adoc[]
 == Building and running the application
 
 Your application is configured to be built using Maven. Every Maven-configured project contains a `pom.xml`
-file, which defines the project configuration, dependencies, plugins, etc. To learn more about Maven,
-check out our https://openliberty.io/guides/maven-intro.html[Maven guide].
+file, which defines the project configuration, dependencies, plugins, and so on.
 
 Navigate into the `start` directory where your `pom.xml` file is located. Your `pom.xml` file has been
 configured to include the Liberty Maven plugin (`liberty-maven-plugin`), which allows you to install
-applications into WebSphere Liberty and Open Liberty as well as manage the server instances.
+applications into Open Liberty as well as manage the server instances.
 
-To begin, build the `system` microservice we've provided and run it in Open Liberty. To do this,
+To begin, build the `system` microservice we've provided and deploy it to Open Liberty. To do this,
+
 run the following command from the `start` directory:
 
 ```
@@ -102,9 +90,9 @@ that server via loose config.
 The `liberty:run-server` argument specifies the `run-server` goal, which starts an Open Liberty server
 instance in the foreground.
 
-For more information on the Liberty Maven plugin, visit our official https://github.com/WASdev/ci.maven[GitHub repository].
+For more information on the Liberty Maven plugin, visit its https://github.com/WASdev/ci.maven[GitHub repository].
 
-When the server starts, you should see various messages displayed in your active shell followed by the
+When the server starts, you see various messages displayed in your active shell followed by the
 following message which indicates that the server has started:
 
 [source, role="no_copy"]
@@ -112,7 +100,7 @@ following message which indicates that the server has started:
 [INFO] [AUDIT] CWWKF0011I: The server GettingStartedServer is ready to run a smarter planet.
 ----
 
-To access the `system` microservice visit the http://localhost:9080/system/properties URL. You should
+To access the `system` microservice visit the http://localhost:9080/system/properties URL and you'll
 see a list of various system properties of your JVM:
 
 [source, JSON, role="no_copy"]
@@ -126,7 +114,7 @@ see a list of various system properties of your JVM:
 ----
 
 Later, when you need to stop the server, simply hit `CTRL+C` in the shell session where you ran the
-server or run the `liberty:stop-server` goal from another shell session like so:
+server or run the `liberty:stop-server` goal from the `start` directory of another shell session like so:
 
 ```
 mvn liberty:stop-server
@@ -138,18 +126,15 @@ mvn liberty:stop-server
 
 == Updating the server configuration without restarting the server
 
-When you update various server files, you can run the `mvn package` command to invoke the Maven `package`
-phase, which executes various Maven goals that repackage the server. Note, if the server is running
-and your `pom.xml` file is configured to run the `liberty:package-server` goal during the `package`
-phase, then the `liberty:package-server` goal will fail unless you specify a different output directory
-for the server package.
+When you update the server configuration files, you can run the `mvn package` command to invoke the Maven `package`
+phase, which executes various Maven goals that repackage the server.
 
 Let's try updating the server configuration while the server is running, so if you stopped the server,
 start it again before you proceed. The `system` microservice does
 not currently include health monitoring to report whether the server and the microservice that it runs
 are healthy. Health reports can be easily added with the MicroProfile Health feature, which adds a
 `/health` endpoint to your application. Try accessing this endpoint now at the http://localhost:9080/health/
-URL. As expected, you see a 404 error since the health endpoint does not yet exist:
+URL. As expected, you see a 404 error because the health endpoint does not yet exist:
 
 [source, role="no_copy"]
 ----
@@ -164,10 +149,14 @@ To add the MicroProfile Health feature to the server, add the `mpHealth-1.0` fea
 include::finish/src/main/liberty/config/server.xml[tag=features]
 ----
 
-Next, open a new shell session and repackage the server with the `mvn package` command.
+Next, open a new shell session, navigate to the `start` directory, and repackage the server:
+
+```
+mvn package
+```
 
 When enabled, the `mpHealth-1.0` feature adds a `/health` endpoint to the application automatically.
-You can see the server being updated in the server log thats being displayed in your first shell session:
+You can see the server being updated in the server log that's being displayed in your first shell session:
 
 [source, role="no_copy"]
 ----
@@ -183,7 +172,7 @@ You can see the server being updated in the server log thats being displayed in 
 ----
 
 Try to access the `/health` endpoint again by visiting the http://localhost:9080/health URL, this time
-you should see the following JSON:
+you'll see the following JSON:
 
 [source, JSON, role="no_copy"]
 ----
@@ -202,7 +191,7 @@ You can now check and see whether your server is up and running.
 
 == Updating the source code without restarting the server
 
-The JAX-RS application that contains your `system` microservice is configured as a `loose application`,
+The JAX-RS application that contains your `system` microservice is configured as a loose application,
 meaning that it runs in a server from its `.class` file and other artifacts. Open Liberty automatically
 monitors these artifacts and whenever they are updated, it updates the running server without the need
 for the server to be restarted. If your IDE is configured to recompile each time you save your changes,
@@ -211,7 +200,7 @@ you don't even need to manually recompile through Maven.
 Take a look at your `pom.xml` file. The loose application support is enabled using the `<looseApplication>`
 setting under the `liberty-maven-plugin`:
 
-[source, XML, indent=0, role="no_copy"]
+[source, XML, role="no_copy"]
 ----
 include::finish/pom.xml[tags=loose-app]
 ----
@@ -232,7 +221,7 @@ Next, recompile the application by running the following command:
 mvn compile
 ```
 
-You should see the following messages displayed in your first shell session:
+The following messages will display in your first shell session:
 
 [source, role="no_copy"]
 ----
@@ -243,7 +232,7 @@ You should see the following messages displayed in your first shell session:
 ----
 
 Try to access the `/health` endpoint again by visiting the http://localhost:9080/health URL, this time
-you should see the overall status of your server as well as the `system` microservice that it runs in it:
+you'll see the overall status of your server as well as the `system` microservice that it runs in it:
 
 
 [source, JSON, role="no_copy"]
@@ -263,7 +252,7 @@ you should see the overall status of your server as well as the `system` microse
 }
 ----
 
-As you can see, making code changes and recompiling is straightforward as Maven only rebuilds the `.class`
+As you can see, making code changes and recompiling is straightforward since Maven only rebuilds the `.class`
 and artifacts that changed, and the server picks these up automatically without needing to be restarted.
 
 
@@ -281,7 +270,7 @@ console output of the running application and server. Additional logs are create
 errors occur or whenever tracing is enabled. These can be found under the `ffdc` directory and in the
 `trace.log` file respectively.
 
-In addition to the logs files that are generated automatically, you can enable logging of specific
+In addition to the log files that are generated automatically, you can enable logging of specific
 Java packages or classes. To do this, add the `logging` element to the `server.xml` file in the following form:
 
 ```
@@ -289,10 +278,10 @@ Java packages or classes. To do this, add the `logging` element to the `server.x
 ```
 
 Where the `component` is a Java package or class and the `level` is one of the following logging levels:
-off, fatal, severe, warning, audit, info, config, detail, fine, finer, finest, all.
+`off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
-Try enabling detailed logging of the `mpHealth` feature you added earlier. To do this, add the `logging`
-element to your `src/main/liberty/config/server.xml` configuration file:
+Try enabling detailed logging of the MicroProfile Health feature you added earlier. To do this, add
+the `logging` element to your `src/main/liberty/config/server.xml` configuration file:
 
 [source, XML]
 ----
@@ -332,8 +321,8 @@ mvn liberty:stop-server
 == Running the application from a minimal runnable JAR
 
 So far, Open Liberty has been running out of the `target/liberty/wlp` directory, which effectively
-contains a Open Liberty server installation and the deployed application. The final product of the
-Maven build is a `server package` for use in a Continuous Integration (CI) pipeline and, ultimately,
+contains an Open Liberty server installation and the deployed application. The final product of the
+Maven build is a server package for use in a Continuous Integration pipeline and, ultimately,
 a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates
@@ -347,7 +336,7 @@ installation. The type of server package is configured in your `pom.xml` file in
 ----
 
 Alternatively to creating a server package, you can generate a runnable JAR file that contains the
-application along with a server runtime. This JAR can then be ran anywhere, deploying your application
+application along with a server runtime. This JAR can then be run anywhere, deploying your application
 and server in one go. To do this, run the following command:
 
 ```
@@ -365,8 +354,8 @@ include::finish/pom.xml[tags=profile-runnable-package]
 
 When the build completes, you can find the runnable `getting-started.jar` file under the `target`
 directory. By default, this JAR comes with all the features available in Open Liberty, which include
-the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR comes out to be about 93 MB in
-size. To omit the features that you don't need and package the JAR only with the features that you
+the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR is about 93 MB. To omit
+the features that you don't need and package the JAR with only the features that you
 defined in the `server.xml` file, specify the packaging type to be `minifiy,runnable`. We've already
 configured the `minify-runnable-package` profile to do this for you. Invoke the profile as you did
 earlier by using the `-P` flag:
@@ -377,19 +366,20 @@ mvn install -P minify-runnable-package
 
 The `minify-runnable-package` overrides the `package.type` property from `usr` to `minify,runnable`
 to generate a runnable JAR file that only contains the features you've explicitly enabled in your
-`server.xml` file. As a result, the generated JAR is only about 39 MB in size.
+`server.xml` file. As a result, the generated JAR is now only about 39 MB.
 
-To run the JAR, first stop the server if its running, then navigate to the `target` directory and run
+To run the JAR, first stop the server if it's running, then navigate to the `target` directory and run
 the following command:
 
 ```
 java -jar getting-started.jar
 ```
 
-Once the server starts, visit the http://localhost:9080/system/properties URL to access the application
+When the server starts, visit the http://localhost:9080/system/properties URL to access the application
 that is now running out of the minimal runnable JAR.
 
-Feel free to stop the server at this point.
+Before continuing to the next section, stop the server by hitting `CTRL+C` in the shell session
+that the server runs in.
 
 
 // =================================================================================================
@@ -399,12 +389,12 @@ Feel free to stop the server at this point.
 == Running the application in a Docker container
 
 To containerize the application, you need a `Dockerfile`, which contains a collection of instructions
-defining how a Docker image is built, what files are packaged into it, whats executed when the
-image runs as a container, etc. We are providing you with a complete `Dockerfile` under the `start`
-directory. This `Dockerfile` packages the `usr` server package into a Docker image that contains a
+defining how a Docker image is built, what files are packaged into it, what commands run when the
+image runs as a container, and so on. You can find a complete `Dockerfile` under the `start` directory.
+This `Dockerfile` packages the `usr` server package into a Docker image that contains a
 pre-configured Open Liberty server.
 
-Like with building runnable JARs, we've configured another profile to build the Docker image for you.
+As with building runnable JARs, the `pom.xml` file contains a profile to build the Docker images.
 The `docker-image` profile uses the `dockerfile-maven` plugin, which automatically builds a Docker
 image from a `Dockerfile` located in the same directory as the `pom.xml` file:
 
@@ -413,14 +403,15 @@ image from a `Dockerfile` located in the same directory as the `pom.xml` file:
 include::finish/pom.xml[tags=profile-docker-image]
 ----
 
-To build and containerize the application, invoke the profile as before by using the `-P` flag:
+To build and containerize the application, start your Docker daemon, and then invoke the profile as
+before by using the `-P` flag:
 
 ```
 mvn clean package -P docker-image
 ```
 
 During the Maven `package` phase, a `usr` server package is generated into the `target` directory.
-The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built that contains this server
+The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built, which contains this server
 package. Verify that this image has been built by running the following command to list all local
 Docker images:
 
@@ -443,14 +434,14 @@ To run the image as a container, run the following command:
 docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT
 ```
 
-This is quite a long command, so let's break it down:
+Let's break down the command:
 
 [cols="15, 100", options="header"]
 |===
 | *Flag* | *Description*
 | -d     | Runs the container in the background.
 | --name | Specifies a name for the container.
-| -p     | Maps the container's ports to the host's.
+| -p     | Maps the container's ports to the host's ports.
 |===
 
 The final argument to the `docker run` command is the Docker image name.
@@ -461,7 +452,7 @@ Next, run the following command to verify that your container has started:
 docker ps
 ```
 
-You should see the following output (truncated for readability):
+Make sure that your container is running and not listed with an `Exited` state:
 
 [source, role="no_copy"]
 ----
@@ -482,8 +473,6 @@ To remove the image, run the following command:
 ```
 docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
-
-If you want to learn more about Docker, check out our https://openliberty.io/guides/docker.html[Docker guide].
 
 
 // =================================================================================================

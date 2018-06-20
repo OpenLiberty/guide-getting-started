@@ -120,7 +120,7 @@ start it again before you proceed. The `system` microservice does
 not currently include health monitoring to report whether the server and the microservice that it runs
 are healthy. You can add health reports with the MicroProfile Health feature, which adds a
 `/health` endpoint to your application. If you try to access this endpoint now at the http://localhost:9080/health/
-URL, you see a 404 error because the health endpoint does not yet exist.
+URL, you see a 404 error because the health endpoint does not yet exist:
 
 [source, role="no_copy"]
 ----

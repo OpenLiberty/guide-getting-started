@@ -250,23 +250,23 @@ and artifacts that changed, and the server picks these up automatically without 
 
 While the server is running in the foreground, it displays various console messages in the shell.
 These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log`
-file. You can find the complete server logs under the `target/liberty/wlp/usr/servers/defaultServer/logs`
-directory. The primary log files in that directory are `console.log` and `messages.log` which contain
-console output of the running application and server. Additional logs are created when more serious
-errors occur or whenever tracing is enabled. These can be found under the `ffdc` directory and in the
-`trace.log` file respectively.
+file. You can find the complete server logs in the `target/liberty/wlp/usr/servers/defaultServer/logs`
+directory. The `console.log` and `messages.log` files are the primary log files in this directory and contain
+console output of the running application and the server. More logs are created when more
+errors occur or whenever tracing is enabled. Find the error logs in the `ffdc` directory and the tracing logs in the
+`trace.log` file.
 
 In addition to the log files that are generated automatically, you can enable logging of specific
-Java packages or classes. To do this, add the `logging` element to the `server.xml` file in the following form:
+Java packages or classes. Add the `logging` element to the `server.xml` file with the following form:
 
 ```
 <logging traceSpecification="<component_1>=<level>:<component_2>=<level>:..."/>
 ```
 
-Where the `component` is a Java package or class and the `level` is one of the following logging levels:
+The `component` element is a Java package or class, and the `level` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
-Try enabling detailed logging of the MicroProfile Health feature you added earlier. To do this, add
+Enable detailed logging of the MicroProfile Health feature that you added earlier. Add
 the `logging` element to your `src/main/liberty/config/server.xml` configuration file:
 
 [source, XML]
@@ -280,7 +280,7 @@ Next, repackage the server:
 mvn package
 ```
 
-Now when you visit the `/health` endpoint, additional traces will be logged into the `trace.log` file.
+Now, when you visit the `/health` endpoint, additional traces are logged into the `trace.log` file.
 
 
 // =================================================================================================
@@ -289,9 +289,9 @@ Now when you visit the `/health` endpoint, additional traces will be logged into
 
 == Starting and stopping the Open Liberty server in the background
 
-In the previous sections, you started and stopped the server in the foreground by using the Maven
-`liberty:run-server` goal. Alternatively, you can also start and stop the server in the background
-using the Maven `liberty:start-server` and `liberty:stop-server` goals:
+Although you can start and stop the server in the foreground by using the Maven
+`liberty:run-server` goal, you can also start and stop the server in the background
+with the Maven `liberty:start-server` and `liberty:stop-server` goals:
 
 [source, role="no_copy"]
 ----
@@ -306,13 +306,13 @@ mvn liberty:stop-server
 
 == Running the application from a minimal runnable JAR
 
-So far, Open Liberty has been running out of the `target/liberty/wlp` directory, which effectively
+So far, Open Liberty runs out of the `target/liberty/wlp` directory, which effectively
 contains an Open Liberty server installation and the deployed application. The final product of the
-Maven build is a server package for use in a Continuous Integration pipeline and, ultimately,
+Maven build is a server package for use in a continuous integration pipeline and, ultimately,
 a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates
-a `usr` package that contains the servers and application to be extracted on to an Open Liberty
+a `usr` package that contains the servers and application to be extracted onto an Open Liberty
 installation. The type of server package is configured in your `pom.xml` file in the following two lines:
 
 [source, xml, indent=0, role="no_copy"]
@@ -321,41 +321,41 @@ installation. The type of server package is configured in your `pom.xml` file in
 <include>${packaging.type}</include>
 ----
 
-Alternatively to creating a server package, you can generate a runnable JAR file that contains the
-application along with a server runtime. This JAR can then be run anywhere, deploying your application
-and server in one go. To do this, run the following command:
+Instead of creating a server package, you can generate a runnable JAR file that contains the
+application along with a server runtime. This JAR can then be run anywhere and deploy your application
+and server at the same time. To generate the JAR file, run the `install -P runnable-package` command:
 
 ```
 mvn install -P runnable-package
 ```
 
-The `-P` flag specifies a Maven profile to be run during the build. In this case, the `runnable-package`
-profile is invoked, which temporarily overrides the `packaging.type` property from `usr` to `runnable`.
-This property then propagates to the `liberty-maven-plugin` which generates the desired server package:
+The `-P` flag specifies the Maven profile to run during the build. In this case, the `runnable-package`
+profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package to the `runnable` package.
+This property then propagates to the `liberty-maven-plugin` plug-in, which generates the required server package:
 
 [source,xml,indent=0, role="no_copy"]
 ----
 include::finish/pom.xml[tags=profile-runnable-package]
 ----
 
-When the build completes, you can find the runnable `getting-started.jar` file under the `target`
-directory. By default, this JAR comes with all the features available in Open Liberty, which include
+When the build completes, you can find the runnable `getting-started.jar` file in the `target`
+directory. By default, this JAR file comes with all the features available in Open Liberty, including
 the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR is about 93 MB. To omit
 the features that you don't need and package the JAR with only the features that you
-defined in the `server.xml` file, specify the packaging type to be `minifiy,runnable`. We've already
-configured the `minify-runnable-package` profile to do this for you. Invoke the profile as you did
-earlier by using the `-P` flag:
+defined in the `server.xml` file, specify the `minifiy,runnable` packaging type.
+The `minify-runnable-package` profile is already configured to package the JAR with only the features you want. Invoke the profile
+by running the `-P` flag:
 
 ```
 mvn install -P minify-runnable-package
 ```
 
-The `minify-runnable-package` overrides the `package.type` property from `usr` to `minify,runnable`
-to generate a runnable JAR file that only contains the features you've explicitly enabled in your
-`server.xml` file. As a result, the generated JAR is now only about 39 MB.
+The `minify-runnable-package` overrides the `package.type` property from the `usr` package to the `minify,runnable` package
+to generate a runnable JAR file that contains only the features that you explicitly enabled in your
+`server.xml` file. As a result, the generated JAR is only about 39 MB.
 
-To run the JAR, first stop the server if it's running, then navigate to the `target` directory and run
-the following command:
+To run the JAR, first stop the server if it's running. Then, navigate to the `target` directory and run
+the `-jar getting-started.jar` command:
 
 ```
 java -jar getting-started.jar
@@ -364,7 +364,7 @@ java -jar getting-started.jar
 When the server starts, visit the http://localhost:9080/system/properties URL to access the application
 that is now running out of the minimal runnable JAR.
 
-Before continuing to the next section, stop the server by hitting `CTRL+C` in the shell session
+Stop the server by pressing `CTRL+C` in the shell session
 that the server runs in.
 
 
@@ -374,38 +374,38 @@ that the server runs in.
 
 == Running the application in a Docker container
 
-To containerize the application, you need a `Dockerfile`, which contains a collection of instructions
-defining how a Docker image is built, what files are packaged into it, what commands run when the
-image runs as a container, and so on. You can find a complete `Dockerfile` under the `start` directory.
-This `Dockerfile` packages the `usr` server package into a Docker image that contains a
-pre-configured Open Liberty server.
+To containerize the application, you need a `Dockerfile` file. This file contains a collection of instructions
+that define how a Docker image is built, what files are packaged into it, what commands run when the
+image runs as a container, and so on. You can find a complete `Dockerfile` file in the `start` directory.
+This `Dockerfile` file packages the `usr` server package into a Docker image that contains a
+preconfigured Open Liberty server.
 
 As with building runnable JARs, the `pom.xml` file contains a profile to build the Docker images.
-The `docker-image` profile uses the `dockerfile-maven` plugin, which automatically builds a Docker
-image from a `Dockerfile` located in the same directory as the `pom.xml` file:
+The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker
+image from a `Dockerfile` file that is located in the same directory as the `pom.xml` file:
 
 [source, XML, role="no_copy", indent=0]
 ----
 include::finish/pom.xml[tags=profile-docker-image]
 ----
 
-To build and containerize the application, start your Docker daemon, and then invoke the profile as
-before by using the `-P` flag:
+To build and containerize the application, start your Docker daemon and then invoke the profile
+by using the `-P` flag:
 
 ```
 mvn clean package -P docker-image
 ```
 
 During the Maven `package` phase, a `usr` server package is generated into the `target` directory.
-The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built, which contains this server
-package. Verify that this image has been built by running the following command to list all local
+The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built, which contains the `usr` server
+package. To verify that the image is built, run the `docker images` command to list all local
 Docker images:
 
 ```
 docker images
 ```
 
-You should see your image in the list of all Docker images:
+Your image appears in the list of all Docker images:
 
 [source, role="no_copy"]
 ----
@@ -427,12 +427,12 @@ Let's break down the command:
 | *Flag* | *Description*
 | -d     | Runs the container in the background.
 | --name | Specifies a name for the container.
-| -p     | Maps the container's ports to the host's ports.
+| -p     | Maps the container ports to the host ports.
 |===
 
-The final argument to the `docker run` command is the Docker image name.
+The final argument in the `docker run` command is the Docker image name.
 
-Next, run the following command to verify that your container has started:
+Next, run the `docker ps` command to verify that your container started:
 
 ```
 docker ps
@@ -467,6 +467,6 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Great work! You're done!
 
-You've learnt the basics of deploying and updating an application on an Open Liberty server.
+You've learned the basics of deploying and updating an application on an Open Liberty server.
 
 include::{common-includes}/finish.adoc[]

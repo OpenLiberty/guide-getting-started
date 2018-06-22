@@ -353,15 +353,15 @@ When the build completes, you can find the runnable `getting-started.jar` file i
 directory. By default, this JAR file comes with all the features available in Open Liberty, including
 the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR is about 93 MB. To omit
 the features that you don't need and package the JAR with only the features that you defined in the 
-`server.xml` file, use `minifiy,runnable` as the packaging type. The `minify-runnable-package` 
-profile is already configured to do this for you. Invoke the profile by using the `-P` flag:
+`server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke 
+the `minify-runnable-package` profile by using the `-P` flag:
 
 ```
 mvn install -P minify-runnable-package
 ```
 
 The `minify-runnable-package` profile overrides the `package.type` property from the `usr` package to the 
-`minify,runnable` package, and generates a runnable JAR file that contains only the features that you 
+`minify,runnable` package and generates a runnable JAR file that contains only the features that you 
 explicitly enabled in your `server.xml` file. As a result, the generated JAR is only about 39 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` directory and 

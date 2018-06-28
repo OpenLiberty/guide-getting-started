@@ -195,7 +195,7 @@ for the server to be restarted.
 Take a look at your `pom.xml` file. The loose application support is enabled with the `<looseApplication>`
 element in the `liberty-maven-plugin` plug-in:
 
-[source, XML, role="no_copy"]
+[source, XML, indent=0, role="no_copy"]
 ----
 include::finish/pom.xml[tags=loose-app]
 ----

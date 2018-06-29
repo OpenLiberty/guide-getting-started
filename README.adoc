@@ -16,8 +16,8 @@
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-// :seo-title: Test
-// :seo-description: description
+:seo-title: Open Liberty tutorial
+:seo-description: Find out how to run microservices on Open Liberty 
 = Getting started with the Open Liberty application server
 
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.

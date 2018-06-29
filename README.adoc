@@ -20,6 +20,9 @@
 :seo-description: Find out how to run microservices on Open Liberty 
 = Getting started with the Open Liberty application server
 
+[.hidden]
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 
 == What you'll learn

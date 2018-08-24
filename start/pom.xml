@@ -82,7 +82,7 @@
             <dependency>
                 <groupId>io.openliberty.features</groupId>
                 <artifactId>features-bom</artifactId>
-                <version>18.0.0.2</version>
+                <version>RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

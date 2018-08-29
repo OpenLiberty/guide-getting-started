@@ -12,6 +12,7 @@
 :page-releasedate: 2018-06-29
 :page-guide-category: basic
 :page-essential: true
+:page-essential-order: 1
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']

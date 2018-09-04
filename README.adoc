@@ -10,6 +10,9 @@
 :page-layout: guide
 :page-duration: 25 minutes
 :page-releasedate: 2018-06-29
+:page-guide-category: basic
+:page-essential: true
+:page-essential-order: 1
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
@@ -18,7 +21,7 @@
 :source-highlighter: prettify
 :page-seo-title: Open Liberty tutorial
 :page-seo-description: Find out how to run microservices on Open Liberty 
-= Getting started with the Open Liberty application server
+= Deploying and packaging applications
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].

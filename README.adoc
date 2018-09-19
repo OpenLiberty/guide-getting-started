@@ -142,7 +142,7 @@ to access this endpoint now at the http://localhost:9080/health/ URL, you see a 
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, add the `mpHealth-1.0` feature to the
+To add the MicroProfile Health feature to the server, add the `mpHealth` feature to the
 `src/main/liberty/config/server.xml` server configuration file that is located in the `start` directory:
 
 [source, xml, indent=0]
@@ -156,7 +156,7 @@ Next, open a new shell session, navigate to the `start` directory, and repackage
 mvn package
 ```
 
-When enabled, the `mpHealth-1.0` feature automatically adds a `/health` endpoint to the application.
+When enabled, the `mpHealth` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your first shell session:
 
 [source, role="no_copy"]

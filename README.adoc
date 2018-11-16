@@ -7,7 +7,7 @@
 //     IBM Corporation
 //
 :projectid: getting-started
-:page-layout: guide
+:page-layout: guide-multipane
 :page-duration: 30 minutes
 :page-releasedate: 2018-06-22
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
@@ -202,10 +202,15 @@ include::finish/pom.xml[tags=loose-app]
 
 Try updating the source code while the server is running. At the moment, the `/health` endpoint
 reports whether or not the server is running, but the endpoint doesn't provide any details on the 
-microservices that are running inside of the server. To report on the health status of the `system` 
-microservice, create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
+microservices that are running inside of the server. 
 
-[source, java]
+[role="code_command hotspot=13-36", subs="quotes"]
+----
+To report on the health status of the `system` 
+microservice, create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
+----
+SystemHealth.java
+[source, java, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----

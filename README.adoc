@@ -208,7 +208,7 @@ pom.xml
 include::finish/pom.xml[tags=loose-app]
 ----
 // =================================================================================================
-// 
+// .
 // =================================================================================================
 
 Try updating the source code while the server is running. At the moment, the `/health` endpoint

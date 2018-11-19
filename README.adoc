@@ -207,6 +207,9 @@ pom.xml
 ----
 include::finish/pom.xml[tags=loose-app]
 ----
+// =================================================================================================
+// 
+// =================================================================================================
 
 Try updating the source code while the server is running. At the moment, the `/health` endpoint
 reports whether or not the server is running, but the endpoint doesn't provide any details on the 

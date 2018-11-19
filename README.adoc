@@ -137,10 +137,14 @@ to access this endpoint now at the http://localhost:9080/health/ URL, you see a 
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, add the `mpHealth-1.0` feature to the
-`src/main/liberty/config/server.xml` server configuration file that is located in the `start` directory:
+[role="code_command hotspot=1-21", subs="quotes"]
+----
+To add the MicroProfile Health feature to the server, replace the `src/main/liberty/config/server.xml` server configuration file
+that is located in the `start` directory to include the `mpHealth-1.0` feature:
+----
 
-[source, xml, indent=0]
+server.xml
+[source, xml, indent=0, role='code_column']
 ----
 include::finish/src/main/liberty/config/server.xml[tag=features]
 ----
@@ -192,10 +196,14 @@ meaning that it runs in a server from its `.class` file and other artifacts. Ope
 monitors these artifacts, and whenever they are updated, it updates the running server without the need
 for the server to be restarted.
 
+[role="code_command hotspot=1-279", subs="quotes"]
+----
 Take a look at your `pom.xml` file. The loose application support is enabled with the `<looseApplication>`
 element in the `liberty-maven-plugin` plug-in:
+----
 
-[source, XML, indent=0, role="no_copy"]
+pom.xml
+[source, XML, indent=0, role="code_column"]
 ----
 include::finish/pom.xml[tags=loose-app]
 ----

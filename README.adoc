@@ -18,7 +18,7 @@
 :source-highlighter: prettify
 // :seo-title: Test
 // :seo-description: description
-= Getting started with the Open Liberty application server (To be published)
+= Getting started with the Open Liberty application server 
 
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 

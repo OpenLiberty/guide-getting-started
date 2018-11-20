@@ -145,7 +145,7 @@ Replace the `src/main/liberty/config/server.xml` server configuration file
 that is located in the `start` directory to include the `mpHealth-1.0` feature.
 ----
 server.xml
-[source, xml, role='code_column', linenums]
+[source, xml, linenums, role='code_column']
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
@@ -205,7 +205,7 @@ The loose application support is enabled with the `<looseApplication>`
 element in the `liberty-maven-plugin` plug-in.
 ----
 pom.xml
-[source, XML, indent=0, role="code_column", linenums]
+[source, XML, indent=0, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----
@@ -224,7 +224,7 @@ To report on the health status of the `system`
 microservice, create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
 ----
 SystemHealth.java
-[source, java, role='code_column', linenums]
+[source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
@@ -301,7 +301,7 @@ your `src/main/liberty/config/server.xml` configuration file.
 ----
 
 server.xml
-[source, XML, role="code_column", linenums]
+[source, XML, linenums, role="code_column"]
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
@@ -353,7 +353,7 @@ The type of server package is configured in your `pom.xml` file in the following
 ----
 
 pom.xml
-[source, xml, indent=0, role="code_column", linenums]
+[source, xml, indent=0, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----
@@ -423,7 +423,7 @@ The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatica
 image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
 ----
 pom.xml
-[source, XML, role="code_column", linenums]
+[source, XML, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----

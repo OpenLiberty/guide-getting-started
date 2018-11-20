@@ -18,7 +18,7 @@
 :source-highlighter: prettify
 // :seo-title: Test
 // :seo-description: description
-= Getting started with the Open Liberty application server
+= Getting started with the Open Liberty application server (To be published)
 
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 
@@ -137,16 +137,17 @@ to access this endpoint now at the http://localhost:9080/health/ URL, you see a 
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-[role="code_command hotspot=1-21", subs="quotes"]
-----
-To add the MicroProfile Health feature to the server, replace the `src/main/liberty/config/server.xml` server configuration file
-that is located in the `start` directory to include the `mpHealth-1.0` feature:
-----
+To add the MicroProfile Health feature to the server, include the `mpHealth-1.0` feature in the `server.xml`. 
 
-server.xml
-[source, xml, indent=0, role='code_column']
+[role="code_command hotspot=1-8", subs="quotes"]
 ----
-include::finish/src/main/liberty/config/server.xml[tag=features]
+Replace the `src/main/liberty/config/server.xml` server configuration file
+that is located in the `start` directory to include the `mpHealth-1.0` feature.
+----
+server.xml
+[source, xml, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
 
 Next, open a new shell session, navigate to the `start` directory, and repackage the server:
@@ -196,20 +197,22 @@ meaning that it runs in a server from its `.class` file and other artifacts. Ope
 monitors these artifacts, and whenever they are updated, it updates the running server without the need
 for the server to be restarted.
 
-[role="code_command hotspot=1-279", subs="quotes"]
-----
-Take a look at your `pom.xml` file. The loose application support is enabled with the `<looseApplication>`
-element in the `liberty-maven-plugin` plug-in:
-----
+*Take a look at your `pom.xml` file.*
 
+[role="code_command hotspot=210-211", subs="quotes"]
+----
+The loose application support is enabled with the `<looseApplication>`
+element in the `liberty-maven-plugin` plug-in.
+----
 pom.xml
 [source, XML, indent=0, role="code_column"]
 ----
-include::finish/pom.xml[tags=loose-app]
+include::finish/pom.xml[tags=**]
 ----
-// =================================================================================================
-// x
-// =================================================================================================
+
+
+
+== -
 
 Try updating the source code while the server is running. At the moment, the `/health` endpoint
 reports whether or not the server is running, but the endpoint doesn't provide any details on the 
@@ -291,10 +294,14 @@ Java packages or classes by using the `logging` element:
 The `component` element is a Java package or class, and the `level` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
+[role="code_command hotspot=13-14", subs="quotes"]
+----
 Try enabling detailed logging of the MicroProfile Health feature by adding the `logging` element to 
-your `src/main/liberty/config/server.xml` configuration file:
+your `src/main/liberty/config/server.xml` configuration file.
+----
 
-[source, XML]
+server.xml
+[source, XML, role="code_column"]
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
@@ -338,12 +345,17 @@ a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates
 a `usr` package that contains the servers and application to be extracted onto an Open Liberty
-installation. The type of server package is configured in your `pom.xml` file in the following two lines:
+installation. 
 
-[source, xml, indent=0, role="no_copy"]
+[role="code_command hotspot=30-31", subs="quotes"]
 ----
-<packaging.type>usr</packaging.type>
-<include>${packaging.type}</include>
+The type of server package is configured in your `pom.xml` file in the following line.
+----
+
+pom.xml
+[source, xml, indent=0, role="code_column"]
+----
+include::finish/pom.xml[tags=**]
 ----
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the
@@ -357,12 +369,12 @@ mvn install -P runnable-package
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the `runnable-package`
 profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package 
-to the `runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
-generates the server package that you want:
+to the `runnable` package. 
 
-[source,xml,indent=0, role="no_copy"]
+[role="code_command hotspot=39-44" subs="quotes"]
 ----
-include::finish/pom.xml[tags=profile-runnable-package]
+This property then propagates to the `liberty-maven-plugin` plug-in, which 
+generates the server package that you want.
 ----
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
@@ -405,12 +417,15 @@ image runs as a container, and so on. You can find a complete `Dockerfile` in th
 This `Dockerfile` packages the `usr` server package into a Docker image that contains a preconfigured 
 Open Liberty server.
 
-The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker
-image from a `Dockerfile` that is located in the same directory as the `pom.xml` file:
-
-[source, XML, role="no_copy", indent=0]
+[role="code_command hotspot=53-76", subs="quotes"]
 ----
-include::finish/pom.xml[tags=profile-docker-image]
+The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker
+image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
+----
+pom.xml
+[source, XML, role="code_column", indent=0]
+----
+include::finish/pom.xml[tags=**]
 ----
 
 To build and containerize the application, start your Docker daemon and then invoke the profile

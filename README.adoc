@@ -18,7 +18,7 @@
 :source-highlighter: prettify
 // :seo-title: Test
 // :seo-description: description
-= Getting started with the Open Liberty application server
+= Getting started with the Open Liberty application server (To be published)
 
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 
@@ -144,7 +144,6 @@ To add the MicroProfile Health feature to the server, include the `mpHealth-1.0`
 Replace the `src/main/liberty/config/server.xml` server configuration file
 that is located in the `start` directory to include the `mpHealth-1.0` feature.
 ----
-
 server.xml
 [source, xml, role='code_column', linenums]
 ----
@@ -206,7 +205,7 @@ The loose application support is enabled with the `<looseApplication>`
 element in the `liberty-maven-plugin` plug-in.
 ----
 pom.xml
-[source, XML, indent=0, role="code_column"]
+[source, XML, indent=0, role="code_column", linenums]
 ----
 include::finish/pom.xml[tags=**]
 ----
@@ -225,7 +224,7 @@ To report on the health status of the `system`
 microservice, create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
 ----
 SystemHealth.java
-[source, java, role='code_column']
+[source, java, role='code_column', linenums]
 ----
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
@@ -302,7 +301,7 @@ your `src/main/liberty/config/server.xml` configuration file.
 ----
 
 server.xml
-[source, XML, role="code_column"]
+[source, XML, role="code_column", linenums]
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
@@ -354,7 +353,7 @@ The type of server package is configured in your `pom.xml` file in the following
 ----
 
 pom.xml
-[source, xml, indent=0, role="code_column"]
+[source, xml, indent=0, role="code_column", linenums]
 ----
 include::finish/pom.xml[tags=**]
 ----
@@ -424,7 +423,7 @@ The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatica
 image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
 ----
 pom.xml
-[source, XML, role="code_column", indent=0]
+[source, XML, role="code_column", linenums]
 ----
 include::finish/pom.xml[tags=**]
 ----

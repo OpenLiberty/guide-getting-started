@@ -137,12 +137,10 @@ to access this endpoint now at the http://localhost:9080/health/ URL, you see a 
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, include the `mpHealth-1.0` feature in the `server.xml`. 
-
-[role="code_command hotspot=1-8", subs="quotes"]
+*To add the MicroProfile Health feature to the server, include the `mpHealth-1.0` feature in the `server.xml`.*
+[role="code_command hotspot=7-8", subs="quotes"]
 ----
-Replace the `src/main/liberty/config/server.xml` server configuration file
-that is located in the `start` directory to include the `mpHealth-1.0` feature.
+Replace the `src/main/liberty/config/server.xml` server configuration file.
 ----
 server.xml
 [source, xml, linenums, role='code_column']
@@ -198,30 +196,28 @@ monitors these artifacts, and whenever they are updated, it updates the running 
 for the server to be restarted.
 
 *Take a look at your `pom.xml` file.*
-
 [role="code_command hotspot=210-211", subs="quotes"]
 ----
 The loose application support is enabled with the `<looseApplication>`
 element in the `liberty-maven-plugin` plug-in.
 ----
 pom.xml
-[source, XML, indent=0, linenums, role="code_column"]
+[source, XML, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----
 
-
-
-== -
+== Checking the status of your server 
 
 Try updating the source code while the server is running. At the moment, the `/health` endpoint
 reports whether or not the server is running, but the endpoint doesn't provide any details on the 
 microservices that are running inside of the server. 
 
+**To report on the health status of the `system` 
+microservice**
 [role="code_command hotspot=13-36", subs="quotes"]
 ----
-To report on the health status of the `system` 
-microservice, create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
+Create a `src/main/java/io/openliberty/sample/system/SystemHealth.java` file:
 ----
 SystemHealth.java
 [source, java, linenums, role='code_column']
@@ -294,10 +290,10 @@ Java packages or classes by using the `logging` element:
 The `component` element is a Java package or class, and the `level` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
+*Try enabling detailed logging of the MicroProfile Health feature by adding the `logging` element.*
 [role="code_command hotspot=13-14", subs="quotes"]
 ----
-Try enabling detailed logging of the MicroProfile Health feature by adding the `logging` element to 
-your `src/main/liberty/config/server.xml` configuration file.
+Replace your `src/main/liberty/config/server.xml` configuration file.
 ----
 
 server.xml
@@ -347,13 +343,13 @@ Open Liberty supports a number of different server packages. The sample applicat
 a `usr` package that contains the servers and application to be extracted onto an Open Liberty
 installation. 
 
+*Take a look at your `pom.xml`.*
 [role="code_command hotspot=30-31", subs="quotes"]
 ----
-The type of server package is configured in your `pom.xml` file in the following line.
+The type of server package is configured in the following line.
 ----
-
 pom.xml
-[source, xml, indent=0, linenums, role="code_column"]
+[source, XML, linenums, role="code_column"]
 ----
 include::finish/pom.xml[tags=**]
 ----
@@ -417,10 +413,10 @@ image runs as a container, and so on. You can find a complete `Dockerfile` in th
 This `Dockerfile` packages the `usr` server package into a Docker image that contains a preconfigured 
 Open Liberty server.
 
+*Take a look at your `pom.xml`.
 [role="code_command hotspot=53-76", subs="quotes"]
 ----
-The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker
-image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
+The `docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
 ----
 pom.xml
 [source, XML, linenums, role="code_column"]

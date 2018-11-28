@@ -359,7 +359,7 @@ mvn install -P runnable-package
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the [hotspot=38-43]`runnable-package`
 profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package 
-to the `runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
+to the [hotspot="41-42"]`runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
 
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
@@ -402,7 +402,7 @@ image runs as a container, and so on. You can find a complete `Dockerfile` in th
 This `Dockerfile` packages the `usr` server package into a Docker image that contains a preconfigured 
 Open Liberty server.
 
-The [hotspot=50-73]`docker-image` profile uses the `dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
+The [hotspot=50-73]`docker-image` profile uses the [hotspot=58-59]`dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

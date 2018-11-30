@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 1
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
-:page-tags: ['Getting Started', 'microservices', 'Docker']
+:page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master

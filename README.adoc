@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 1
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
-:page-tags: ['Getting Started', 'microservices', 'Docker']
+:page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -327,12 +327,13 @@ a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates
 a `usr` package that contains the servers and application to be extracted onto an Open Liberty
-installation. The type of server package is configured in your `pom.xml` file in the following two lines:
+installation. 
+
+The type of server package is configured in your `pom.xml` file in the following line:
 
 [source, xml, indent=0, role="no_copy"]
 ----
-<packaging.type>usr</packaging.type>
-<include>${packaging.type}</include>
+include::finish/pom.xml[tags=server-type;!copyright]
 ----
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the

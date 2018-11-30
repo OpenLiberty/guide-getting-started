@@ -22,7 +22,7 @@
         <!-- Plugins -->
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
         <version.dockerfile-maven-plugin>1.4.3</version.dockerfile-maven-plugin>
-        <version.maven-surefire-plugin>2.19.1</version.maven-surefire-plugin>
+        <version.maven-surefire-plugin>3.0.0-M1</version.maven-surefire-plugin>
         <version.maven-failsafe-plugin>3.0.0-M1</version.maven-failsafe-plugin>
         <!-- OpenLiberty runtime -->
         <version.openliberty-runtime>RELEASE</version.openliberty-runtime>

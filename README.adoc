@@ -198,7 +198,7 @@ for the server to be restarted.
 
 Take a look at your [hotspot=1-280]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=205-206]`</looseApplication>`
+The loose application support is enabled with the [hotspot=206]`</looseApplication>`
 element in the `liberty-maven-plugin` plug-in.
 
 pom.xml

@@ -138,7 +138,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
 To add the MicroProfile Health feature to the server, include the `mpHealth-1.0` feature in the `server.xml`.
-[role="code_command hotspot=6-7", subs="quotes"]
+[role="code_command hotspot=7-7", subs="quotes"]
 ----
 Add the MicroProfile Health feature to the `server` configuration file.
 `src/main/liberty/config/server.xml`
@@ -155,7 +155,7 @@ Next, open a new shell session, navigate to the `start` directory, and repackage
 mvn package
 ```
 
-When enabled, the [hotspot=7-8]`mpHealth-1.0` feature automatically adds a `/health` endpoint to the application.
+When enabled, the [hotspot=7]`mpHealth-1.0` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your first shell session:
 
 [source, role="no_copy"]
@@ -198,7 +198,7 @@ for the server to be restarted.
 
 Take a look at your [hotspot=1-280]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=205-206]`<looseApplication>`
+The loose application support is enabled with the [hotspot=205-206]`</looseApplication>`
 element in the `liberty-maven-plugin` plug-in.
 
 pom.xml
@@ -290,14 +290,16 @@ Java packages or classes by using the `logging` element:
 The `component` element is a Java package or class, and the `level` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
-Try enabling detailed logging of the MicroProfile Health feature by adding the [hotspot=13-14]`logging` element.
-
+[role="code_command hotspot=14" subs="quotes"]
+----
+Try enabling detailed logging of the MicroProfile Health feature by adding the `</logging>` element to your configuration file.
+`src/main/liberty/config/server.xml`
+----
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
-
 Next, repackage the server:
 [role='command']
 ```
@@ -340,7 +342,7 @@ a `usr` package that contains the servers and application to be extracted onto a
 installation. 
 
 
-The type of server package is configured with [hotspot=30-31]`<packaging.type>` in the `pom.xml`.
+The type of server package is configured with [hotspot=31]`<packaging.type>` in the `pom.xml`.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -359,7 +361,7 @@ mvn install -P runnable-package
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the [hotspot=38-43]`runnable-package`
 profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package 
-to the [hotspot="41-42"]`runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
+to the [hotspot=41]`runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
 
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
@@ -402,7 +404,7 @@ image runs as a container, and so on. You can find a complete `Dockerfile` in th
 This `Dockerfile` packages the `usr` server package into a Docker image that contains a preconfigured 
 Open Liberty server.
 
-The [hotspot=50-73]`docker-image` profile uses the [hotspot=58-59]`dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
+The [hotspot=50-73]`docker-image` profile uses the [hotspot=56]`dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

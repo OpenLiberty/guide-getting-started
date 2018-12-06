@@ -281,13 +281,13 @@ occur or whenever tracing is enabled. You can find the error logs in the `ffdc` 
 logs in the `trace.log` file.
 
 In addition to the log files that are generated automatically, you can enable logging of specific
-Java packages or classes by using the `logging` element:
+Java packages or classes by using the `</logging>` element:
 [role='command']
 ```
 <logging traceSpecification="<component_1>=<level>:<component_2>=<level>:..."/>
 ```
 
-The `component` element is a Java package or class, and the `level` element is one of the following logging levels:
+The `</component>` element is a Java package or class, and the `</level>` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
 [role="code_command hotspot=14" subs="quotes"]

@@ -342,7 +342,7 @@ a `usr` package that contains the servers and application to be extracted onto a
 installation. 
 
 
-The type of server package is configured with [hotspot=31]`<packaging.type>` in the `pom.xml`.
+The type of server package is configured with [hotspot=31]`</packaging.type>` in the `pom.xml`.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

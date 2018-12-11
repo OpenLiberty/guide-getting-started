@@ -1,4 +1,3 @@
-//  Copyright (c) 2018 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -8,17 +7,23 @@
 //
 :projectid: getting-started
 :page-layout: guide-multipane
-:page-duration: 30 minutes
-:page-releasedate: 2018-06-22
+:page-duration: 25 minutes
+:page-releasedate: 2018-06-29
+:page-guide-category: basic
+:page-essential: true
+:page-essential-order: 1
 :page-description: Learn how to deploy and update an application on Open Liberty with Maven and Docker.
-:page-tags: ['Getting Started', 'microservices', 'Docker']
+:page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-// :seo-title: Test
-// :seo-description: description
+:page-seo-title: Open Liberty tutorial
+:page-seo-description: Find out how to run microservices on Open Liberty 
 = Deploying and packaging applications
+
+[.hidden]
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
 Learn how to deploy and update an application on Open Liberty with Maven and Docker.
 
@@ -31,7 +36,7 @@ running server instance.
 Open Liberty is an application server designed for the cloud. It's small, lightweight, and designed
 with modern cloud-native application development in mind. It supports the full MicroProfile and Java
 EE APIs and is composable, meaning that you can use only the features that you need, keeping the
-server lightweight, which is great for microservices. It also deploys to every major developer platform,
+server lightweight, which is great for microservices. It also deploys to every major cloud platform,
 including Docker, Kubernetes, and Cloud Foundry.
 
 Maven is an automation build tool that provides an efficient way to develop Java applications.
@@ -102,9 +107,8 @@ see a list of the various system properties of your JVM:
 [source, JSON, role="no_copy"]
 ----
 {
-    "java.vendor":"Oracle Corporation",
-    "default.https.port":"9443",
-    "sun.java.launcher":"SUN_STANDARD",
+    "os.name": "Mac OS X",
+    "java.version": "1.8.0_151",
     ...
 }
 ----
@@ -275,8 +279,8 @@ and artifacts that changed, and the server picks these up automatically without 
 == Checking the Open Liberty server logs
 
 While the server is running in the foreground, it displays various console messages in the shell.
-These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log`
-file. You can find the complete server logs in the `target/liberty/wlp/usr/servers/defaultServer/logs`
+These messages are also logged to the `target/liberty/wlp/usr/servers/GettingStartedServer/logs/console.log`
+file. You can find the complete server logs in the `target/liberty/wlp/usr/servers/GettingStartedServer/logs`
 directory. The `console.log` and `messages.log` files are the primary log files that contain
 console output of the running application and the server. More logs are created when run time errors 
 occur or whenever tracing is enabled. You can find the error logs in the `ffdc` directory and the tracing 
@@ -371,7 +375,7 @@ generates the server package that you want.
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
 directory. By default, this JAR file comes with all the features available in Open Liberty, including
-the entirety of Java EE and MicroProfile. As a result, this JAR is about 93 MB. To omit
+the entirety of Java EE and MicroProfile. As a result, this JAR is over 100 MB. To omit
 the features that you don't need and package the JAR with only the features that you defined in the 
 `server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke 
 the `minify-runnable-package` profile by using the `-P` flag:
@@ -382,7 +386,7 @@ mvn install -P minify-runnable-package
 
 The [hotspot=44-49]`minify-runnable-package` profile overrides the `package.type` property from the `usr` package to the 
 `minify,runnable` package and generates a runnable JAR file that contains only the features that you 
-explicitly enabled in your `server.xml` file. As a result, the generated JAR is only about 39 MB.
+explicitly enabled in your `server.xml` file. As a result, the generated JAR is only about 37 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` directory and 
 run the `java -jar` command:
@@ -402,6 +406,9 @@ At this point, you can stop the server by pressing `CTRL+C` in the shell session
 // =================================================================================================
 
 == Running the application in a Docker container
+
+To run the application in a container, you need to have Docker installed. For installation instructions, 
+see https://docs.docker.com/install/.
 
 To containerize the application, you need a `Dockerfile`. This file contains a collection of instructions
 that define how a Docker image is built, what files are packaged into it, what commands run when the

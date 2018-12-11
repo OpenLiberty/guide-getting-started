@@ -25,7 +25,8 @@ public class SystemHealth implements HealthCheck {
 	
     @Override
     public HealthCheckResponse call() {
-        HealthCheckResponseBuilder builder = HealthCheckResponse.named(SystemResource.class.getSimpleName());
+        HealthCheckResponseBuilder builder = HealthCheckResponse.named(
+		SystemResource.class.getSimpleName());
         if (!System.getProperty("wlp.server.name").equals("GettingStartedServer")) {
             return builder.withData("services", "not available").down().build();
         }

@@ -137,11 +137,10 @@ to access this endpoint now at the http://localhost:9080/health/ URL, you see a 
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, include the `mpHealth-1.0` feature in the `server.xml`.
+To add the MicroProfile Health feature to the server, include the `mpHealth` feature in the `server.xml`.
 [role="code_command hotspot=7-7", subs="quotes"]
 ----
-Add the MicroProfile Health feature to the `server` configuration file.
-`src/main/liberty/config/server.xml`
+Edit the server configuration file. `src/main/liberty/config/server.xml`
 ----
 server.xml
 [source, xml, linenums, role='code_column']
@@ -198,7 +197,7 @@ for the server to be restarted.
 
 Take a look at your [hotspot=1-280]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=206]`</looseApplication>`
+The loose application support is enabled with the [hotspot=206]`<looseApplication/>`
 element in the `liberty-maven-plugin` plug-in.
 
 pom.xml
@@ -216,14 +215,17 @@ microservices that are running inside of the server.
 
 [role="code_command hotspot=1-36", subs="quotes"]
 ----
-To report on the health status of the `system` microservice, create the file.
-`src/main/java/io/openliberty/sample/system/SystemHealth.java`.
+Create the `SystemHealth` class.
+`src/main/java/io/openliberty/sample/system/SystemHealth.java`
 ----
 SystemHealth.java
 [source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
+
+The `SystemHealth` class allows you to report on the health status of the `system` 
+microservice.
 
 Next, recompile the application:
 [role='command']
@@ -281,13 +283,13 @@ occur or whenever tracing is enabled. You can find the error logs in the `ffdc` 
 logs in the `trace.log` file.
 
 In addition to the log files that are generated automatically, you can enable logging of specific
-Java packages or classes by using the `</logging>` element:
+Java packages or classes by using the `<logging/>` element:
 [role='command']
 ```
 <logging traceSpecification="<component_1>=<level>:<component_2>=<level>:..."/>
 ```
 
-The `</component>` element is a Java package or class, and the `</level>` element is one of the following logging levels:
+The `<component/>` element is a Java package or class, and the `<level/>` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
 [role="code_command hotspot=14" subs="quotes"]
@@ -300,6 +302,9 @@ server.xml
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
+By adding the `<logging/>` element you are enabling detailed logging of the MicroProfile
+Health feature.
+
 Next, repackage the server:
 [role='command']
 ```
@@ -342,7 +347,7 @@ a `usr` package that contains the servers and application to be extracted onto a
 installation. 
 
 
-The type of server package is configured with [hotspot=31]`</packaging.type>` in the `pom.xml`.
+The type of server package is configured with [hotspot=31]`<packaging.type/>` in the `pom.xml`.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -362,11 +367,11 @@ mvn install -P runnable-package
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the [hotspot=38-43]`runnable-package`
 profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package 
 to the [hotspot=41]`runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
-
+generates the server package that you want.
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
 directory. By default, this JAR file comes with all the features available in Open Liberty, including
-the entirety of Java EE 7 and MicroProfile 1.3. As a result, this JAR is about 93 MB. To omit
+the entirety of Java EE and MicroProfile. As a result, this JAR is about 93 MB. To omit
 the features that you don't need and package the JAR with only the features that you defined in the 
 `server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke 
 the `minify-runnable-package` profile by using the `-P` flag:

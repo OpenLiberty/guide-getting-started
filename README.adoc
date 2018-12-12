@@ -159,7 +159,7 @@ Next, open a new shell session, navigate to the `start` directory, and repackage
 mvn package
 ```
 
-When enabled, the [hotspot=7]`mpHealth-1.0` feature automatically adds a `/health` endpoint to the application.
+When enabled, the [hotspot=7]`mpHealth` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your first shell session:
 
 [source, role="no_copy"]
@@ -218,7 +218,7 @@ reports whether or not the server is running, but the endpoint doesn't provide a
 microservices that are running inside of the server. 
 
 
-[role="code_command hotspot=1-36", subs="quotes"]
+[role="code_command hotspot=12-36", subs="quotes"]
 ----
 Create the `SystemHealth` class.
 `src/main/java/io/openliberty/sample/system/SystemHealth.java`

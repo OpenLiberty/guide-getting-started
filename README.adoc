@@ -144,7 +144,8 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 To add the MicroProfile Health feature to the server, include the `mpHealth` feature in the `server.xml`.
 [role="code_command hotspot=7-7", subs="quotes"]
 ----
-Edit the server configuration file. `src/main/liberty/config/server.xml`
+Edit the server configuration file. 
+`src/main/liberty/config/server.xml`
 ----
 server.xml
 [source, xml, linenums, role='code_column']
@@ -201,7 +202,7 @@ for the server to be restarted.
 
 Take a look at your [hotspot=1-280]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=206]`<looseApplication/>`
+The loose application support is enabled with the [hotspot=194]`<looseApplication/>`
 element in the `liberty-maven-plugin` plug-in.
 
 pom.xml
@@ -296,9 +297,11 @@ Java packages or classes by using the `<logging/>` element:
 The `<component/>` element is a Java package or class, and the `<level/>` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
+Try enabling detailed logging of the MicroProfile Health feature by adding the `</logging>` element to your configuration file.
+
 [role="code_command hotspot=14" subs="quotes"]
 ----
-Try enabling detailed logging of the MicroProfile Health feature by adding the `</logging>` element to your configuration file.
+Edit the server configuration file.
 `src/main/liberty/config/server.xml`
 ----
 server.xml

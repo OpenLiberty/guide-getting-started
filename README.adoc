@@ -142,7 +142,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
 To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` 
-feature in the [hotspot=1-19]`server.xml`.
+feature in the [hotspot=1-20]`server.xml`.
 [role="code_command hotspot=7-7", subs="quotes"]
 ----
 Edit the server configuration file. 
@@ -160,7 +160,7 @@ Next, open a new shell session, navigate to the `start` directory, and repackage
 mvn package
 ```
 
-When enabled, the [hotspot=7]`mpHealth` feature automatically adds a `/health` endpoint to the application.
+When enabled, the [hotspot=7 file=0]`mpHealth` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your first shell session:
 
 [source, role="no_copy"]
@@ -201,7 +201,7 @@ meaning that it runs in a server from its `.class` file and other artifacts. Ope
 monitors these artifacts, and whenever they are updated, it updates the running server without the need
 for the server to be restarted.
 
-Take a look at your [hotspot=1-288]`pom.xml` file.
+Take a look at your [hotspot=1-269]`pom.xml` file.
 
 The loose application support is enabled with the [hotspot=196]`<looseApplication/>`
 element in the [hotspot=183-205]`liberty-maven-plugin` plug-in.
@@ -230,8 +230,7 @@ SystemHealth.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
 
-The [hotspot=12-36]`SystemHealth` class allows you to report on the health status of the `system` 
-microservice.
+The [hotspot=12-36 file=0]`SystemHealth` class allows you to report on the health status of the `system` microservice.
 
 Next, recompile the application:
 [role='command']
@@ -310,8 +309,7 @@ server.xml
 ----
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
-By adding the [hotspot=14]`<logging/>` element you are enabling detailed logging of the MicroProfile
-Health feature.
+By adding the [hotspot=14 file=0]`<logging/>` element you are enabling detailed logging of the MicroProfile Health feature.
 
 Next, repackage the server:
 [role='command']
@@ -355,7 +353,8 @@ a `usr` package that contains the servers and application to be extracted onto a
 installation. 
 
 
-The type of server package is configured with [hotspot=33]`<packaging.type/>` in the `pom.xml`.
+The type of server package is configured with [hotspot=33]`<packaging.type/>` in the 
+[hotspot=1-269]`pom.xml`.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -365,32 +364,27 @@ include::finish/pom.xml[tags=**]
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the
 application along with a server runtime. This JAR can then be run anywhere and deploy your application
-and server at the same time. To generate a runnable JAR, invoke the `runnable-package` profile by using 
-the `-P` flag:
+and server at the same time. To generate a runnable JAR, invoke the [hotspot=40-45]`runnable-package` profile by using the `-P` flag:
 [role='command']
 ```
 mvn install -P runnable-package
 ```
 
-The `-P` flag specifies the Maven profile to be run during the build. In this case, the [hotspot=40-45]`runnable-package`
-profile is invoked, which temporarily overrides the `packaging.type` property from the `usr` package 
-to the [hotspot=43]`runnable` package. This property then propagates to the `liberty-maven-plugin` plug-in, which 
-generates the server package that you want.
+The `-P` flag specifies the Maven profile to be run during the build. In this case, the 
+[hotspot=40-45 file=0]`runnable-package` profile is invoked, which temporarily overrides the [hotspot=43 file=0]`packaging.type` property from the `usr` package to the [hotspot=43 file=0]`runnable` package. This property then propagates to the [hotspot=183-205 file=0]`liberty-maven-plugin` plug-in, which generates the server package that you want.
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
 directory. By default, this JAR file comes with all the features available in Open Liberty, including
 the entirety of Java EE and MicroProfile. As a result, this JAR is over 100 MB. To omit
 the features that you don't need and package the JAR with only the features that you defined in the 
-`server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke 
-the `minify-runnable-package` profile by using the `-P` flag:
+[hotspot=1-20 file=1]`server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke the [hotspot=46-51 file=0]`minify-runnable-package` profile by using the `-P` flag:
 [role='command']
 ```
 mvn install -P minify-runnable-package
 ```
 
-The [hotspot=46-51]`minify-runnable-package` profile overrides the `package.type` property from the `usr` package to the 
-`minify,runnable` package and generates a runnable JAR file that contains only the features that you 
-explicitly enabled in your `server.xml` file. As a result, the generated JAR is only about 37 MB.
+The [hotspot=46-51 file=0]`minify-runnable-package` profile overrides the [hotspot=43 file=0]`package.type` property from the `usr` package to the `minify,runnable` package and generates a runnable JAR file that contains only the features that you explicitly enabled in your 
+[hotspot=1-20 file=1]`server.xml` file. As a result, the generated JAR is only about 37 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` directory and 
 run the `java -jar` command:
@@ -420,7 +414,7 @@ image runs as a container, and so on. You can find a complete `Dockerfile` in th
 This `Dockerfile` packages the `usr` server package into a Docker image that contains a preconfigured 
 Open Liberty server.
 
-The [hotspot=52-75]`docker-image` profile uses the [hotspot=58]`dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the `pom.xml` file.
+The [hotspot=52-75]`docker-image` profile uses the [hotspot=58]`dockerfile-maven` plug-in, which automatically builds a Docker image from a `Dockerfile` that is located in the same directory as the [hotspot=1-269]`pom.xml` file.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

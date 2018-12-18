@@ -353,7 +353,6 @@ Open Liberty supports a number of different server packages. The sample applicat
 a `usr` package that contains the servers and application to be extracted onto an Open Liberty
 installation. 
 
-
 The type of server package is configured with [hotspot=33 file=0]`<packaging.type/>` in the 
 [hotspot=1-271 file=0]`pom.xml`.
 

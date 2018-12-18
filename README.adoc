@@ -333,7 +333,7 @@ The type of server package is configured in your `pom.xml` file in the following
 
 [source, xml, indent=0, role="no_copy"]
 ----
-include::finish/pom.xml[tags=server-type;!copyright]
+include::finish/pom.xml[tags=server-type]
 ----
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the

@@ -28,7 +28,9 @@
         <version.openliberty-runtime>RELEASE</version.openliberty-runtime>
         <http.port>9080</http.port>
         <https.port>9443</https.port>
+        <!-- tag::server-type[] -->
         <packaging.type>usr</packaging.type>
+        <!-- end::server-type[] -->
         <app.name>${project.artifactId}</app.name>
         <package.file>${project.build.directory}/${app.name}.zip</package.file>
     </properties>

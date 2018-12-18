@@ -350,31 +350,34 @@ a `usr` package that contains the servers and application to be extracted onto a
 installation. 
 
 
-The type of server package is configured with [hotspot=35 file=0]`<packaging.type/>` in the 
+The type of server package is configured with [hotspot=33 file=0]`<packaging.type/>` in the 
 [hotspot=1-271 file=0]`pom.xml`.
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the
 application along with a server runtime. This JAR can then be run anywhere and deploy your application
-and server at the same time. To generate a runnable JAR, invoke the [hotspot=42-47 file=0]`runnable-package` profile by using the `-P` flag:
+and server at the same time. To generate a runnable JAR, invoke the [hotspot=40-46 file=0]`runnable-package` profile by using the `-P` flag:
 [role='command']
 ```
 mvn install -P runnable-package
 ```
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the 
-[hotspot=42-47 file=0]`runnable-package` profile is invoked, which temporarily overrides the [hotspot=45 file=0]`packaging.type` property from the `usr` package to the [hotspot=45 file=0]`runnable` package. This property then propagates to the [hotspot=185-207 file=0]`liberty-maven-plugin` plug-in, which generates the server package that you want.
+[hotspot=40-46 file=0]`runnable-package` profile is invoked, which temporarily overrides the [hotspot=44 file=0]`packaging.type` property from the `usr` package to the `runnable` package. This property then propagates to the [hotspot=185-207 file=0]`liberty-maven-plugin` 
+plug-in, which generates the server package that you want.
 
 When the build completes, you can find the runnable `getting-started.jar` file in the `target`
 directory. By default, this JAR file comes with all the features available in Open Liberty, including
 the entirety of Java EE and MicroProfile. As a result, this JAR is over 100 MB. To omit
 the features that you don't need and package the JAR with only the features that you defined in the 
-[hotspot=1-20 file=1]`server.xml` file, use `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke the [hotspot=48-53 file=0]`minify-runnable-package` profile by using the `-P` flag:
+[hotspot=1-20 file=1]`server.xml` file, use `minifiy,runnable` as the packaging type. 
+To build a minimal runnable JAR, invoke the [hotspot=47-53 file=0]`minify-runnable-package`
+profile by using the `-P` flag:
 [role='command']
 ```
 mvn install -P minify-runnable-package
 ```
 
-The [hotspot=48-53 file=0]`minify-runnable-package` profile overrides the [hotspot=45 file=0]`package.type` property from the `usr` package to the `minify,runnable` package and generates a runnable JAR file that contains only the features that you explicitly enabled in your 
+The [hotspot=47-53 file=0]`minify-runnable-package` profile overrides the [hotspot=51 file=0]`package.type` property from the `usr` package to the `minify,runnable` package and generates a runnable JAR file that contains only the features that you explicitly enabled in your 
 [hotspot=1-20 file=1]`server.xml` file. As a result, the generated JAR is only about 37 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` directory and 

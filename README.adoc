@@ -211,9 +211,12 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
+== Checking the status of your server 
+
 Try updating the source code while the server is running. At the moment, the `/health` endpoint
 reports whether or not the server is running, but the endpoint doesn't provide any details on the 
 microservices that are running inside of the server. 
+
 
 [role="code_command hotspot=12-36", subs="quotes"]
 ----
@@ -286,7 +289,7 @@ logs in the `trace.log` file.
 
 In addition to the log files that are generated automatically, you can enable logging of specific
 Java packages or classes by using the `<logging/>` element:
-[source, XML, role="no_copy"]
+[role='command']
 ```
 <logging traceSpecification="<component_1>=<level>:<component_2>=<level>:..."/>
 ```
@@ -294,14 +297,15 @@ Java packages or classes by using the `<logging/>` element:
 The `<component/>` element is a Java package or class, and the `<level/>` element is one of the following logging levels:
 `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
-Try enabling detailed logging of the MicroProfile Health feature by adding the 
-[hotspot=14]`<logging/>` element to your configuration file.
+Try enabling detailed logging of the MicroProfile Health feature by adding the `<logging/>` element to your configuration file.
 
 [role="code_command hotspot=14" subs="quotes"]
 ----
 Edit the server configuration file.
 `src/main/liberty/config/server.xml`
 ----
+
+By adding the [hotspot=14]`<logging/>` element you are enabling detailed logging of the MicroProfile Health feature.
 
 Next, repackage the server:
 [role='command']
@@ -327,7 +331,7 @@ Although you can start and stop the server in the foreground by using the Maven 
 goal, you can also start and stop the server in the background with the Maven `liberty:start-server` 
 and `liberty:stop-server` goals:
 
-[source, role="no_copy"]
+[role='command']
 ----
 mvn liberty:start-server
 mvn liberty:stop-server

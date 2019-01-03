@@ -153,7 +153,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` 
 feature in the [hotspot=1-20]`server.xml`.
 
-[role="code_command hotspot=7-7", subs="quotes"]
+[role="code_command hotspot=7", subs="quotes"]
 ----
 Edit the server configuration file. 
 `src/main/liberty/config/server.xml`
@@ -240,8 +240,8 @@ SystemHealth.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
 
-The [hotspot=12-36]`SystemHealth` class allows you to report on the health status of the 
-`system` microservice.
+The [hotspot=12-36 file=1]`SystemHealth` class allows you to report on the health status 
+of the `system` microservice.
 
 Next, recompile the application:
 [role='command']

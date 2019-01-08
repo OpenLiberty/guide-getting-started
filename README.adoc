@@ -155,7 +155,7 @@ feature in the [hotspot=1-20]`server.xml`.
 
 [role="code_command hotspot=7", subs="quotes"]
 ----
-Edit the server configuration file. 
+#Edit the server configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 
@@ -230,7 +230,7 @@ any details on the microservices that are running inside of the server.
 
 [role="code_command hotspot=12-36", subs="quotes"]
 ----
-Create the `SystemHealth` class.
+#Create the `SystemHealth` class.#
 `src/main/java/io/openliberty/sample/system/SystemHealth.java`
 ----
 
@@ -317,7 +317,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 
 [role="code_command hotspot=14" subs="quotes"]
 ----
-Edit the server configuration file.
+#Edit the server configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 

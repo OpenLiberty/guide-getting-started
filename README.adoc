@@ -308,7 +308,7 @@ specific Java packages or classes by using the `<logging/>` element:
 <logging traceSpecification="<component_1>=<level>:<component_2>=<level>:..."/>
 ```
 
-The `<component/>` element is a Java package or class, and the `<level/>` element is one 
+The `component` element is a Java package or class, and the `level` element is one 
 of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `info`, 
 `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 

@@ -2,8 +2,8 @@
     <!-- tag::features[] -->
     <featureManager>
         <feature>jaxrs-2.1</feature>
-		<feature>jsonp-1.1</feature>
-		<feature>cdi-2.0</feature>
+	    <feature>jsonp-1.1</feature>
+	    <feature>cdi-2.0</feature>
 	    <feature>mpMetrics-1.1</feature>
     </featureManager>
     <!-- end::features[] -->

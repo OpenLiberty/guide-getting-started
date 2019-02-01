@@ -151,7 +151,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
 To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` 
-feature in the [hotspot=1-20]`server.xml`.
+feature in the [hotspot=*]`server.xml`.
 
 [role="code_command hotspot=7", subs="quotes"]
 ----

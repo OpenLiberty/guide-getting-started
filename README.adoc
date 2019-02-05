@@ -68,12 +68,18 @@ include::{common-includes}/gitclone.adoc[]
 == Building and running the application
 
 Your application is configured to be built with Maven. Every Maven-configured project 
-contains a `pom.xml` file, which defines the project configuration, dependencies, plug-ins, 
+contains a [hotspot=*]`pom.xml` file, which defines the project configuration, dependencies, plug-ins, 
 and so on.
 
-Navigate to the `start` directory where your `pom.xml` file is located. Your `pom.xml` file 
+Navigate to the `start` directory where your [hotspot=*]`pom.xml` file is located. Your `pom.xml` file 
 is configured to include the `liberty-maven-plugin` Liberty Maven plug-in, which allows 
 you to install applications into Open Liberty as well as manage the server instances.
+
+pom.xml
+[source, XML, linenums, role="code_column"]
+----
+include::finish/pom.xml[tags=**]
+----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty 
 by running the Maven `install` phase and the Maven `liberty:run-server` goal from the 
@@ -213,7 +219,7 @@ application, meaning that it runs in a server from its `.class` file and other a
 Open Liberty automatically monitors these artifacts, and whenever they are updated, it 
 updates the running server without the need for the server to be restarted.
 
-Take a look at your [hotspot=1-269]`pom.xml` file.
+Take a look at your [hotspot=*]`pom.xml` file.
 
 The loose application support is enabled with the [hotspot=196]`<looseApplication/>`
 element in the [hotspot=183-205]`liberty-maven-plugin` plug-in.
@@ -392,7 +398,7 @@ When the build completes, you can find the runnable `getting-started.jar` file i
 `target` directory. By default, this JAR file comes with all the features available in 
 Open Liberty, including the entirety of Java EE and MicroProfile. As a result, this JAR 
 is over 100 MB. To omit the features that you don't need and package the JAR with only 
-the features that you defined in the [hotspot=1-20 file=1]`server.xml` file, use 
+the features that you defined in the [hotspot=* file=1]`server.xml` file, use 
 `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke the 
 [hotspot=46-51 file=0]`minify-runnable-package` profile by using the `-P` flag:
 
@@ -404,7 +410,7 @@ mvn install -P minify-runnable-package
 The [hotspot=46-51 file=0]`minify-runnable-package` profile overrides the 
 [hotspot=49 file=0]`package.type` property from the `usr` package to the `minify,runnable` 
 package and generates a runnable JAR file that contains only the features that you 
-explicitly enabled in your [hotspot=1-20 file=1]`server.xml` file. As a result, the 
+explicitly enabled in your [hotspot=* file=1]`server.xml` file. As a result, the 
 generated JAR is only about 37 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` 

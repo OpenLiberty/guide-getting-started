@@ -381,7 +381,7 @@ the [hotspot=1-269 file=0]`pom.xml`.
 Instead of creating a server package, you can generate a runnable JAR file that contains 
 the application along with a server runtime. This JAR can then be run anywhere and deploy 
 your application and server at the same time. To generate a runnable JAR, invoke the 
-[hotspot=40-46 file=0]`runnable-package` profile by using the `-P` flag:
+[hotspot=40-45 file=0]`runnable-package` profile by using the `-P` flag:
 
 [role='command']
 ```

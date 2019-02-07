@@ -68,11 +68,11 @@ include::{common-includes}/gitclone.adoc[]
 == Building and running the application
 
 Your application is configured to be built with Maven. Every Maven-configured project 
-contains a [hotspot=*]`pom.xml` file, which defines the project configuration, dependencies, plug-ins, 
+contains a [hotspot]`pom.xml` file, which defines the project configuration, dependencies, plug-ins, 
 and so on.
 
-Navigate to the `start` directory where your [hotspot=*]`pom.xml` file is located. Your `pom.xml` file 
-is configured to include the `liberty-maven-plugin` Liberty Maven plug-in, which allows 
+Navigate to the `start` directory where your [hotspot]`pom.xml` file is located. Your `pom.xml` file 
+is configured to include the [hotspot=183-205]`liberty-maven-plugin` Liberty Maven plug-in, which allows 
 you to install applications into Open Liberty as well as manage the server instances.
 
 pom.xml
@@ -157,7 +157,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
 To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` 
-feature in the [hotspot=*]`server.xml`.
+feature in the [hotspot]`server.xml`.
 
 [role="code_command hotspot=7", subs="quotes"]
 ----
@@ -219,7 +219,7 @@ application, meaning that it runs in a server from its `.class` file and other a
 Open Liberty automatically monitors these artifacts, and whenever they are updated, it 
 updates the running server without the need for the server to be restarted.
 
-Take a look at your [hotspot=*]`pom.xml` file.
+Take a look at your [hotspot]`pom.xml` file.
 
 The loose application support is enabled with the [hotspot=196]`<looseApplication/>`
 element in the [hotspot=183-205]`liberty-maven-plugin` plug-in.

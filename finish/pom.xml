@@ -41,7 +41,9 @@
         <profile>
             <id>runnable-package</id>
             <properties>
-                <package.file>${project.build.directory}/${app.name}.jar</package.file>
+                <package.file>
+                    ${project.build.directory}/${app.name}.jar
+                </package.file>
                 <packaging.type>runnable</packaging.type>
             </properties>
         </profile>
@@ -49,7 +51,9 @@
         <profile>
             <id>minify-runnable-package</id>
             <properties>
-                <package.file>${project.build.directory}/${app.name}.jar</package.file>
+                <package.file>
+                    ${project.build.directory}/${app.name}.jar
+                </package.file>
                 <packaging.type>minify,runnable</packaging.type>
             </properties>
         </profile>

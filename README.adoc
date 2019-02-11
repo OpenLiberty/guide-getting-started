@@ -159,7 +159,7 @@ Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` 
 feature in the [hotspot]`server.xml`.
 
-[role="code_command hotspot=7", subs="quotes"]
+[role="code_command hotspot", subs="quotes"]
 ----
 #Replace the server configuration file.#
 `src/main/liberty/config/server.xml`
@@ -234,7 +234,7 @@ Try updating the source code while the server is running. At the moment, the `/h
 endpoint reports whether or not the server is running, but the endpoint doesn't provide 
 any details on the microservices that are running inside of the server. 
 
-[role="code_command hotspot=12-36", subs="quotes"]
+[role="code_command hotspot", subs="quotes"]
 ----
 #Create the `SystemHealth` class.#
 `src/main/java/io/openliberty/sample/system/SystemHealth.java`
@@ -321,7 +321,7 @@ of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `
 Try enabling detailed logging of the MicroProfile Health feature by adding the 
 [hotspot=14]`<logging/>` element to your configuration file.
 
-[role="code_command hotspot=14" subs="quotes"]
+[role="code_command hotspot" subs="quotes"]
 ----
 #Replace the server configuration file.#
 `src/main/liberty/config/server.xml`
@@ -376,7 +376,7 @@ currently generates a `usr` package that contains the servers and application to
 extracted onto an Open Liberty installation. 
 
 The type of server package is configured with [hotspot=33 file=0]`<packaging.type/>` in 
-the [hotspot=1-269 file=0]`pom.xml`.
+the [hotspot file=0]`pom.xml`.
 
 Instead of creating a server package, you can generate a runnable JAR file that contains 
 the application along with a server runtime. This JAR can then be run anywhere and deploy 
@@ -457,7 +457,7 @@ package into a Docker image that contains a preconfigured Open Liberty server.
 
 The [hotspot=52-75]`docker-image` profile uses the [hotspot=58]`dockerfile-maven` plug-in, 
 which automatically builds a Docker image from a `Dockerfile` that is located in the same 
-directory as the [hotspot=1-269]`pom.xml` file.
+directory as the [hotspot]`pom.xml` file.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

@@ -102,7 +102,7 @@ directory, and the application is installed into that server via loose config.
 The `liberty:run-server` argument specifies the Open Liberty `run-server` goal, which 
 starts an Open Liberty server instance in the foreground.
 
-For more information on the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository].
+For more information on the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
 When the server begins starting up, various messages display in your active shell. Wait 
 for the following message, which indicates that the server startup is complete:
@@ -447,7 +447,7 @@ include::finish/src/main/liberty/config/server.xml[tags=**]
 == Running the application in a Docker container
 
 To run the application in a container, you need to have Docker installed. For installation 
-instructions, see the https://docs.docker.com/install/[Official Docker Docs].
+instructions, see the https://docs.docker.com/install/[Official Docker Docs^].
 
 To containerize the application, you need a `Dockerfile`. This file contains a collection 
 of instructions that define how a Docker image is built, what files are packaged into it, 

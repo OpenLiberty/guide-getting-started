@@ -112,7 +112,7 @@ for the following message, which indicates that the server startup is complete:
 [INFO] [AUDIT] CWWKF0011I: The server GettingStartedServer is ready to run a smarter planet.
 ----
 
-To access the `system` microservice, visit the http://localhost:9080/system/properties URL, 
+To access the `system` microservice, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL, 
 and you'll see a list of the various system properties of your JVM:
 
 [source, JSON, role="no_copy"]
@@ -148,7 +148,7 @@ server, start it again before you proceed. The `system` microservice does not cu
 include health monitoring to report whether the server and the microservice that it runs 
 are healthy. You can add health reports with the MicroProfile Health feature, which adds 
 a `/health` endpoint to your application. If you try to access this endpoint now at the
-http://localhost:9080/health/ URL, you see a 404 error because the `/health` endpoint 
+http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404 error because the `/health` endpoint 
 does not yet exist:
 
 [source, role="no_copy"]
@@ -194,7 +194,7 @@ displayed in your first shell session:
 [INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.173 seconds.
 ----
 
-Try to access the `/health` endpoint again by visiting the http://localhost:9080/health 
+Try to access the `/health` endpoint again by visiting the http://localhost:9080/health[http://localhost:9080/health^] 
 URL. This time you'll see the following JSON:
 
 [source, JSON, role="no_copy"]
@@ -265,7 +265,7 @@ The following messages display in your first shell session:
 [INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.136 seconds.
 ----
 
-Access the `/health` endpoint again by visiting the http://localhost:9080/health URL. 
+Access the `/health` endpoint again by visiting the http://localhost:9080/health[http://localhost:9080/health^] URL. 
 This time you see the overall status of your server as well as the `system` microservice 
 that the server runs:
 
@@ -421,7 +421,7 @@ directory and run the `java -jar` command:
 java -jar getting-started.jar
 ```
 
-When the server starts, visit the http://localhost:9080/system/properties URL to access 
+When the server starts, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access 
 your application that is now running out of the minimal runnable JAR.
 
 At this point, you can stop the server by pressing `CTRL+C` in the shell session that 
@@ -523,7 +523,7 @@ CONTAINER ID    IMAGE                         CREATED          STATUS           
 4294a6bdf41b    openliberty-getting-started   9 seconds ago    Up 11 seconds    gettingstarted-app
 ----
 
-To access the application, visit the http://localhost:9080/system/properties URL.
+To access the application, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
 To stop and remove the container, run the following commands:
 [role='command']

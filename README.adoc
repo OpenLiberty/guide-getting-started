@@ -319,7 +319,7 @@ of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `
 `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
 Try enabling detailed logging of the MicroProfile Health feature by adding the 
-[hotspot=14]`<logging/>` element to your configuration file.
+[hotspot=13]`<logging/>` element to your configuration file.
 
 [role="code_command hotspot" subs="quotes"]
 ----
@@ -398,7 +398,7 @@ When the build completes, you can find the runnable `getting-started.jar` file i
 `target` directory. By default, this JAR file comes with all the features available in 
 Open Liberty, including the entirety of Java EE and MicroProfile. As a result, this JAR 
 is over 100 MB. To omit the features that you don't need and package the JAR with only 
-the features that you defined in the [hotspot file=1]`server.xml` file, use 
+the [hotspot=3-8 file=1]`features` that you defined in the [hotspot file=1]`server.xml` file, use 
 `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke the 
 [hotspot=46-51 file=0]`minify-runnable-package` profile by using the `-P` flag:
 
@@ -409,9 +409,9 @@ mvn install -P minify-runnable-package
 
 The [hotspot=46-51 file=0]`minify-runnable-package` profile overrides the 
 [hotspot=49 file=0]`package.type` property from the `usr` package to the `minify,runnable` 
-package and generates a runnable JAR file that contains only the features that you 
+package and generates a runnable JAR file that contains only the [hotspot=3-8 file=1]`features` that you 
 explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the 
-generated JAR is only about 37 MB.
+generated JAR is only about 50 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target` 
 directory and run the `java -jar` command:

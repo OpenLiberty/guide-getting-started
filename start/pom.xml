@@ -23,11 +23,11 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- Plugins -->
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
-        <version.dockerfile-maven-plugin>1.4.3</version.dockerfile-maven-plugin>
+        <version.dockerfile-maven-plugin>1.4.10</version.dockerfile-maven-plugin>
         <version.maven-surefire-plugin>3.0.0-M1</version.maven-surefire-plugin>
         <version.maven-failsafe-plugin>3.0.0-M1</version.maven-failsafe-plugin>
         <!-- OpenLiberty runtime -->
-        <version.openliberty-runtime>18.0.0.3</version.openliberty-runtime>
+        <version.openliberty-runtime>RELEASE</version.openliberty-runtime>
         <http.port>9080</http.port>
         <https.port>9443</https.port>
         <!-- tag::server-type[] -->
@@ -43,6 +43,9 @@
         <profile>
             <id>runnable-package</id>
             <properties>
+                <package.file>
+                    ${project.build.directory}/${app.name}.jar
+                </package.file>
                 <packaging.type>runnable</packaging.type>
             </properties>
         </profile>
@@ -50,6 +53,9 @@
         <profile>
             <id>minify-runnable-package</id>
             <properties>
+                <package.file>
+                    ${project.build.directory}/${app.name}.jar
+                </package.file>
                 <packaging.type>minify,runnable</packaging.type>
             </properties>
         </profile>

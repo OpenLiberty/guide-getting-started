@@ -547,4 +547,4 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 You've learned the basics of deploying and updating an application on an Open Liberty server.
 
 
-include::https://raw.githubusercontent.com/OpenLiberty/guides-common/multipane/attribution.adoc[subs="attributes"]
+include::{common-includes}/attribution.adoc[subs="attributes"]

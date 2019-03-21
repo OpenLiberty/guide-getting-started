@@ -18,6 +18,8 @@
     <!-- end::logging[] -->
     <httpEndpoint host="*" httpPort="${default.http.port}" 
         httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
+    
+    <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
 
     <webApplication location="getting-started.war" contextRoot="/"/>
 </server>

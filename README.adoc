@@ -246,7 +246,7 @@ SystemHealth.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
 ----
 
-The [hotspot=12-24 file=1]`SystemHealth` class allows you to report on the health status
+The [hotspot=16-32 file=1]`SystemHealth` class allows you to report on the health status
 of the `system` microservice.
 
 Next, recompile the application:

@@ -319,7 +319,7 @@ of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `
 `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
 Try enabling detailed logging of the MicroProfile Health feature by adding the
-[hotspot=13]`<logging/>` element to your configuration file.
+[hotspot=14]`<logging/>` element to your configuration file.
 
 [role="code_command hotspot" subs="quotes"]
 ----

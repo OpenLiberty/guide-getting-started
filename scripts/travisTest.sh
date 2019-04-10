@@ -14,7 +14,15 @@ docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started
 
 sleep 60
 
-status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/system/properties")"; if [ "$status" == "200" ]; then echo ENDPOINT OK; else echo "$status"; echo ENDPOINT NOT OK; exit 1; fi;
+status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/system/properties")" 
+if [ "$status" == "200" ]
+then 
+  echo ENDPOINT OK
+else 
+  echo "$status" 
+  echo ENDPOINT NOT OK
+  exit 1
+fi
 
 docker stop gettingstarted-app && docker rm gettingstarted-app
 

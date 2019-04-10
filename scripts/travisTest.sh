@@ -43,7 +43,7 @@ echo -e "\033[1;34mJava version:\033[0m\033[1;36m$jv\033[0m"
 cd target/liberty/wlp/usr/servers/"$serverName"/logs/; 
 repo_name=$(echo "$TRAVIS_REPO_SLUG" | sed -e "s/\//-/g");
  
-if [ "$TRAVIS_TEST_RESULT" -eq 0 ] 
+if [ $TRAVIS_TEST_RESULT -eq 0 ] 
 then 
   result="passed"
 else 

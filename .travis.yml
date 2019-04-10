@@ -1,4 +1,6 @@
 language: java
+jdk:
+  - openjdk11
 services:
 - docker
 before_script:

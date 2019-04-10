@@ -24,7 +24,7 @@ mvn -q clean install
 serverName=$(target/liberty/wlp/bin/server list | cut -d '.' -f2| tr -d '\n')
 build=$(grep "Open Liberty" target/liberty/wlp/usr/servers/"$serverName"/logs/console.log | cut -d' ' -f5 | cut -d')' -f1 ) 
 release=$( echo "$build" | cut -d'/' -f1); number=$(echo "$build" | cut -d'/' -f2)
-ol_jv=$(grep -i "on" target/liberty/wlp/usr/servers/"$serverName"/logs/console.log) 
+ol_jv=$(grep -i -m 1 "on" target/liberty/wlp/usr/servers/"$serverName"/logs/console.log) 
 jv=$(printf '%s\n' "${ol_jv//$' on '/$'\n'}" | sed '2q;d') 
 
 echo -e "\n"

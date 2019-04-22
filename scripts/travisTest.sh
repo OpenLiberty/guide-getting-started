@@ -28,14 +28,3 @@ docker stop gettingstarted-app && docker rm gettingstarted-app
 
 # TEST 2: Building and running the application
 mvn -q clean install
-
-serverName=$(target/liberty/wlp/bin/server list | cut -d '.' -f2| tr -d '\n')
-build=$(grep "Open Liberty" target/liberty/wlp/usr/servers/"$serverName"/logs/console.log | cut -d' ' -f5 | cut -d')' -f1 ) 
-release=$( echo "$build" | cut -d'/' -f1); number=$(echo "$build" | cut -d'/' -f2)
-ol_jv=$(grep -i "version" target/liberty/wlp/usr/servers/"$serverName"/logs/console.log) 
-jv=$(printf '%s\n' "${ol_jv//$' on '/$'\n'}" | sed '2q;d') 
-
-echo -e "\n"
-echo -e  "\033[1;34mOpen Liberty release:\033[0m \033[1;36m$release\033[0m"
-echo -e "\033[1;34mOpen Liberty build number:\033[0m \033[1;36m$number\033[0m" 
-echo -e "\033[1;34mJava version:\033[0m\033[1;36m$jv\033[0m"

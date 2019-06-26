@@ -234,7 +234,7 @@ Try updating the source code while the server is running. At the moment, the `/h
 endpoint reports whether or not the server is running, but the endpoint doesn't provide
 any details on the microservices that are running inside of the server.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Create the `SystemHealth` class.#
 `src/main/java/io/openliberty/sample/system/SystemHealth.java`

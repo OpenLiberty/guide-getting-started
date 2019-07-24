@@ -235,8 +235,8 @@ endpoint reports whether or not the server is running, but the endpoint doesn't 
 any details on the microservices that are running inside of the server.
 
 MicroProfile Health offers health checks for both readiness and liveness. A readiness
-check allows third party services, such as Kubernetes, to know if the microservice is 
-ready to process requests. A liveness check allows third party services to determine if 
+check allows third-party services, such as Kubernetes, to know if the microservice is 
+ready to process requests. A liveness check allows third-party services to determine if 
 the microservice is running.
 
 [role="code_command hotspot file=1", subs="quotes"]
@@ -251,7 +251,7 @@ SystemReadinessCheck.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=16-32 file=1]`SystemReadinessCheck` class will verify that the `system` 
+The [hotspot=16-32 file=1]`SystemReadinessCheck` class verifies that the `system` 
 microservice is not in maintenance by checking a config property.
 
 [role="code_command hotspot file=2", subs="quotes"]
@@ -266,7 +266,7 @@ SystemLivenessCheck.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=15-29 file=2]`SystemLivenessCheck` class will report a status of `DOWN` if  
+The [hotspot=15-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if  
 the microservice uses over 90% of the maximum amount of memory.
 
 Next, recompile the application:

@@ -18,14 +18,14 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.health.Health;
+import org.eclipse.microprofile.health.Readiness;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 
-@Health
+@Readiness
 @ApplicationScoped
-public class SystemHealth implements HealthCheck {
+public class SystemReadinessCheck implements HealthCheck {
 
     @Inject
     @ConfigProperty(name = "io_openliberty_guides_system_inMaintenance")
@@ -34,7 +34,7 @@ public class SystemHealth implements HealthCheck {
     @Override
     public HealthCheckResponse call() {
         HealthCheckResponseBuilder builder = HealthCheckResponse.named(
-		SystemResource.class.getSimpleName());
+		SystemResource.class.getSimpleName() + " readiness check");
         if (inMaintenance != null && inMaintenance.get().equalsIgnoreCase("true")) {
             return builder.withData("services", "not available").down().build();
         }

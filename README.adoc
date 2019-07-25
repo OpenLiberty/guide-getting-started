@@ -219,10 +219,10 @@ application, meaning that it runs in a server from its `.class` file and other a
 Open Liberty automatically monitors these artifacts, and whenever they are updated, it
 updates the running server without the need for the server to be restarted.
 
-Take a look at your [hotspot]`pom.xml` file.
+Take a look at your [hotspot file=0]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=206]`<looseApplication/>`
-element in the [hotspot=193-215]`liberty-maven-plugin` plug-in.
+The loose application support is enabled with the [hotspot=206 file=0]`<looseApplication/>`
+element in the [hotspot=193-215 file=0]`liberty-maven-plugin` plug-in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

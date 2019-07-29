@@ -219,10 +219,10 @@ application, meaning that it runs in a server from its `.class` file and other a
 Open Liberty automatically monitors these artifacts, and whenever they are updated, it
 updates the running server without the need for the server to be restarted.
 
-Take a look at your [hotspot]`pom.xml` file.
+Take a look at your [hotspot file=0]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=206]`<looseApplication/>`
-element in the [hotspot=193-215]`liberty-maven-plugin` plug-in.
+The loose application support is enabled with the [hotspot=206 file=0]`<looseApplication/>`
+element in the [hotspot=193-215 file=0]`liberty-maven-plugin` plug-in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -234,20 +234,40 @@ Try updating the source code while the server is running. At the moment, the `/h
 endpoint reports whether or not the server is running, but the endpoint doesn't provide
 any details on the microservices that are running inside of the server.
 
+MicroProfile Health offers health checks for both readiness and liveness. A readiness
+check allows third-party services, such as Kubernetes, to know if the microservice is 
+ready to process requests. A liveness check allows third-party services to determine if 
+the microservice is running.
+
 [role="code_command hotspot file=1", subs="quotes"]
 ----
-#Create the `SystemHealth` class.#
-`src/main/java/io/openliberty/sample/system/SystemHealth.java`
+#Create the `SystemReadinessCheck` class.#
+`src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java`
 ----
 
-SystemHealth.java
+SystemReadinessCheck.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/main/java/io/openliberty/sample/system/SystemHealth.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=16-32 file=1]`SystemHealth` class allows you to report on the health status
-of the `system` microservice.
+The [hotspot=16-32 file=1]`SystemReadinessCheck` class verifies that the `system` 
+microservice is not in maintenance by checking a config property.
+
+[role="code_command hotspot file=2", subs="quotes"]
+----
+#Create the `SystemLivenessCheck` class.#
+`src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java`
+----
+
+SystemLivenessCheck.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[tags=**;!copyright]
+----
+
+The [hotspot=14-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if  
+the microservice uses over 90% of the maximum amount of memory.
 
 Next, recompile the application:
 [role='command']
@@ -266,26 +286,37 @@ The following messages display in your first shell session:
 ----
 
 Access the `/health` endpoint again by visiting the http://localhost:9080/health[http://localhost:9080/health^] URL.
-This time you see the overall status of your server as well as the `system` microservice
-that the server runs:
-
+This time you see the overall status of your server as well as the aggregated data of the
+liveness and readiness checks for the `system` microservice:
 
 [source, JSON, role="no_copy"]
 ----
-{
-    "checks":[
-        {
-            "data":
-            {
-                "services": "available"
-            },
-            "name": "SystemResource",
-            "state": "UP"
-        }
-    ],
-    "outcome": "UP"
+{  
+   "checks":[  
+      {  
+         "data":{  
+            "services":"available"
+         },
+         "name":"SystemResource readiness check",
+         "status":"UP"
+      },
+      {  
+         "data":{  
+            "memory used":81064480,
+            "memory max":4294967296
+         },
+         "name":"SystemResource liveness check",
+         "status":"UP"
+      }
+   ],
+   "status":"UP"
 }
 ----
+
+You can also access the `/health/ready` endpoint by visiting the http://localhost:9080/health/ready[http://localhost:9080/health/ready^] 
+URL to view the data from the readiness health check. Similarily, access the `/health/live` 
+endpoint by visiting the http://localhost:9080/health/live[http://localhost:9080/health/live^] 
+URL to view the data from the liveness health check.
 
 Making code changes and recompiling is fast and straightforward. Maven only rebuilds the
 `.class` files and artifacts that changed, and the server picks these up automatically

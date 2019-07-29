@@ -5,7 +5,7 @@
         <feature>cdi-2.0</feature>
         <feature>mpMetrics-1.1</feature>
         <!-- tag::mpHealth[] -->
-        <feature>mpHealth-1.0</feature>
+        <feature>mpHealth-2.0</feature>
         <!-- end::mpHealth[] -->
         <feature>mpConfig-1.3</feature>
     </featureManager>

@@ -266,7 +266,7 @@ SystemLivenessCheck.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=15-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if  
+The [hotspot=14-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if  
 the microservice uses over 90% of the maximum amount of memory.
 
 Next, recompile the application:

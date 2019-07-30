@@ -23,7 +23,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- Plugins -->
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
-        <version.dockerfile-maven-plugin>1.4.10</version.dockerfile-maven-plugin>
         <version.maven-surefire-plugin>3.0.0-M1</version.maven-surefire-plugin>
         <version.maven-failsafe-plugin>3.0.0-M1</version.maven-failsafe-plugin>
         <!-- OpenLiberty runtime -->
@@ -59,32 +58,6 @@
                 <packaging.type>minify,runnable</packaging.type>
             </properties>
         </profile>
-        <!-- tag::profile-docker-image[] -->
-        <profile>
-            <id>docker-image</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>${version.dockerfile-maven-plugin}</version>
-                        <executions>
-                            <execution>
-                                <id>build-docker-image</id>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <repository>openliberty-${project.artifactId}</repository>
-                            <tag>${project.version}</tag>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <!-- end::profile-docker-image[] -->
     </profiles>
 
     <dependencyManagement>

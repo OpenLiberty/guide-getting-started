@@ -140,13 +140,13 @@ mvn liberty:stop-server
 
 == Updating the server configuration without restarting the server
 
-When you update the server configuration files, you can run the `mvn package` command to invoke the Maven `package` phase that executes various Maven goals that repackage the server.
-If you re-package the server, including its configuration, while the server is running, Liberty will automatically reload the configuration without restarting.
+When you update the server configuration files, you can run the `mvn package` command to invoke the Maven `package` phase which executes various Maven goals that repackage the server.
+If you re-package the server, including its configuration, while the server is running, Liberty automatically reloads the configuration without restarting.
 This allows for quicker turnarounds and an improved developer experience.
 
 Besides the `run-server` goal, the Open Liberty Maven plugin also includes a new `dev` goal, which listens for any changes in the project, whether it's application source code or configuration.
 
-If you're server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop-server` goal from the `start` directory in another shell session.
+If your server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop-server` goal from the `start` directory in another shell session.
 
 To run the `dev` phase of the Maven plugin, invoke the Maven `package` phase and the `liberty:dev` goal in the `start` directory:
 
@@ -155,7 +155,7 @@ To run the `dev` phase of the Maven plugin, invoke the Maven `package` phase and
 mvn package liberty:dev
 ```
 
-This will start Open Liberty in the development mode, which listens for file changes and otherwise enables us to access the server in the same way as before:
+This starts Open Liberty in the development mode, which listens for file changes and otherwise enables us to access the server in the same way as before:
 
 You can visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL just as before.
 
@@ -183,7 +183,7 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[tags=**;!logging]
 ----
 
-After you've made the file changes, Open Liberty will automatically reload its configuration.
+After you've made the file changes, Open Liberty automatically reloads its configuration.
 When enabled, the [hotspot=7]`mpHealth` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your shell session:
 
@@ -283,7 +283,7 @@ include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.j
 
 The [hotspot=14-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if the microservice uses over 90% of the maximum amount of memory.
 
-After you've made the file changes, Open Liberty will automatically reload its configuration and the `system` application.
+After you've made the file changes, Open Liberty automatically reloads its configuration and the `system` application.
 
 The following messages display in your first shell session:
 
@@ -372,7 +372,7 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[tags=**]
 ----
 
-After you've made the file changes, Open Liberty will automatically reload its configuration.
+After you've made the file changes, Open Liberty automatically reloads its configuration.
 
 Now, when you visit the `/health` endpoint, additional traces are logged into the `trace.log` file.
 

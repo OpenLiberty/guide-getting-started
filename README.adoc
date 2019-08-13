@@ -82,12 +82,12 @@ include::finish/pom.xml[tags=**]
 ----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty
-by running the Maven `package` phase and the Maven `liberty:run-server` goal from the
+by running the Maven `package` phase and the Maven `liberty:run` goal from the
 `start` directory:
 
 [role='command']
 ```
-mvn package liberty:run-server
+mvn package liberty:run
 ```
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created
@@ -96,7 +96,7 @@ to store all build-related files.
 The `package` argument specifies the Maven `package` phase. During this phase, the
 application is built and packaged into a `.war` file.
 
-The `liberty:run-server` argument specifies the Open Liberty `run-server` goal, which
+The `liberty:run` argument specifies the Open Liberty `run` goal, which
 starts an Open Liberty server instance in the foreground.
 As part of this phase, an Open Liberty server runtime is downloaded and installed into
 the `target/liberty/wlp` directory, a server instance is created and configured in the
@@ -126,13 +126,31 @@ and you'll see a list of the various system properties of your JVM:
 ----
 
 Later, when you need to stop the server, simply press `CTRL+C` in the shell session where
-you ran the server, or run the `liberty:stop-server` goal from the `start` directory in
+you ran the server, or run the `liberty:stop` goal from the `start` directory in
 another shell session:
 
 [role='command']
 ```
-mvn liberty:stop-server
+mvn liberty:stop
 ```
+
+
+// =================================================================================================
+// Starting and stopping the Open Liberty server in the background
+// =================================================================================================
+
+== Starting and stopping the Open Liberty server in the background
+
+Although you can start and stop the server in the foreground by using the Maven
+`liberty:run` goal, you can also start and stop the server in the background with
+the Maven `liberty:start` and `liberty:stop` goals:
+
+[role='command']
+----
+mvn liberty:start
+mvn liberty:stop
+----
+
 
 // =================================================================================================
 // Updating the server configuration without restarting the server
@@ -144,9 +162,9 @@ When you update the server configuration files, you can run the `mvn package` co
 If you re-package the server, including its configuration, while the server is running, Liberty automatically reloads the configuration without restarting.
 This allows for quicker turnarounds and an improved developer experience.
 
-Besides the `run-server` goal, the Open Liberty Maven plugin also includes a new `dev` goal, which listens for any changes in the project, whether it's application source code or configuration.
+Besides the `run` goal, the Open Liberty Maven plugin also includes a new `dev` goal, which listens for any changes in the project, whether it's application source code or configuration.
 
-If your server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop-server` goal from the `start` directory in another shell session.
+If your server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop` goal from the `start` directory in another shell session.
 
 To run the `dev` phase of the Maven plugin, invoke the Maven `package` phase and the `liberty:dev` goal in the `start` directory:
 
@@ -194,7 +212,7 @@ You can see the server being updated in the server log that's displayed in your 
 [INFO] [AUDIT] CWWKZ0009I: The application io.openliberty.guides.getting-started has stopped successfully.
 [INFO] [AUDIT] CWWKG0017I: The server configuration was successfully updated in 0.284 seconds.
 [INFO] [AUDIT] CWWKT0016I: Web application available (default_host): http://foo:9080/health/
-[INFO] [AUDIT] CWWKF0012I: The server installed the following features: [mpHealth-1.0].
+[INFO] [AUDIT] CWWKF0012I: The server installed the following features: [mpHealth-2.0].
 [INFO] [AUDIT] CWWKF0008I: Feature update completed in 0.285 seconds.
 [INFO] [AUDIT] CWWKT0016I: Web application available (default_host): http://foo:9080/
 [INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.173 seconds.
@@ -212,23 +230,6 @@ This time you'll see the following JSON:
 ----
 
 You now have a means of verifying if your server is up and running.
-
-
-// =================================================================================================
-// Starting and stopping the Open Liberty server in the background
-// =================================================================================================
-
-== Starting and stopping the Open Liberty server in the background
-
-Although you can start and stop the server in the foreground by using the Maven
-`liberty:run-server` goal, you can also start and stop the server in the background with
-the Maven `liberty:start-server` and `liberty:stop-server` goals:
-
-[role='command']
-----
-mvn liberty:start-server
-mvn liberty:stop-server
-----
 
 
 // =================================================================================================
@@ -323,11 +324,11 @@ This time you see the overall status of your server as well as the aggregated da
 ----
 
 You can also access the `/health/ready` endpoint by visiting the http://localhost:9080/health/ready[http://localhost:9080/health/ready^] URL to view the data from the readiness health check.
-Similarily, access the `/health/live` endpoint by visiting the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
+Similarly, access the `/health/live` endpoint by visiting the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
 
 Making code changes and recompiling is fast and straightforward.
 The development mode of Open Liberty automatically picks up changes in the `.class` files and artifacts, without needing to be restarted.
-A similar goal can be achieved by running the `run-server` goal and manually re-packaging or re-compiling the application using `mvn package` or `mvn compile`, respectively, while the server is running.
+A similar goal can be achieved by running the `run` goal and manually re-packaging or re-compiling the application using `mvn package` or `mvn compile`, respectively, while the server is running.
 The development mode has been added to further improve the developer experience by minimizing the turnaround times.
 
 
@@ -375,6 +376,8 @@ include::finish/src/main/liberty/config/server.xml[tags=**]
 After you've made the file changes, Open Liberty automatically reloads its configuration.
 
 Now, when you visit the `/health` endpoint, additional traces are logged into the `trace.log` file.
+
+Afterwards, stop the server by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop` goal from the `start` directory in another shell session.
 
 
 // =================================================================================================

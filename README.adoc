@@ -78,7 +78,7 @@ you to install applications into Open Liberty as well as manage the server insta
 pom.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::finish/pom.xml[tags=**]
+include::finish/pom.xml[]
 ----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty
@@ -196,9 +196,9 @@ To add the MicroProfile Health feature to the server, include the [hotspot=7]`mp
 ----
 
 server.xml
-[source, xml, linenums, role='code_column']
+[source, xml, linenums, role='code_column hide_tags=logging']
 ----
-include::finish/src/main/liberty/config/server.xml[tags=**;!logging]
+include::finish/src/main/liberty/config/server.xml[]
 ----
 
 After you've made the file changes, Open Liberty automatically reloads its configuration.
@@ -263,9 +263,9 @@ A liveness check allows third-party services to determine if the microservice is
 ----
 
 SystemReadinessCheck.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java[]
 ----
 
 The [hotspot=systemReadinessCheck file=1]`SystemReadinessCheck` class verifies that the 
@@ -278,9 +278,9 @@ The [hotspot=systemReadinessCheck file=1]`SystemReadinessCheck` class verifies t
 ----
 
 SystemLivenessCheck.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[]
 ----
 
 The [hotspot=systemLivenessCheck file=2]`SystemLivenessCheck` class reports a status of 

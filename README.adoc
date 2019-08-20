@@ -72,7 +72,7 @@ contains a [hotspot]`pom.xml` file, which defines the project configuration, dep
 and so on.
 
 Navigate to the `start` directory where your [hotspot]`pom.xml` file is located. Your `pom.xml` file
-is configured to include the [hotspot=193-215]`liberty-maven-plugin`, which allows
+is configured to include the [hotspot=libertyMavenPlugin]`liberty-maven-plugin`, which allows
 you to install applications into Open Liberty as well as manage the server instances.
 
 pom.xml
@@ -268,7 +268,8 @@ SystemReadinessCheck.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemReadinessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=16-32 file=1]`SystemReadinessCheck` class verifies that the `system` microservice is not in maintenance by checking a config property.
+The [hotspot=systemReadinessCheck file=1]`SystemReadinessCheck` class verifies that the 
+`system` microservice is not in maintenance by checking a config property.
 
 [role="code_command hotspot file=2", subs="quotes"]
 ----
@@ -282,7 +283,8 @@ SystemLivenessCheck.java
 include::finish/src/main/java/io/openliberty/sample/system/SystemLivenessCheck.java[tags=**;!copyright]
 ----
 
-The [hotspot=14-29 file=2]`SystemLivenessCheck` class reports a status of `DOWN` if the microservice uses over 90% of the maximum amount of memory.
+The [hotspot=systemLivenessCheck file=2]`SystemLivenessCheck` class reports a status of 
+`DOWN` if the microservice uses over 90% of the maximum amount of memory.
 
 After you've made the file changes, Open Liberty automatically reloads its configuration and the `system` application.
 

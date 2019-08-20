@@ -116,11 +116,13 @@
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <!-- Enable liberty-maven plugin -->
+            <!-- tag::libertyMavenPlugin[] -->
             <plugin>
                 <groupId>net.wasdev.wlp.maven.plugins</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>${version.liberty-plugin}</version>
             </plugin>
+            <!-- end::libertyMavenPlugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

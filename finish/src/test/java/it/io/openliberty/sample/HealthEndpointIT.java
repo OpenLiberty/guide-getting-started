@@ -25,7 +25,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HealthEndpointTest {
+public class HealthEndpointIT {
     
     private static String baseUrl;
     private static final String HEALTH_ENDPOINT = "/health";

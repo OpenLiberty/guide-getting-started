@@ -23,7 +23,7 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.jaxrs.provider.jsrjsonp.JsrJsonpProvider;
 import org.junit.Test;
 
-public class PropertiesEndpointTest {
+public class PropertiesEndpointIT {
 
   @Test
   public void testGetProperties() {

@@ -187,7 +187,7 @@ If you try to access this endpoint now at the http://localhost:9080/health/[http
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, include the [hotspot=7]`mpHealth` feature in the [hotspot]`server.xml`.
+To add the MicroProfile Health feature to the server, include the [hotspot=mpHealth]`mpHealth` feature in the [hotspot]`server.xml`.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -202,7 +202,7 @@ include::finish/src/main/liberty/config/server.xml[]
 ----
 
 After you've made the file changes, Open Liberty automatically reloads its configuration.
-When enabled, the [hotspot=7]`mpHealth` feature automatically adds a `/health` endpoint to the application.
+When enabled, the [hotspot=mpHealth]`mpHealth` feature automatically adds a `/health` endpoint to the application.
 You can see the server being updated in the server log that's displayed in your shell session:
 
 [source, role="no_copy"]
@@ -361,7 +361,7 @@ of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `
 `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
 Try enabling detailed logging of the MicroProfile Health feature by adding the
-[hotspot=14]`<logging/>` element to your configuration file.
+[hotspot=logging]`<logging/>` element to your configuration file.
 
 [role="code_command hotspot" subs="quotes"]
 ----
@@ -372,7 +372,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::finish/src/main/liberty/config/server.xml[tags=**]
+include::finish/src/main/liberty/config/server.xml[]
 ----
 
 After you've made the file changes, Open Liberty automatically reloads its configuration.

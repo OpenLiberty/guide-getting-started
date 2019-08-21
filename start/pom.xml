@@ -94,7 +94,7 @@
         </dependency>
         <dependency>
             <groupId>io.openliberty.features</groupId>
-            <artifactId>mpMetrics-1.1</artifactId>
+            <artifactId>mpMetrics-2.0</artifactId>
             <type>esa</type>
             <scope>provided</scope>
         </dependency>

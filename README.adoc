@@ -486,26 +486,16 @@ what commands run when the image runs as a container, and so on. You can find a 
 `Dockerfile` in the `start` directory. This `Dockerfile` packages the `usr` server
 package into a Docker image that contains a preconfigured Open Liberty server.
 
-The [hotspot=58-81]`docker-image` profile uses the [hotspot=64]`dockerfile-maven` plug-in,
-which automatically builds a Docker image from a `Dockerfile` that is located in the same
-directory as the [hotspot]`pom.xml` file.
-
-pom.xml
-[source, XML, linenums, role="code_column"]
-----
-include::finish/pom.xml[tags=**]
-----
-
-To build and containerize the application, start your Docker daemon and then invoke the
-profile by using the `-P` flag:
+To build and containerize the application, start your Docker daemon and run the following command:
 
 [role='command']
 ```
-mvn clean package -P docker-image
+docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 ```
 
-During the Maven `package` phase, a `usr` server package is generated into the `target`
-directory. The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built from
+The `-t` flag in the `docker build` command allows the Docker image to be labeled (tagged) in the `name[:tag]` format. 
+The tag for an image describes the specific image version. If the optional `[:tag]` tag is not specified, the `latest` tag is created by default.
+ The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is built from
 the `Dockerfile`. To verify that the image is built, run the `docker images` command to
 list all local Docker images:
 

@@ -170,7 +170,7 @@ To run the `dev` phase of the Maven plugin, invoke the Maven `package` phase and
 
 [role='command']
 ```
-mvn package liberty:dev
+mvn liberty:dev
 ```
 
 This starts Open Liberty in the development mode, which listens for file changes and otherwise enables us to access the server in the same way as before:

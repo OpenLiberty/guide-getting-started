@@ -72,7 +72,7 @@ contains a [hotspot]`pom.xml` file, which defines the project configuration, dep
 and so on.
 
 Navigate to the `start` directory where your [hotspot]`pom.xml` file is located. Your `pom.xml` file
-is configured to include the [hotspot=193-215]`liberty-maven-plugin`, which allows
+is configured to include the [hotspot=192-213]`liberty-maven-plugin`, which allows
 you to install applications into Open Liberty as well as manage the server instances.
 
 pom.xml
@@ -221,8 +221,8 @@ updates the running server without the need for the server to be restarted.
 
 Take a look at your [hotspot file=0]`pom.xml` file.
 
-The loose application support is enabled with the [hotspot=206 file=0]`<looseApplication/>`
-element in the [hotspot=193-215 file=0]`liberty-maven-plugin` plug-in.
+The loose application support is enabled with the [hotspot=181 file=0]`<looseApplication/>`
+element in the [hotspot=192-213 file=0]`liberty-maven-plugin` plug-in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -406,7 +406,7 @@ Open Liberty supports a number of different server packages. The sample applicat
 currently generates a `usr` package that contains the servers and application to be
 extracted onto an Open Liberty installation.
 
-The type of server package is configured with [hotspot=33 file=0]`<packaging.type/>` in
+The type of server package is configured with [hotspot=32 file=0]`<packaging.type/>` in
 the [hotspot file=0]`pom.xml`.
 
 Instead of creating a server package, you can generate a runnable JAR file that contains
@@ -421,8 +421,8 @@ mvn install -P runnable-package
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the
 [hotspot=40-48 file=0]`runnable-package` profile is invoked, which temporarily overrides
-the [hotspot=33 hotspot=46 file=0]`packaging.type` property from the `usr` package to the `runnable`
-package. This property then propagates to the [hotspot=193-215 file=0]`liberty-maven-plugin`
+the [hotspot=32 hotspot=45 file=0]`packaging.type` property from the `usr` package to the `runnable`
+package. This property then propagates to the [hotspot=192-213 file=0]`liberty-maven-plugin`
 plug-in, which generates the server package that you want.
 
 When the build completes, you can find the runnable `getting-started.jar` file in the

@@ -412,7 +412,7 @@ the [hotspot file=0]`pom.xml`.
 Instead of creating a server package, you can generate a runnable JAR file that contains
 the application along with a server runtime. This JAR can then be run anywhere and deploy
 your application and server at the same time. To generate a runnable JAR, invoke the
-[hotspot=40-48 file=0]`runnable-package` profile by using the `-P` flag:
+[hotspot=39-47 file=0]`runnable-package` profile by using the `-P` flag:
 
 [role='command']
 ```
@@ -420,7 +420,7 @@ mvn install -P runnable-package
 ```
 
 The `-P` flag specifies the Maven profile to be run during the build. In this case, the
-[hotspot=40-48 file=0]`runnable-package` profile is invoked, which temporarily overrides
+[hotspot=39-47 file=0]`runnable-package` profile is invoked, which temporarily overrides
 the [hotspot=32 hotspot=45 file=0]`packaging.type` property from the `usr` package to the `runnable`
 package. This property then propagates to the [hotspot=192-213 file=0]`liberty-maven-plugin`
 plug-in, which generates the server package that you want.
@@ -431,15 +431,15 @@ Open Liberty, including the entirety of Java EE and MicroProfile. As a result, t
 is over 100 MB. To omit the features that you don't need and package the JAR with only
 the [hotspot=2-9 file=1]`features` that you defined in the [hotspot file=1]`server.xml` file, use
 `minifiy,runnable` as the packaging type. To build a minimal runnable JAR, invoke the
-[hotspot=49-57 file=0]`minify-runnable-package` profile by using the `-P` flag:
+[hotspot=48-56 file=0]`minify-runnable-package` profile by using the `-P` flag:
 
 [role='command']
 ```
 mvn install -P minify-runnable-package
 ```
 
-The [hotspot=49-57 file=0]`minify-runnable-package` profile overrides the
-[hotspot=33 hotspot=55 file=0]`packaging.type` property from the `usr` package to the `minify,runnable`
+The [hotspot=48-56 file=0]`minify-runnable-package` profile overrides the
+[hotspot=32 hotspot=54 file=0]`packaging.type` property from the `usr` package to the `minify,runnable`
 package and generates a runnable JAR file that contains only the [hotspot=2-9 file=1]`features` that you
 explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the
 generated JAR is only about 50 MB.

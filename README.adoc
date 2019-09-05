@@ -162,19 +162,18 @@ When you update the server configuration files, you can run the `mvn package` co
 If you re-package the server, including its configuration, while the server is running, Liberty automatically reloads the configuration without restarting.
 This allows for quicker turnarounds and an improved developer experience.
 
+Besides the `run` goal, the Open Liberty Maven plugin also includes a new `dev` goal, which listens for any changes in the project, whether it's application source code or configuration.
+
 If your server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop` goal from the `start` directory in another shell session.
 
-The Open Liberty Maven plugin includes a `dev` goal, which listens for any changes in the project, 
-whether it's application source code or configuration.
-To start the Open Liberty server in development mode, run the `liberty:dev` goal in the `start` directory:
+To run the `dev` phase of the Maven plugin, invoke the Maven `package` phase and the `liberty:dev` goal in the `start` directory:
 
 [role='command']
 ```
 mvn liberty:dev
 ```
 
-In addition to starting the Open Liberty server, development mode automatically picks up
-changes you make to your application and allows you to run tests by pressing "enter".
+This starts Open Liberty in the development mode, which listens for file changes and otherwise enables us to access the server in the same way as before:
 
 You can visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL just as before.
 

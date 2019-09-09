@@ -225,7 +225,7 @@ This time you'll see the following JSON:
 ----
 {
     "checks":[],
-    "outcome":"UP"
+    "status":"UP"
 }
 ----
 

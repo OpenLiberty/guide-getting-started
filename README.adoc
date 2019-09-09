@@ -495,12 +495,11 @@ mvn liberty:package-server -Dinclude=runnable -DpackageFile=target/getting-start
 
 The packaging type will be overrided from the `usr` package to the `runnable`
 package. This property then propagates to the [hotspot=193-215 file=0]`liberty-maven-plugin`
-plug-in, which generates the server package that you want.
+plug-in, which generates the server package based on the `openliberty-kernel` package.
 
 When the build completes, you can find the minimal runnable `getting-started.jar` file in the
 `target` directory. This JAR file contains only the [hotspot=2-9 file=1]`features` that you
-explicitly enabled in your [hotspot file=1]`server.xml` file, 
-and omits other Open Liberty features that you don't need. As a result, the
+explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the
 generated JAR is only about 50 MB.
 
 To run the JAR, first stop the server if it's running. Then, navigate to the `target`

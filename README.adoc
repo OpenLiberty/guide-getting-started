@@ -226,7 +226,7 @@ This time you'll see the following JSON:
 ----
 {
     "checks":[],
-    "outcome":"UP"
+    "status":"UP"
 }
 ----
 
@@ -496,23 +496,10 @@ mvn liberty:package-server -Dinclude=runnable -DpackageFile=target/getting-start
 
 The packaging type will be overrided from the `usr` package to the `runnable`
 package. This property then propagates to the [hotspot=193-215 file=0]`liberty-maven-plugin`
-plug-in, which generates the server package that you want.
+plug-in, which generates the server package based on the `openliberty-kernel` package.
 
-When the build completes, you can find the runnable `getting-started.jar` file in the
-`target` directory. By default, this JAR file comes with all the features available in
-Open Liberty, including the entirety of Java EE and MicroProfile. As a result, this JAR
-is over 100 MB. To omit the features that you don't need and package the JAR with only
-the [hotspot=2-9 file=1]`features` that you defined in the [hotspot file=1]`server.xml` file, use
-`minifiy,runnable` as the packaging type. To build a minimal runnable JAR, update the 
-`-D` flag:
-
-[role='command']
-```
-mvn liberty:package-server -Dinclude=minify,runnable -DpackageFile=target/getting-started.jar
-```
-
-This command overrides the packaging type from the `usr` package to the `minify,runnable`
-package and generates a runnable JAR file that contains only the [hotspot=2-9 file=1]`features` that you
+When the build completes, you can find the minimal runnable `getting-started.jar` file in the
+`target` directory. This JAR file contains only the [hotspot=2-9 file=1]`features` that you
 explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the
 generated JAR is only about 50 MB.
 

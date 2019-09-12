@@ -87,7 +87,7 @@ by running the Maven `package` phase and the Maven `liberty:run` goal from the
 
 [role='command']
 ```
-mvn package liberty:run
+mvn package liberty:dev
 ```
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created

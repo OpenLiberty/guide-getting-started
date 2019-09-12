@@ -400,10 +400,11 @@ image that contains the Java runtime and a preconfigured Open Liberty server.
 
 To build and containerize the application, start your Docker daemon and then invoke the
 following Docker build command in the `start` directory. The `.war` file needs to reside under the
-`target` directory, that is we need to previously invoke Maven `package`.
+`target` directory, that is you need to invoke Maven `package`.
 
 [role='command']
 ```
+mvn package
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 ```
 

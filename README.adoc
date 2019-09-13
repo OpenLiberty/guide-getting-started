@@ -96,7 +96,7 @@ to store all build-related files.
 The `package` argument specifies the Maven `package` phase. During this phase, the
 application is built and packaged into a `.war` file.
 
-The `liberty:run` argument specifies the Open Liberty `run` goal, which
+The `liberty:dev` argument specifies the Open Liberty `dev` goal, which
 starts an Open Liberty server instance in the foreground.
 As part of this phase, an Open Liberty server runtime is downloaded and installed into
 the `target/liberty/wlp` directory, a server instance is created and configured in the

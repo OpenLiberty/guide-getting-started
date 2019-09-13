@@ -82,7 +82,7 @@ include::finish/pom.xml[]
 ----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty
-by running the Maven `package` phase and the Maven `liberty:run` goal from the
+by running the Maven `package` phase and the Maven `liberty:dev` goal from the
 `start` directory:
 
 [role='command']

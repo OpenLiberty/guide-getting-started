@@ -158,14 +158,8 @@ mvn liberty:stop
 
 == Updating the server configuration without restarting the server
 
-When you update the server configuration files, you can run the `mvn package` command to invoke the Maven `package` phase which executes various Maven goals that repackage the server.
-If you re-package the server, including its configuration, while the server is running, Liberty automatically reloads the configuration without restarting.
-This allows for quicker turnarounds and an improved developer experience.
-
-If your server is still running, stop it again by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop` goal from the `start` directory in another shell session.
-
 The Open Liberty Maven plugin includes a `dev` goal, which listens for any changes in the project, 
-whether it's application source code or configuration.
+whether it's application source code or configuration. Liberty server automatically reloads the configuration without restarting. This allows for quicker turnarounds and an improved developer experience.
 To start the Open Liberty server in development mode, run the `liberty:dev` goal in the `start` directory:
 
 [role='command']

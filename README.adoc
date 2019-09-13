@@ -126,13 +126,7 @@ and you'll see a list of the various system properties of your JVM:
 ----
 
 Later, when you need to stop the server, simply press `CTRL+C` in the shell session where
-you ran the server, or run the `liberty:stop` goal from the `start` directory in
-another shell session:
-
-[role='command']
-```
-mvn liberty:stop
-```
+you ran the server.
 
 
 // =================================================================================================
@@ -375,7 +369,7 @@ After you've made the file changes, Open Liberty automatically reloads its confi
 
 Now, when you visit the `/health` endpoint, additional traces are logged into the `trace.log` file.
 
-Afterwards, stop the server by pressing `CTRL+C` in the shell session where you ran the server, or by running the `liberty:stop` goal from the `start` directory in another shell session.
+Afterwards, stop the server by pressing `CTRL+C` in the shell session where you ran the server.
 
 
 // =================================================================================================

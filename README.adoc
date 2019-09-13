@@ -487,7 +487,7 @@ your application and server at the same time. To generate a runnable JAR, overri
 `include` and `packageFile` properties: 
 [role='command']
 ```
-mvn liberty:package-server -Dinclude=runnable -DpackageFile=target/getting-started.jar
+mvn liberty:package -Dinclude=runnable -DpackageFile=target/getting-started.jar
 ```
 
 The packaging type will be overrided from the `usr` package to the `runnable`

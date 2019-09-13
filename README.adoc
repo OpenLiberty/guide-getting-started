@@ -159,7 +159,7 @@ mvn liberty:stop
 == Updating the server configuration without restarting the server
 
 The Open Liberty Maven plugin includes a `dev` goal, which listens for any changes in the project, 
-whether it's application source code or configuration. Liberty server automatically reloads the configuration without restarting. This allows for quicker turnarounds and an improved developer experience.
+whether it's application source code or configuration. The Liberty server automatically reloads the configuration without restarting. This allows for quicker turnarounds and an improved developer experience.
 
 To start the Open Liberty server in development mode, run the `liberty:dev` goal in the `start` directory:
 
@@ -169,7 +169,7 @@ mvn liberty:dev
 ```
 
 In addition to starting the Open Liberty server, development mode automatically picks up
-changes you make to your application and allows you to run tests by pressing "enter".
+changes you make to your application and allows you to run tests by pressing `enter/return` key in the active shell. When you’re working on your application, rather than having to keep re-running maven commands, you just hit `enter/return` to verify your change.
 
 You can visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL just as before.
 

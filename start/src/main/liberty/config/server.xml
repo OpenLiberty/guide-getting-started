@@ -9,14 +9,11 @@
     </featureManager>
     <!-- end::features[] -->
 
-    <applicationManager autoExpand="true" />
-    <quickStartSecurity userName="admin" userPassword="adminpwd" />
-    <keyStore id="defaultKeyStore" password="mpKeystore" />
+    <webApplication location="getting-started.war" contextRoot="/" />
+    <mpMetrics authentication="false"/>
 
-    <httpEndpoint host="*" httpPort="${default.http.port}"
-	    httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
+    <httpEndpoint host="*" httpPort="${default.http.port}" 
+        httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
 
     <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>
-
-    <webApplication location="getting-started.war" contextRoot="/" />
 </server>

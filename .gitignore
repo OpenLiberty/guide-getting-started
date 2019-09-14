@@ -9,6 +9,10 @@ target/
 .factorypath
 MANIFEST.MF
 
+# IntelliJ generated
+*.iml
+.idea/
+
 # MacOS system files
 .DS_Store
 

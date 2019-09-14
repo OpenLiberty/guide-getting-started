@@ -23,6 +23,7 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 
 @Liveness
 @ApplicationScoped
+// tag::systemLivenessCheck[]
 public class SystemLivenessCheck implements HealthCheck {
 
     @Override
@@ -39,3 +40,4 @@ public class SystemLivenessCheck implements HealthCheck {
     }
     
 }
+// end::systemLivenessCheck[]

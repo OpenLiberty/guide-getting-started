@@ -485,7 +485,7 @@ mvn liberty:package -Dinclude=runnable -DpackageFile=target/getting-started.jar
 ```
 
 The packaging type will be overrided from the `usr` package to the `runnable`
-package. This property then propagates to the [hotspot=193-215 file=0]`liberty-maven-plugin`
+package. This property then propagates to the [hotspot=libertyMavenPlugin file=0]`liberty-maven-plugin`
 plug-in, which generates the server package based on the `openliberty-kernel` package.
 
 When the build completes, you can find the minimal runnable `getting-started.jar` file in the

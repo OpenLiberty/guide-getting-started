@@ -478,17 +478,17 @@ extracted onto an Open Liberty installation.
 Instead of creating a server package, you can generate a runnable JAR file that contains
 the application along with a server runtime. This JAR can then be run anywhere and deploy
 your application and server at the same time. To generate a runnable JAR, override the 
-`include` and `packageFile` properties: 
+`include` property: 
 [role='command']
 ```
-mvn liberty:package -Dinclude=runnable -DpackageFile=target/getting-started.jar
+mvn liberty:package -Dinclude=runnable
 ```
 
 The packaging type will be overrided from the `usr` package to the `runnable`
 package. This property then propagates to the [hotspot=libertyMavenPlugin file=0]`liberty-maven-plugin`
 plug-in, which generates the server package based on the `openliberty-kernel` package.
 
-When the build completes, you can find the minimal runnable `getting-started.jar` file in the
+When the build completes, you can find the minimal runnable `guide-getting-started.jar` file in the
 `target` directory. This JAR file contains only the [hotspot=2-9 file=1]`features` that you
 explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the
 generated JAR is only about 50 MB.
@@ -498,7 +498,7 @@ directory and run the `java -jar` command:
 
 [role='command']
 ```
-java -jar getting-started.jar
+java -jar guide-getting-started.jar
 ```
 
 When the server starts, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access

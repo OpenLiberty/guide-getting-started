@@ -16,7 +16,7 @@
 :page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: ../guides-common
 :source-highlighter: prettify
 :page-seo-title: Open Liberty tutorial
 :page-seo-description: Find out how to run microservices on Open Liberty

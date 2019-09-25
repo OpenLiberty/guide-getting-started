@@ -125,8 +125,8 @@ and you'll see a list of the various system properties of your JVM:
 }
 ----
 
-Later, when you need to stop the server, simply press `CTRL+C` in the shell session where
-you ran the server.
+Later, when you need to stop the server, simply type `q` in the shell session where
+you ran the server and then press the `enter/return` key.
 
 
 // =================================================================================================
@@ -369,8 +369,7 @@ After you've made the file changes, Open Liberty automatically reloads its confi
 
 Now, when you visit the `/health` endpoint, additional traces are logged into the `trace.log` file.
 
-Afterwards, stop the server by pressing `CTRL+C` in the shell session where you ran the server.
-
+Afterwards, stop the server by typing `q` in the shell session where you ran the server and then press the `enter/return` key.
 
 // =================================================================================================
 // Running the application in a Docker container
@@ -504,8 +503,7 @@ java -jar guide-getting-started.jar
 When the server starts, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access
 your application that is now running out of the minimal runnable JAR.
 
-At this point, you can stop the server by pressing `CTRL+C` in the shell session that
-the server runs in.
+At this point, you can stop the server by pressing `CTRL+C` in the shell session that the server runs in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

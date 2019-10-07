@@ -81,10 +81,12 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <bootstrapProperties>
-                    <default.http.port>${http.port}</default.http.port>
-                    <default.https.port>${https.port}</default.https.port>
-                </bootstrapProperties>
+                <configuration>
+                    <bootstrapProperties>
+                        <default.http.port>${http.port}</default.http.port>
+                        <default.https.port>${https.port}</default.https.port>
+                    </bootstrapProperties>
+                </configuration>
             </plugin>
             <!-- end::libertyMavenPlugin[] -->
             <plugin>

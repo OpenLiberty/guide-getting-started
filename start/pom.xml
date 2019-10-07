@@ -19,9 +19,9 @@
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
         <version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
-        <!-- Liberty runtime properties -->
-        <http.port>9080</http.port>
-        <https.port>9443</https.port>
+        <!-- Liberty configuration -->
+        <liberty.var.http.port>9084</liberty.var.http.port>
+        <liberty.var.https.port>9443</liberty.var.https.port>
     </properties>
 
     <dependencies>
@@ -80,12 +80,6 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <configuration>
-                    <bootstrapProperties>
-                        <default.http.port>${http.port}</default.http.port>
-                        <default.https.port>${https.port}</default.https.port>
-                    </bootstrapProperties>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

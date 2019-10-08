@@ -92,6 +92,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.maven-surefire-plugin}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <http.port>${liberty.var.default.http.port}</http.port>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <!-- Plugin to run functional tests -->
             <plugin>

@@ -82,19 +82,15 @@ include::finish/pom.xml[]
 ----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty
-by running the Maven `package` phase and the Maven `liberty:dev` goal from the
-`start` directory:
+by running the Maven `liberty:dev` goal from the `start` directory:
 
 [role='command']
 ```
-mvn package liberty:dev
+mvn liberty:dev
 ```
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created
 to store all build-related files.
-
-The `package` argument specifies the Maven `package` phase. During this phase, the
-application is built and packaged into a `.war` file.
 
 The `liberty:dev` argument specifies the Open Liberty `dev` goal, which
 starts an Open Liberty server instance in the foreground.

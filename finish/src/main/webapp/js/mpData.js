@@ -148,9 +148,9 @@ function getHealth() {
 
             resp.checks.forEach(function (service) {
                 serviceName.innerText = service.name;
-                healthStatus.innerText = service.state;
+                healthStatus.innerText = service.status;
 
-                if (service.state === "UP") {
+                if (service.status === "UP") {
                     healthBox.style.backgroundColor = "#f0f7e1";
                     healthIcon.setAttribute("src", "img/systemUp.svg");
                 } else {

@@ -82,17 +82,17 @@ include::finish/pom.xml[]
 ----
 
 To begin, build the `system` microservice that is provided and deploy it to Open Liberty
-by running the Maven `liberty:dev` goal from the `start` directory:
+by running the Maven `liberty:run` goal from the `start` directory:
 
 [role='command']
 ```
-mvn liberty:dev
+mvn liberty:run
 ```
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created
 to store all build-related files.
 
-The `liberty:dev` argument specifies the Open Liberty `dev` goal, which
+The `liberty:run` argument specifies the Open Liberty `run` goal, which
 starts an Open Liberty server instance in the foreground.
 As part of this phase, an Open Liberty server runtime is downloaded and installed into
 the `target/liberty/wlp` directory, a server instance is created and configured in the
@@ -121,8 +121,14 @@ and you'll see a list of the various system properties of your JVM:
 }
 ----
 
-Later, when you need to stop the server, simply type `q` in the shell session where
-you ran the server and then press the `enter/return` key.
+Later, when you need to stop the server, simply press `CTRL+C` in the shell session where
+you ran the server, or run the `liberty:stop` goal from the `start` directory in
+another shell session:
+
+[role='command']
+```
+mvn liberty:stop
+```
 
 
 // =================================================================================================

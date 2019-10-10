@@ -44,9 +44,11 @@ Foundry.
 Maven is an automation build tool that provides an efficient way to develop Java applications.
 Using Maven, you will build a simple microservice, called `system`, that collects basic
 system properties from your laptop and displays them on an endpoint that you can access
-in your web browser. You will then make server configuration and code changes and see how
-they are picked up by a running server. You'll also explore how to package your application
-with the server runtime so that it can be deployed anywhere in one go.
+in your web browser. 
+
+You'll also explore how to package your application
+with the server runtime so that it can be deployed anywhere in one go. You will then make server configuration and code changes and see how
+they are picked up by a running server.
 
 Finally, you will package the application along with the server configuration into a Docker
 image and run that image as a container.

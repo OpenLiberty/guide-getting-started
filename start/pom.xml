@@ -1,107 +1,42 @@
 <?xml version='1.0' encoding='utf-8'?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>net.wasdev.wlp.maven.parent</groupId>
-        <artifactId>liberty-maven-app-parent</artifactId>
-        <version>RELEASE</version>
-    </parent>
-
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>getting-started</artifactId>
+    <artifactId>guide-getting-started</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!-- Plugins -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- Plugin versions -->
         <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
-        <version.maven-surefire-plugin>3.0.0-M1</version.maven-surefire-plugin>
-        <version.maven-failsafe-plugin>3.0.0-M1</version.maven-failsafe-plugin>
-        <!-- OpenLiberty runtime -->
-        <version.openliberty-runtime>RELEASE</version.openliberty-runtime>
-        <http.port>9080</http.port>
-        <https.port>9443</https.port>
-        <!-- tag::server-type[] -->
-        <packaging.type>usr</packaging.type>
-        <!-- end::server-type[] -->
-        <app.name>${project.artifactId}</app.name>
-        <package.file>${project.build.directory}/${app.name}.zip</package.file>
+        <version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
+        <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
+        <!-- Liberty configuration -->
+        <liberty.var.default.http.port>9080</liberty.var.default.http.port>
+        <liberty.var.default.https.port>9443</liberty.var.default.https.port>
     </properties>
 
-    <!-- Profiles for temporarily switching packaging types -->
-    <profiles>
-        <!-- tag::profile-runnable-package[] -->
-        <profile>
-            <id>runnable-package</id>
-            <properties>
-                <package.file>
-                    ${project.build.directory}/${app.name}.jar
-                </package.file>
-                <packaging.type>runnable</packaging.type>
-            </properties>
-        </profile>
-        <!-- end::profile-runnable-package[] -->
-        <profile>
-            <id>minify-runnable-package</id>
-            <properties>
-                <package.file>
-                    ${project.build.directory}/${app.name}.jar
-                </package.file>
-                <packaging.type>minify,runnable</packaging.type>
-            </properties>
-        </profile>
-    </profiles>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.openliberty.features</groupId>
-                <artifactId>features-bom</artifactId>
-                <version>RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
-        <!-- Open Liberty Features -->
+        <!-- Provided dependencies -->
         <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jaxrs-2.1</artifactId>
-            <type>esa</type>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>8.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>jsonp-1.1</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>cdi-2.0</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>mpMetrics-2.0</artifactId>
-            <type>esa</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.openliberty.features</groupId>
-            <artifactId>mpHealth-2.0</artifactId>
-            <type>esa</type>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <version>3.0</version>
+            <type>pom</type>
             <scope>provided</scope>
         </dependency>
         <!-- For tests -->
@@ -134,125 +69,37 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
-	    <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>2.3.0.1</version>
-	    <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.3.2</version>
-	    <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-            <version>1.1.1</version>
-	    <scope>test</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <!-- Enable liberty-maven plugin -->
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.maven-war-plugin}</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <packagingExcludes>pom.xml</packagingExcludes>
-                </configuration>
             </plugin>
-            <!-- Enable liberty-maven plugin -->
-            <plugin>
-                <groupId>net.wasdev.wlp.maven.plugins</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <configuration>
-                    <assemblyArtifact>
-                        <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
-                        <version>${version.openliberty-runtime}</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <serverName>GettingStartedServer</serverName>
-                    <stripVersion>true</stripVersion>
-                    <configFile>src/main/liberty/config/server.xml</configFile>
-                    <!-- tag::loose-app[] -->
-                    <looseApplication>true</looseApplication>
-                    <!-- end::loose-app[] -->
-                    <packageFile>${package.file}</packageFile>
-                    <include>${packaging.type}</include>
-                    <bootstrapProperties>
-                        <default.http.port>${http.port}</default.http.port>
-                        <default.https.port>${https.port}</default.https.port>
-                        <app.context.root>${app.name}</app.context.root>
-                    </bootstrapProperties>
-                </configuration>
-            </plugin>
-            <!-- Plugin to run unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.maven-surefire-plugin}</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <id>default-test</id>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/it/**</exclude>
-                            </excludes>
-                            <reportsDirectory>
-                                ${project.build.directory}/test-reports/unit
-                            </reportsDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <skipTests>${skipTests}</skipTests>
-                </configuration>
             </plugin>
             <!-- Plugin to run functional tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${version.maven-failsafe-plugin}</version>
-                <executions>
-                    <execution>
-                        <phase>integration-test</phase>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/it/**</include>
-                            </includes>
-                            <systemPropertyVariables>
-                                <liberty.test.port>${http.port}</liberty.test.port>
-                                <war.name>${app.name}</war.name>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify-results</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <summaryFile>
-                        ${project.build.directory}/test-reports/it/failsafe-summary.xml
-                    </summaryFile>
-                    <reportsDirectory>
-                        ${project.build.directory}/test-reports/it
-                    </reportsDirectory>
+                    <systemPropertyVariables>
+                        <http.port>${liberty.var.default.http.port}</http.port>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

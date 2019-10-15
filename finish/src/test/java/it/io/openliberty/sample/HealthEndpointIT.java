@@ -25,7 +25,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HealthEndpointTest {
+public class HealthEndpointIT {
     
     private static String baseUrl;
     private static final String HEALTH_ENDPOINT = "/health";
@@ -37,7 +37,7 @@ public class HealthEndpointTest {
     
     @BeforeClass
     public static void oneTimeSetup() {
-        String port = System.getProperty("liberty.test.port");
+        String port = System.getProperty("http.port");
         baseUrl = "http://localhost:" + port;
     }
     

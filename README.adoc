@@ -168,7 +168,7 @@ mvn liberty:dev
 
 Development mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active shell. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
 
-You can visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL just as before.
+As before, you can see that the application is running by going to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
 Now try updating the server configuration while the server is running in development mode.
 The `system` microservice does not currently include health monitoring to report whether the server and the microservice that it runs are healthy.

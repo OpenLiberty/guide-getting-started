@@ -389,7 +389,7 @@ what commands run when the image runs as a container, and other information. You
 image that contains the Java runtime and a preconfigured Open Liberty server.
 
 To build and containerize the application, start your Docker daemon and then run the
-following Docker build command in the `start` directory. Run the `mvn package` command from the `start` directory, so that the `.war` file resides in the target directory.
+following Docker build command in the `start` directory. Run the `mvn package` command from the `start` directory, so that the `.war` file resides in the `target` directory.
 
 [role='command']
 ```

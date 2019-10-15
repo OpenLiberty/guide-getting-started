@@ -75,7 +75,7 @@ and so on.
 
 Navigate to the `start` directory where your [hotspot]`pom.xml` file is located. Your `pom.xml` file
 is configured to include the [hotspot=libertyMavenPlugin]`liberty-maven-plugin`, which allows
-you to install applications into Open Liberty as well as manage the server instances.
+you to install applications into Open Liberty and manage the server instances.
 
 pom.xml
 [source, XML, linenums, role="code_column"]
@@ -101,7 +101,7 @@ the `target/liberty/wlp` directory, a server instance is created and configured 
 `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is
 installed into that server via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
-For more information on the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
+For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
 When the server begins starting up, various messages display in your active shell. Wait
 for the following message, which indicates that the server startup is complete:
@@ -111,8 +111,8 @@ for the following message, which indicates that the server startup is complete:
 [INFO] [AUDIT] CWWKF0011I: The server defaultServer is ready to run a smarter planet.
 ----
 
-To access the `system` microservice, visit the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL,
-and you'll see a list of the various system properties of your JVM:
+To access the `system` microservice, see the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL,
+and you see a list of the various system properties of your JVM:
 
 [source, JSON, role="no_copy"]
 ----
@@ -123,7 +123,7 @@ and you'll see a list of the various system properties of your JVM:
 }
 ----
 
-Later, when you need to stop the server, simply press `CTRL+C` in the shell session where
+When you need to stop the server, press `CTRL+C` in the shell session where
 you ran the server, or run the `liberty:stop` goal from the `start` directory in
 another shell session:
 
@@ -156,8 +156,8 @@ mvn liberty:stop
 
 == Updating the server configuration without restarting the server
 
-The Open Liberty Maven plugin includes a `dev` goal, which listens for any changes in the project, 
-whether it's application source code or configuration. The Liberty server automatically reloads the configuration without restarting. This allows for quicker turnarounds and an improved developer experience.
+The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, 
+including application source code or configuration. The Open Liberty server automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 
 To start the Open Liberty server in development mode, run the `liberty:dev` goal in the `start` directory:
 

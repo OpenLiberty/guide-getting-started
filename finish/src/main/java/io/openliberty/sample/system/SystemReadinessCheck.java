@@ -25,6 +25,7 @@ import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 
 @Readiness
 @ApplicationScoped
+// tag::systemReadinessCheck[]
 public class SystemReadinessCheck implements HealthCheck {
 
     @Inject
@@ -42,3 +43,4 @@ public class SystemReadinessCheck implements HealthCheck {
     }
     
 }
+// end::systemReadinessCheck[]

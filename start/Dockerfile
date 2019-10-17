@@ -1,4 +1,4 @@
-FROM open-liberty:javaee8-java11
+FROM open-liberty
 
 LABEL maintainer="Graham Charters" vendor="IBM" github="https://github.com/WASdev/ci.maven"
 

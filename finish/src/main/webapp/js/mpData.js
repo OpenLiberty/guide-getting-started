@@ -1,5 +1,5 @@
 /*******************************************************************************
-* Copyright (c) 2018 IBM Corporation and others.
+* Copyright (c) 2018, 2019 IBM Corporation and others.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -13,16 +13,16 @@ function displayMetrics() {
 }
 
 function getSystemMetrics() {
-    var url = "http://localhost:9080/metricsOverHTTP";
+    var url = "http://localhost:9080/metrics";
     var req = new XMLHttpRequest();
 
     var metricToDisplay = {};
-    metricToDisplay["application:get_properties"] = "Request Count";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_min_seconds"] = "Min Request Time (ms)";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_mean_seconds"] = "Mean Request Time (ms)";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_max_seconds"] = "Max Request Time (ms)";
-    metricToDisplay["base:cpu_process_cpu_load_percent"] = "System CPU Usage (%)";
-    metricToDisplay["base:memory_used_heap_bytes"] = "System Heap Usage (MB)";
+    metricToDisplay["application_getProperties_total"] = "Request Count";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_one_min_rate_per_second"] = "Min Request Time (ms)";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_mean_seconds"] = "Mean Request Time (ms)";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_max_seconds"] = "Max Request Time (ms)";
+    metricToDisplay["base_cpu_processCpuLoad_percent"] = "System CPU Usage (%)";
+    metricToDisplay["base_memory_usedHeap_bytes"] = "System Heap Usage (MB)";
 
     var metricToMatch = "^(";
     for (var metricKey in metricToDisplay) {

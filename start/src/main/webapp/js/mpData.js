@@ -17,12 +17,12 @@ function getSystemMetrics() {
     var req = new XMLHttpRequest();
 
     var metricToDisplay = {};
-    metricToDisplay["application:get_properties"] = "Request Count";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_min_seconds"] = "Min Request Time (ms)";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_mean_seconds"] = "Mean Request Time (ms)";
-    metricToDisplay["application:io_openliberty_sample_system_system_resource_get_properties_time_max_seconds"] = "Max Request Time (ms)";
-    metricToDisplay["base:cpu_process_cpu_load_percent"] = "System CPU Usage (%)";
-    metricToDisplay["base:memory_used_heap_bytes"] = "System Heap Usage (MB)";
+    metricToDisplay["application_getProperties"] = "Request Count";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_min_seconds"] = "Min Request Time (ms)";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_mean_seconds"] = "Mean Request Time (ms)";
+    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_max_seconds"] = "Max Request Time (ms)";
+    metricToDisplay["base_cpu_processCpuLoad_percent"] = "System CPU Usage (%)";
+    metricToDisplay["base_memory_usedHeap_bytes"] = "System Heap Usage (MB)";
 
     var metricToMatch = "^(";
     for (var metricKey in metricToDisplay) {
@@ -40,7 +40,7 @@ function getSystemMetrics() {
         }
 
         var resp = req.responseText;
-        var regexpToMatch = new RegExp(metricToMatch, "gm");
+        var regexpToMatch = new RegExp(metricToMatch, "gmi");
         var matchMetrics = resp.match(regexpToMatch);
 
         var keyValPairs = {};
@@ -50,9 +50,9 @@ function getSystemMetrics() {
                 var keyVal = line.match(new RegExp(keyToMatch));
                 if (keyVal) {
                     var val = keyVal[1];
-                    if (metricKey.indexOf("application:io_openliberty_sample_system_system_resource_get_properties_time") === 0) {
+                    if (metricKey.indexOf("application_io_openliberty_sample_system_SystemResource_getPropertiesTime") === 0) {
                         val = val * 1000;
-                    } else if (metricKey.indexOf("base:memory_used_heap_bytes") === 0) {
+                    } else if (metricKey.indexOf("base_memory_usedHeap_bytes") === 0) {
                         val = val / 1000000;
                     }
                     keyValPairs[metricToDisplay[metricKey]] = val;

@@ -12,7 +12,7 @@
 // end::copyright[]
 package it.io.openliberty.sample;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.json.JsonObject;
 import javax.ws.rs.client.Client;
@@ -20,10 +20,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.provider.jsrjsonp.JsrJsonpProvider;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class HealthEndpointIT {
     
@@ -35,20 +35,20 @@ public class HealthEndpointIT {
     private Client client;
     private Response response;
     
-    @BeforeClass
+    @BeforeAll
     public static void oneTimeSetup() {
         String port = System.getProperty("http.port");
         baseUrl = "http://localhost:" + port;
     }
     
-    @Before
+    @BeforeEach
     public void setup() {
         response = null;
         client = ClientBuilder.newClient();
         client.register(JsrJsonpProvider.class);
     }
     
-    @After
+    @AfterEach
     public void teardown() {
         response.close();
         client.close();
@@ -63,17 +63,17 @@ public class HealthEndpointIT {
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
-        assertEquals("Application should be healthy", expectedOutcome, actualOutcome);
+        assertEquals(expectedOutcome, actualOutcome, "Application should be healthy");
        
         JsonObject healthCheck = healthJson.getJsonArray("checks").getJsonObject(0);
         String healthCheckName = healthCheck.getString("name");
         actualOutcome = healthCheck.getString("status");
-        assertEquals(healthCheckName + " wasn't healthy", expectedOutcome, actualOutcome);
+        assertEquals(expectedOutcome, actualOutcome, healthCheckName + " wasn't healthy");
 
         healthCheck = healthJson.getJsonArray("checks").getJsonObject(1);
         healthCheckName = healthCheck.getString("name");
         actualOutcome = healthCheck.getString("status");
-        assertEquals(healthCheckName + " wasn't healthy", expectedOutcome, actualOutcome);
+        assertEquals(expectedOutcome, actualOutcome, healthCheckName + " wasn't healthy");
     }
 
     @Test
@@ -85,7 +85,7 @@ public class HealthEndpointIT {
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
-        assertEquals("Applications liveness check passed", expectedOutcome, actualOutcome);
+        assertEquals(expectedOutcome, actualOutcome, "Applications liveness check passed");
     }
 
     @Test
@@ -97,7 +97,7 @@ public class HealthEndpointIT {
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
-        assertEquals("Applications readiness check passed", expectedOutcome, actualOutcome);
+        assertEquals(expectedOutcome, actualOutcome, "Applications readiness check passed");
     }
    
     /**
@@ -124,7 +124,7 @@ public class HealthEndpointIT {
      *          - response received from the target URL.
      */
     private void assertResponse(String url, Response response) {
-        assertEquals("Incorrect response code from " + url, 200, response.getStatus());
+        assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
     }
 
 }

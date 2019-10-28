@@ -12,7 +12,7 @@
 // end::copyright[]
 package it.io.openliberty.sample;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.json.JsonObject;
 import javax.ws.rs.client.Client;
@@ -21,7 +21,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.provider.jsrjsonp.JsrJsonpProvider;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PropertiesEndpointIT {
 
@@ -30,7 +30,7 @@ public class PropertiesEndpointIT {
 
       // system properties
       String port = System.getProperty("http.port");
-      String url = "http://localhost:" + port + "/";
+      String url = "http://localhost:" + port + "/" ;
 
       // client setup
       Client client = ClientBuilder.newClient();
@@ -41,13 +41,13 @@ public class PropertiesEndpointIT {
       Response response = target.request().get();
 
       // response
-      assertEquals("Incorrect response code from " + url, 200, response.getStatus());
+      assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
 
       JsonObject obj = response.readEntity(JsonObject.class);
 
-      assertEquals("The system property for the local and remote JVM should match",
-                   System.getProperty("os.name"),
-                   obj.getString("os.name"));
+      assertEquals(System.getProperty("os.name"),
+                   obj.getString("os.name"),
+                   "The system property for the local and remote JVM should match");
 
       response.close();
   }

@@ -30,14 +30,6 @@ docker stop gettingstarted-app && docker rm gettingstarted-app
 
 # TEST 2: Building and running the application
 mvn -q clean package liberty:create liberty:install-feature liberty:deploy liberty:package 
-mvn liberty:start > start.log
-mvn failsafe:integration-test liberty:stop > out.log
-ERROR=`grep ERROR out.log | wc -l | awk '{$1=$1};1'`
-if [ $ERROR -ne 0 ]; then
-    mvn liberty:stop
-    cat start.log
-    cat target/liberty/wlp/usr/servers/defaultServer/logs/messages.log 
-    cat out.log
-    echo "Test Failed!"
-    exit 1
-fi
+mvn liberty:start
+mvn failsafe:integration-test liberty:stop
+mvn failsafe:verify

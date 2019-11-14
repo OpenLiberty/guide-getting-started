@@ -17,7 +17,7 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Plugin versions -->
         <version.liberty-maven-plugin>3.1</version.liberty-maven-plugin>
-        <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+        <version.maven-war-plugin>3.2.3</version.maven-war-plugin>
         <version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
         <version.maven-failsafe-plugin>2.22.2</version.maven-failsafe-plugin>
         <!-- Liberty configuration -->
@@ -50,13 +50,13 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-client</artifactId>
-            <version>3.2.6</version>
+            <version>3.3.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-extension-providers</artifactId>
-            <version>3.2.6</version>
+            <version>3.3.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>

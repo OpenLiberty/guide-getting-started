@@ -12,12 +12,12 @@
 
 @font-face {
     font-family: BunueloLight;
-    src: url("/fonts/BunueloCleanPro-Light.otf");
+    src: url("/fonts/BunueloCleanPro-Light.woff");
 }
 
 @font-face {
     font-family: BunueloSemiBold;
-    src: url("/fonts/BunueloCleanPro-SemiBold.otf");
+    src: url("/fonts/BunueloCleanPro-SemiBold.woff");
 }
 
 body{

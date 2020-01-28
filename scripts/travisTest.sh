@@ -10,6 +10,8 @@ set -euxo pipefail
 # TEST 1:  Running the application in a Docker container
 mvn -q clean package
 
+docker pull open-liberty
+
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 
 docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT

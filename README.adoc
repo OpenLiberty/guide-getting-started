@@ -18,8 +18,8 @@
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-:page-seo-title: Open Liberty tutorial
-:page-seo-description: Find out how to run microservices on Open Liberty
+:page-seo-title: Deploying a Java application with Maven and Docker
+:page-seo-description: A getting started tutorial on how to build, deploy, and run a simple RESTful Java microservice on Open Liberty using Maven and Docker.
 :guide-author: Open Liberty
 = Packaging and deploying applications
 

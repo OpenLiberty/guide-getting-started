@@ -12,16 +12,16 @@
 :page-guide-category: basic
 :page-essential: true
 :page-essential-order: 1
-:page-description: Learn how to update and deploy an application on Open Liberty with Maven and Docker.
+:page-description: Learn how to develop a Java application on Open Liberty with Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-:page-seo-title: Packaging and deploying a Java application with Maven and Docker
-:page-seo-description: A getting started tutorial on how to build, package, deploy, and run a simple RESTful Java microservice on Open Liberty using Maven and Docker.
+:page-seo-title: Getting started with Open Liberty
+:page-seo-description: A getting started tutorial with examples on how to rapidly develop, build, package, and test a Java application on Open Liberty using Maven and Docker.
 :guide-author: Open Liberty
-= Packaging and deploying applications
+= Getting started with Open Liberty
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].

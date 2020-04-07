@@ -19,7 +19,7 @@
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
 :page-seo-title: Getting started with Open Liberty
-:page-seo-description: A getting started tutorial with examples on how to rapidly develop, build, package, and test a Java application on Open Liberty using Maven and Docker.
+:page-seo-description: A getting started tutorial with examples on how to rapidly develop, build, and package a Java application on Open Liberty using Maven and Docker.
 :guide-author: Open Liberty
 = Getting started with Open Liberty
 

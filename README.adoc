@@ -12,21 +12,21 @@
 :page-guide-category: basic
 :page-essential: true
 :page-essential-order: 1
-:page-description: Learn how to update and deploy an application on Open Liberty with Maven and Docker.
+:page-description: Learn how to develop a Java application on Open Liberty with Maven and Docker.
 :page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
-:page-seo-title: Open Liberty tutorial
-:page-seo-description: Find out how to run microservices on Open Liberty
+:page-seo-title: Getting started with Open Liberty
+:page-seo-description: A getting started tutorial with examples on how to rapidly develop, build, and package a Java application on Open Liberty using Maven and Docker.
 :guide-author: Open Liberty
-= Packaging and deploying applications
+= Getting started with Open Liberty
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Learn how to update and deploy an application on Open Liberty with Maven and Docker.
+Learn how to develop a Java application on Open Liberty with Maven and Docker.
 
 == What you'll learn
 
@@ -371,7 +371,8 @@ After you change the file, Open Liberty automatically reloads its configuration.
 
 Now, when you visit the `/health` endpoint, additional traces are logged in the `trace.log` file.
 
-Afterward, stop the server by typing `q` in the shell session where you ran the server and then press the `enter/return` key.
+[role='command']
+include::{common-includes}/devmode-quit.adoc[]
 
 // =================================================================================================
 // Running the application in a Docker container

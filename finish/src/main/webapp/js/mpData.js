@@ -50,9 +50,9 @@ function getSystemMetrics() {
                 var keyVal = line.match(new RegExp(keyToMatch));
                 if (keyVal) {
                     var val = keyVal[1];
-                    if (metricKey.indexOf("application:io_openliberty_sample_system_system_resource_get_properties_time") === 0) {
+                    if (metricKey.indexOf("application_io_openliberty_sample_system_SystemResource_getPropertiesTime") === 0) {
                         val = val * 1000;
-                    } else if (metricKey.indexOf("base:memory_used_heap_bytes") === 0) {
+                    } else if (metricKey.indexOf("base_memory_usedHeap_bytes") === 0) {
                         val = val / 1000000;
                     }
                     keyValPairs[metricToDisplay[metricKey]] = val;

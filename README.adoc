@@ -371,7 +371,8 @@ After you change the file, Open Liberty automatically reloads its configuration.
 
 Now, when you visit the `/health` endpoint, additional traces are logged in the `trace.log` file.
 
-Afterward, stop the server by typing `q` in the shell session where you ran the server and then press the `enter/return` key.
+[role='command']
+include::{common-includes}/devmode-quit.adoc[]
 
 // =================================================================================================
 // Running the application in a Docker container

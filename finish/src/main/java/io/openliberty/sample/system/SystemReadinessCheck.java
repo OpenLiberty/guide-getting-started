@@ -37,9 +37,9 @@ public class SystemReadinessCheck implements HealthCheck {
         HealthCheckResponseBuilder builder = HealthCheckResponse.named(
 		SystemResource.class.getSimpleName() + " readiness check");
         if (inMaintenance != null && inMaintenance.get().equalsIgnoreCase("true")) {
-            return named.down("services", "not available");
+            return builder().name.down("services", "not available");
         }
-        return named.up("services", "available");
+        return builder().name.up("services", "available");
     }
     
 }

@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018, 2020  IBM Corporation and others.
+ * Copyright (c) 2018, 2019  IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,12 +34,10 @@ public class SystemReadinessCheck implements HealthCheck {
 	
     @Override
     public HealthCheckResponse call() {
-        HealthCheckResponseBuilder builder = HealthCheckResponse.named(
-		SystemResource.class.getSimpleName() + " readiness check");
         if (inMaintenance != null && inMaintenance.get().equalsIgnoreCase("true")) {
-            return builder().name.down("services", "not available");
+            return HealthCheckResponse.down(SystemResource.class.getSimpleName() + " readiness check " + "services " + "not available");
         }
-        return builder().name.up("services", "available");
+        return HealthCheckResponse.up(SystemResource.class.getSimpleName() + " readiness check " + "services " + "are available");
     }
     
 }

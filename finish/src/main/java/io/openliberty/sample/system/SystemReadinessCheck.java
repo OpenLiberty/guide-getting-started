@@ -35,9 +35,9 @@ public class SystemReadinessCheck implements HealthCheck {
     @Override
     public HealthCheckResponse call() {
         if (inMaintenance != null && inMaintenance.get().equalsIgnoreCase("true")) {
-            return HealthCheckResponse.down(SystemResource.class.getSimpleName() + " readiness check " + "services " + "not available");
+            return HealthCheckResponse.down(SystemResource.class.getSimpleName() + " readiness check indicates services are available");
         }
-        return HealthCheckResponse.up(SystemResource.class.getSimpleName() + " readiness check " + "services " + "are available");
+        return HealthCheckResponse.up(SystemResource.class.getSimpleName() + " readiness check indicates services are not available");
     }
     
 }

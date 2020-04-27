@@ -299,18 +299,16 @@ This time you see the overall status of your server and the aggregated data of t
 {  
    "checks":[  
       {  
-         "data":{  
-            "services":"available"
-         },
-         "name":"SystemResource readiness check",
+         "data":{},
+         "name":"SystemResource Readiness Check",
          "status":"UP"
       },
       {  
          "data":{  
-            "memory used":81064480,
+            "memory used":40434888,
             "memory max":4294967296
          },
-         "name":"SystemResource liveness check",
+         "name":"SystemResource Liveness Check",
          "status":"UP"
       }
    ],

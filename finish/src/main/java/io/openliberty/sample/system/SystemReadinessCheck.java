@@ -29,7 +29,7 @@ import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 public class SystemReadinessCheck implements HealthCheck {
 
     private static final String readinessCheck = SystemResource.class.getSimpleName() 
-                                                + " Readiness Check";
+                                                 + " Readiness Check";
 
     @Inject
     @ConfigProperty(name = "io_openliberty_guides_system_inMaintenance")

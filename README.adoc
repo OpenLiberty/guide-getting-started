@@ -395,11 +395,8 @@ Run the `mvn package` command from the `start` directory so that the `.war` file
 mvn package
 ```
 
-Run the following command to download or update to the latest `open-liberty` Docker image:
 [role='command']
-```
-docker pull open-liberty
-```
+include::{common-includes}/ol-docker-pull.adoc[]
 
 To build and containerize the application, start your Docker daemon and then run the
 following Docker build command in the `start` directory:

@@ -397,7 +397,6 @@ Run the `mvn package` command from the `start` directory so that the `.war` file
 mvn package
 ```
 
-[role='command']
 include::{common-includes}/ol-kernel-docker-pull.adoc[]
 
 To build and containerize the application, run the

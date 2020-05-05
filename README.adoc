@@ -218,7 +218,7 @@ You see the following JSON:
 [source, JSON, role="no_copy"]
 ----
 {
-    "checks":[]
+    "checks":[],
     "status":"UP"
 }
 ----
@@ -300,19 +300,19 @@ This time you see the overall status of your server and the aggregated data of t
 {  
    "checks":[  
       {  
-         "data":{}
-         "name":"SystemResource Readiness Check"
+         "data":{},
+         "name":"SystemResource Readiness Check",
          "status":"UP"
-      }
+      },
       {  
-         "data":{  
-            "memory used":40434888
+         "data":{
+            "memory used":40434888,
             "memory max":4294967296
-         }
-         "name":"SystemResource Liveness Check"
+         },
+         "name":"SystemResource Liveness Check",
          "status":"UP"
       }
-   ]
+   ],
    "status":"UP"
 }
 ----

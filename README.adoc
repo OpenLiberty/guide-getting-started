@@ -388,12 +388,24 @@ what commands run when the image runs as a container, and other information. You
 `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker
 image that contains the Java runtime and a preconfigured Open Liberty server.
 
-To build and containerize the application, start your Docker daemon and then run the
-following Docker build command in the `start` directory. Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
+Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
 
 [role='command']
 ```
 mvn package
+```
+
+Run the following command to download or update to the latest `open-liberty` Docker image:
+[role='command']
+```
+docker pull open-liberty
+```
+
+To build and containerize the application, start your Docker daemon and then run the
+following Docker build command in the `start` directory:
+
+[role='command']
+```
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 ```
 

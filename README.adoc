@@ -1,3 +1,4 @@
+// Copyright (c) 2018, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -217,7 +218,7 @@ You see the following JSON:
 [source, JSON, role="no_copy"]
 ----
 {
-    "checks":[]
+    "checks":[],
     "status":"UP"
 }
 ----
@@ -299,19 +300,19 @@ This time you see the overall status of your server and the aggregated data of t
 {  
    "checks":[  
       {  
-         "data":{}
-         "name":"SystemResource Readiness Check"
+         "data":{},
+         "name":"SystemResource Readiness Check",
          "status":"UP"
-      }
+      },
       {  
-         "data":{  
-            "memory used":40434888
+         "data":{
+            "memory used":40434888,
             "memory max":4294967296
-         }
-         "name":"SystemResource Liveness Check"
+         },
+         "name":"SystemResource Liveness Check",
          "status":"UP"
       }
-   ]
+   ],
    "status":"UP"
 }
 ----
@@ -381,18 +382,28 @@ include::{common-includes}/devmode-quit.adoc[]
 To run the application in a container, Docker needs to be installed. For installation
 instructions, see the https://docs.docker.com/install/[Official Docker Docs^].
 
+Make sure to start your Docker daemon before you proceed.
+
 To containerize the application, you need a `Dockerfile`. This file contains a collection
 of instructions that define how a Docker image is built, what files are packaged into it,
 what commands run when the image runs as a container, and other information. You can find a complete
 `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker
 image that contains the Java runtime and a preconfigured Open Liberty server.
 
-To build and containerize the application, start your Docker daemon and then run the
-following Docker build command in the `start` directory. Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
+Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
 
 [role='command']
 ```
 mvn package
+```
+
+include::{common-includes}/ol-kernel-docker-pull.adoc[]
+
+To build and containerize the application, run the
+following Docker build command in the `start` directory:
+
+[role='command']
+```
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 ```
 

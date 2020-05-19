@@ -10,7 +10,7 @@ set -euxo pipefail
 # TEST 1:  Running the application in a Docker container
 mvn -q clean package
 
-docker pull open-liberty
+docker pull openliberty/open-liberty:kernel-java8-openj9-ubi
 
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 

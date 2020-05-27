@@ -22,7 +22,7 @@ after_script:
 - repo_name=$(echo "$TRAVIS_REPO_SLUG" | sed -e "s/\//-/g"); 
 - if [ "$TRAVIS_TEST_RESULT" -eq 0 ]; then result="passed"; else result="failed"; fi; 
 - serverlogsarchive="$repo_name-$TRAVIS_BUILD_NUMBER-$result.zip";
-- zip -r "$serverlogsarchive" .; 
+- zip -r "$serverlogsarchive" .;
 - curl -H "$JFROG_TOKEN" -T "$serverlogsarchive" "https://na.artifactory.swg-devops.com/artifactory/hyc-openliberty-guides-files-generic-local/";
 notifications:
   slack:

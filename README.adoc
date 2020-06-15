@@ -54,11 +54,6 @@ they are picked up by a running server.
 Finally, you will package the application along with the server configuration into a Docker
 image and run that image as a container.
 
-== Additional prerequisites
-
-Before you begin, Docker needs to be installed. For installation instructions, refer to the https://docs.docker.com/get-docker/[official Docker documentation^]. You will build and run the application in Docker containers.
-
-Make sure to start your Docker daemon before you proceed.
 
 // =================================================================================================
 // Getting Started
@@ -383,6 +378,11 @@ include::{common-includes}/devmode-quit.adoc[]
 // =================================================================================================
 
 == Running the application in a Docker container
+
+To run the application in a container, Docker needs to be installed. For installation
+instructions, see the https://docs.docker.com/install/[Official Docker Docs^].
+
+Make sure to start your Docker daemon before you proceed.
 
 To containerize the application, you need a `Dockerfile`. This file contains a collection
 of instructions that define how a Docker image is built, what files are packaged into it,

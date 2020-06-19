@@ -104,7 +104,7 @@ installed into that server via https://www.ibm.com/support/knowledgecenter/en/SS
 
 For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
-When the server begins starting up, various messages display in your active shell. Wait
+When the server begins starting up, various messages display in your command line. Wait
 for the following message, which indicates that the server startup is complete:
 
 [source, role="no_copy"]
@@ -124,9 +124,9 @@ and you see a list of the various system properties of your JVM:
 }
 ----
 
-When you need to stop the server, press `CTRL+C` in the shell session where
+When you need to stop the server, press `CTRL+C` in the command line where
 you ran the server, or run the `liberty:stop` goal from the `start` directory in
-another shell session:
+another command line:
 
 [role='command']
 ```
@@ -167,7 +167,7 @@ Stop the Open Liberty server if it is running, and start it in development mode 
 mvn liberty:dev
 ```
 
-Development mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active shell. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
+Development mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command line. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
 
 As before, you can see that the application is running by going to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
@@ -197,7 +197,7 @@ include::finish/src/main/liberty/config/server.xml[]
 
 After you make the file changes, Open Liberty automatically reloads its configuration.
 When enabled, the [hotspot=mpHealth]`mpHealth` feature automatically adds a `/health` endpoint to the application.
-You can see the server being updated in the server log displayed in your shell session:
+You can see the server being updated in the server log displayed in your command line:
 
 [source, role="no_copy"]
 ----
@@ -282,7 +282,7 @@ The [hotspot=systemLivenessCheck file=2]`SystemLivenessCheck` class reports a st
 
 After you make the file changes, Open Liberty automatically reloads its configuration and the `system` application.
 
-The following messages display in your first shell session:
+The following messages display in your first command line:
 
 [source, role="no_copy"]
 ----
@@ -332,7 +332,7 @@ Alternatively, you can run the `run` goal and manually repackage or recompile th
 == Checking the Open Liberty server logs
 
 While the server is running in the foreground, it displays various console messages in
-the shell. These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log`
+the command line. These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log`
 file. You can find the complete server logs in the `target/liberty/wlp/usr/servers/defaultServer/logs`
 directory. The `console.log` and `messages.log` files are the primary log files that contain
 console output of the running application and the server. More logs are created when runtime errors 
@@ -514,7 +514,7 @@ java -jar guide-getting-started.jar
 When the server starts, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access
 your application that is now running out of the minimal runnable JAR file.
 
-You can stop the server by pressing `CTRL+C` in the shell session that the server runs in.
+You can stop the server by pressing `CTRL+C` in the command line that the server runs in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

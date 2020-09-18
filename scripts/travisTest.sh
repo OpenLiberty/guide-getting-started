@@ -18,6 +18,9 @@ docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started
 
 sleep 60
 
+docker exec -it gettingstarted-app cat /logs/messages.log | grep product
+docker exec -it gettingstarted-app cat /logs/messages.log | grep java
+
 status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/system/properties")" 
 if [ "$status" == "200" ]
 then 

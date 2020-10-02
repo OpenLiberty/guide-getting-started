@@ -4,6 +4,7 @@ services:
 before_script:
 - unset _JAVA_OPTIONS
 - cd finish
+- echo "IP Address $(dig +short myip.opendns.com @resolver1.opendns.com)"
 - chmod +x ../scripts/travisTest.sh
 script: 
 - ../scripts/travisTest.sh

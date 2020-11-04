@@ -2,14 +2,6 @@ name: Daily Build
  
 # Triggers the workflow on push events but only for the master branch.
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - master
-      - main
   schedule:
     # Runs workflow every 5 minutes
     - cron:  '*/5 * * * *'

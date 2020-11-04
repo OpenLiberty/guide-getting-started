@@ -31,6 +31,8 @@ Learn how to develop a Java application on Open Liberty with Maven and Docker.
 
 == What you'll learn
 
+Here's a little change
+
 You will learn how to run and update a simple REST microservice on an Open Liberty server.
 You will use Maven throughout the guide to build and deploy the microservice as well as
 to interact with the running server instance.

@@ -1,0 +1,33 @@
+name: Daily Build
+ 
+# Triggers the workflow on push events but only for the master branch.
+on:
+  schedule:
+    # Runs workflow every 5 minutes
+    - cron:  '*/5 * * * *'
+
+jobs:
+  Master:
+    name: Build and test
+    runs-on: ubuntu-latest
+      
+    steps:
+        
+      # Any prerequisite steps
+      - uses: actions/checkout@master
+      
+      - name: Run build
+        id: build
+        continue-on-error: true
+        run: |
+          cp $GITHUB_WORKSPACE/.github/workflows/mavenTest.sh $GITHUB_WORKSPACE/finish
+          cp $GITHUB_WORKSPACE/.github/workflows/dockerTest.sh $GITHUB_WORKSPACE/finish
+          cd $GITHUB_WORKSPACE/finish
+          bash mavenTest.sh
+          bash dockertest.sh
+
+      - name: Upload logs
+        if: steps.build.conclusion == 'failure'
+        run: |
+          echo "ZIPPING LOGS"
+          echo "UPLOADING LOGS TO ARTIFACTORY"

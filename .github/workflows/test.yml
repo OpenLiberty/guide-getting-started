@@ -1,13 +1,11 @@
 name: Test application
 
 on:
-  push:
-    branches: [ master, qa ]
   pull_request:
-    branches: [ master, qa ]
+    branches: [ qa ]
 
 jobs:
-  build:
+  java8build:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,3 +19,15 @@ jobs:
     - run: unset _JAVA_OPTIONS
     - name: Run tests
       run: ../scripts/travisTest.sh
+    - name: Post tests
+      if: always()
+      run: |
+           docker images
+           logsPath=$(find . -name "console.log");
+           cat $logsPath | grep Launching
+    - name: Archive server logs if failed
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: server-logs
+        path: finish/target/liberty/wlp/usr/servers/defaultServer/logs/

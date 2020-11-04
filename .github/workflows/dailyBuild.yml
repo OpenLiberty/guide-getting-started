@@ -35,7 +35,8 @@ jobs:
           bash dockerTest.sh
 
       - name: Upload logs
-        if: steps.build.conclusion == 'failure'
+        if: steps.build.outcome == 'failure'
         run: |
           echo "ZIPPING LOGS"
           echo "UPLOADING LOGS TO ARTIFACTORY"
+          exit 1

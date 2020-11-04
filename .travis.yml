@@ -42,4 +42,3 @@ notifications:
 branches:
   only:
   - master
-  - qa

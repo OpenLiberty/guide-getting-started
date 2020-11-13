@@ -1,0 +1,29 @@
+# This workflow will check the changed files for 
+
+name: PR checker
+on: [ pull_request]
+
+jobs:
+  PR-Checker:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing jq
+        run: |
+            sudo apt update -y
+            sudo apt install jq -y
+      - name: Get changed files
+        run: |
+            URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+            # FILES=$(curl -s -X GET -G $URL | jq '.[] | .filename')
+            FILES=$(curl -s -X GET -G $URL | jq --arg wd "${GITHUB_WORKSPACE}/" '.[] | $wd+.filename')
+            echo $FILES
+            sudo find . -name "*.sh"  
+            for file in $FILES;
+            do 
+              cat ${file//\"}
+              #sudo .github/workflows/check-license.sh # < cat ${file//\"}
+            done
+        

@@ -9,6 +9,7 @@ jobs:
     outputs:
       files: ${{ steps.set-files.outputs.files }}
     steps:
+      - uses: actions/checkout@v2
       - name: Installing jq
         run: |
             apt update && apt install sudo
@@ -33,8 +34,9 @@ jobs:
           - name: Checker
             run: |
                 echo ${{ matrix.files }}
-                chmod +x ./check-license.sh
-                sh ./check-license.sh ${{ matrix.files }}
+                ls
+                #chmod +x ./check-license.sh
+                #sh ./check-license.sh ${{ matrix.files }}
   compare-directories:
       runs-on: ubuntu-latest
       steps:

@@ -35,8 +35,8 @@ jobs:
             run: |
                 echo ${{ matrix.files }}
                 ls
-                #chmod +x ./check-license.sh
-                #sh ./check-license.sh ${{ matrix.files }}
+                chmod +x ./scripts/check-license.sh
+                sh ./scripts/check-license.sh ${{ matrix.files }}
   compare-directories:
       runs-on: ubuntu-latest
       steps:

@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 sed -i "\#<artifactId>liberty-maven-plugin</artifactId>#a<configuration><install><runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/"$DEVDATE"/"$DRIVER"</runtimeUrl></install></configuration>" pom.xml
 cat pom.xml
 
-sed -i "s;FROM openliberty/open-liberty:kernel-java8-openj9-ubi;FROM "$DOCKER_USERNAME"/olguides:"$BUILDLEVEL";g" Dockerfile
+sed -i "s;FROM openliberty/open-liberty:kernel-java8-openj9-ubi;FROM "$DOCKER_USERNAME"/olguides:"$BUILDLEVEL Dockerfile
 cat Dockerfile
 
 set -euxo pipefail

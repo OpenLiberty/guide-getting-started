@@ -33,10 +33,7 @@ jobs:
           - uses: actions/checkout@v2
           - name: Checker
             run: |
-                echo ${{ matrix.files }}
-                ls
-                chmod +x ./scripts/check-license.sh
-                sh ./scripts/check-license.sh ${{ matrix.files }}
+                sh ./scripts/checker.py ${{ matrix.files }}
   compare-directories:
       runs-on: ubuntu-latest
       steps:

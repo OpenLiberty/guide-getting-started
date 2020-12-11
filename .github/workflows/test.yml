@@ -2,34 +2,66 @@ name: Test application
 
 on:
   pull_request:
-    branches: [ qa ]
+    branches: [qa]
 
 jobs:
+  get-files:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.set-files.outputs.files }}
+    steps:
+      - id: set-files
+        run: |
+          URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
+          FILES=$(curl -s -X GET -G $URL| jq -r '[ .[] |  .filename ]' | tr -d '\n')
+          echo "::set-output name=files::$FILES"
+  checker:
+    runs-on: ubuntu-latest
+    needs: [get-files]
+    strategy:
+      matrix:
+        files: ${{ fromJSON(needs.get-files.outputs.files) }}
+    steps:
+      - name: Get tools
+        uses: actions/checkout@v2
+        with:
+          path: tools/
+          repository: tt-le/guides-common
+      - name: Get files
+        uses: actions/checkout@v2
+        with:
+          path: files/
+          ref: pr-checker
+      - name: Checking file
+        run: |
+          python3 ./tools/.github/workflows/checker.py --deny ./tools/.github/workflows/deny_list.json\
+            --warn ./tools/.github/workflows/warning_list.json ./files/${{ matrix.files }}
   build:
     runs-on: ubuntu-latest
     strategy:
-      matrix: 
-        jdk: [ 8 ]
+      matrix:
+        jdk: [8]
     defaults:
       run:
         working-directory: finish
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.jdk }}
-    - run: unset _JAVA_OPTIONS
-    - name: Run tests
-      run: ../scripts/testApp.sh
-    - name: Post tests
-      if: always()
-      run: |
-           logsPath=$(find . -name "console.log");
-           cat $logsPath | grep Launching
-    - name: Archive server logs if failed
-      if: failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: server-logs
-        path: finish/target/liberty/wlp/usr/servers/defaultServer/logs/
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.jdk }}
+      - run: unset _JAVA_OPTIONS
+      - name: Run tests
+        run: ../scripts/testApp.sh
+      - name: Post tests
+        if: always()
+        run: |
+          logsPath=$(find . -name "console.log");
+          cat $logsPath | grep Launching
+      - name: Archive server logs if failed
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: server-logs
+          path: finish/target/liberty/wlp/usr/servers/defaultServer/logs/

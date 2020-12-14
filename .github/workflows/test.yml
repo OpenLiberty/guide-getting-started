@@ -42,6 +42,7 @@ jobs:
     strategy:
       matrix:
         jdk: [8]
+
     defaults:
       run:
         working-directory: finish

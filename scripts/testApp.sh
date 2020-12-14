@@ -1,12 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-##############################################################################
-##
-##  Travis CI test script
-##
-##############################################################################
-
 # TEST 1:  Running the application in a Docker container
 mvn -q clean package
 

@@ -15,4 +15,6 @@ cat pom.xml
 sed -i "s;FROM openliberty/open-liberty:kernel-java8-openj9-ubi;FROM openliberty/daily:latest;g" Dockerfile
 cat Dockerfile
 
+docker pull "openliberty/daily:latest"
+
 ../scripts/testApp.sh

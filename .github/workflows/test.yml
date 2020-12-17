@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: tools/
-          repository: tt-le/guides-common
+          repository: openliberty/guides-common
       - name: Get files
         uses: actions/checkout@v2
         with:
@@ -54,7 +54,7 @@ jobs:
           java-version: ${{ matrix.jdk }}
       - run: unset _JAVA_OPTIONS
       - name: Run tests
-        run: ../scripts/testApp.sh
+        run: ../scripts/travisTest.sh
       - name: Post tests
         if: always()
         run: |

@@ -35,8 +35,8 @@ jobs:
           ref: pr-checker
       - name: Checking file
         run: |
-          python3 ./tools/.github/workflows/checker.py --deny ./tools/.github/workflows/deny_list.json\
-            --warn ./tools/.github/workflows/warning_list.json ./files/${{ matrix.files }}
+          python3 ./tools/.github/workflows/pr-checker/checker.py --deny ./tools/.github/workflows/pr-checker/deny_list.json\
+            --warn ./tools/.github/workflows/pr-checker/warning_list.json ./files/${{ matrix.files }}
   java8build:
     runs-on: ubuntu-latest
     defaults:

@@ -392,58 +392,28 @@ what commands run when the image runs as a container, and other information. You
 `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker
 image that contains the Java runtime and a preconfigured Open Liberty server.
 
-Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
+The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker
+image, mounts the required directories, binds the required ports, and then runs
+the application inside of a container. This development mode will also listen for
+any changes in the application source code or configuration and will rebuild the
+image and restart the container as necessary.
+
+Build and run the container by running the devc goal from the `start` directory:
 
 [role='command']
 ```
-mvn package
+mvn liberty:devc
 ```
 
-include::{common-includes}/ol-kernel-docker-pull.adoc[]
-
-To build and containerize the application, run the
-following Docker build command in the `start` directory:
-
-[role='command']
-```
-docker build -t openliberty-getting-started:1.0-SNAPSHOT .
-```
-
-The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built from the `Dockerfile`.
-To verify that the image is built, run the `docker images` command to list all local Docker images:
-
-[role='command']
-```
-docker images
-```
-
-Your image should appear in the list of all Docker images:
+After you see the following message, your application server in dev mode is ready:
 
 [source, role="no_copy"]
 ----
-REPOSITORY                     TAG             IMAGE ID        CREATED         SIZE
-openliberty-getting-started    1.0-SNAPSHOT    85085141269b    21 hours ago    487MB
+************************************************************************
+*    Liberty is running in dev mode.
 ----
 
-Next, run the image as a container:
-[role='command']
-```
-docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT
-```
-
-There is a bit going on here, so here's a breakdown of the command:
-
-[cols="15, 100", options="header"]
-|===
-| *Flag* | *Description*
-| -d     | Runs the container in the background.
-| --name | Specifies a name for the container.
-| -p     | Maps the container ports to the host ports.
-|===
-
-The final argument in the `docker run` command is the Docker image name.
-
-Next, run the `docker ps` command to verify that your container started:
+Open another command-line session and run the `docker ps` command to verify that your container started:
 [role='command']
 ```
 docker ps
@@ -453,24 +423,21 @@ Make sure that your container is running and does not have `Exited` as its statu
 
 [source, role="no_copy"]
 ----
-CONTAINER ID    IMAGE                         CREATED          STATUS           NAMES
-4294a6bdf41b    openliberty-getting-started   9 seconds ago    Up 11 seconds    gettingstarted-app
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
+ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
 ----
 
 To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
-To stop and remove the container, run the following commands:
-[role='command']
-```
-docker stop gettingstarted-app && docker rm gettingstarted-app
-```
+Similar to the previously discussed development mode, this development mode with
+a container allows you to run tests by pressing the `enter/return` key. 
 
-To remove the image, run the following command:
-[role='command']
-```
-docker rmi openliberty-getting-started:1.0-SNAPSHOT
-```
 
+When you are finished, exit development mode by pressing CTRL+C in the
+command-line session that the container was started from from, or by typing `q`
+and then pressing the `enter/return` key. This will both stop and remove the
+container for you. You can check that the container was stopped by running the
+`docker ps` command.
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR

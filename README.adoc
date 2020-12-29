@@ -392,7 +392,93 @@ what commands run when the image runs as a container, and other information. You
 `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker
 image that contains the Java runtime and a preconfigured Open Liberty server.
 
-The Open Liberty Maven plug-in includes a `devc` goal that builds a Docker
+Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
+
+[role='command']
+```
+mvn package
+```
+
+include::{common-includes}/ol-kernel-docker-pull.adoc[]
+
+To build and containerize the application, run the
+following Docker build command in the `start` directory:
+
+[role='command']
+```
+docker build -t openliberty-getting-started:1.0-SNAPSHOT .
+```
+
+The Docker `openliberty-getting-started:1.0-SNAPSHOT` image is also built from the `Dockerfile`.
+To verify that the image is built, run the `docker images` command to list all local Docker images:
+
+[role='command']
+```
+docker images
+```
+
+Your image should appear in the list of all Docker images:
+
+[source, role="no_copy"]
+----
+REPOSITORY                     TAG             IMAGE ID        CREATED         SIZE
+openliberty-getting-started    1.0-SNAPSHOT    85085141269b    21 hours ago    487MB
+----
+
+Next, run the image as a container:
+[role='command']
+```
+docker run -d --name gettingstarted-app -p 9080:9080 openliberty-getting-started:1.0-SNAPSHOT
+```
+
+There is a bit going on here, so here's a breakdown of the command:
+
+[cols="15, 100", options="header"]
+|===
+| *Flag* | *Description*
+| -d     | Runs the container in the background.
+| --name | Specifies a name for the container.
+| -p     | Maps the container ports to the host ports.
+|===
+
+The final argument in the `docker run` command is the Docker image name.
+
+Next, run the `docker ps` command to verify that your container started:
+[role='command']
+```
+docker ps
+```
+
+Make sure that your container is running and does not have `Exited` as its status:
+
+[source, role="no_copy"]
+----
+CONTAINER ID    IMAGE                         CREATED          STATUS           NAMES
+4294a6bdf41b    openliberty-getting-started   9 seconds ago    Up 11 seconds    gettingstarted-app
+----
+
+To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
+
+To stop and remove the container, run the following commands:
+[role='command']
+```
+docker stop gettingstarted-app && docker rm gettingstarted-app
+```
+
+To remove the image, run the following command:
+[role='command']
+```
+docker rmi openliberty-getting-started:1.0-SNAPSHOT
+```
+
+// =================================================================================================
+// Using development mode with a container
+// =================================================================================================
+
+== Using development mode with a container
+
+The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
+your application in a Docker container. This goal builds a Docker
 image, mounts the required directories, binds the required ports, and then runs
 the application inside of a container. This development mode will also listen for
 any changes in the application source code or configuration and will rebuild the
@@ -432,7 +518,7 @@ To access the application, go to the http://localhost:9080/system/properties[htt
 Similar to the development mode used previously in this guide, this
 development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
-active command-line session
+active command-line session.
 
 When you are finished, exit development mode by pressing CTRL+C in the
 command-line session that the container was started from from, or by typing `q`

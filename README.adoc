@@ -421,17 +421,18 @@ docker ps
 
 Make sure that your container is running and does not have `Exited` as its status:
 
-[source, role="no_copy"]
+[role="no_copy"]
 ----
 CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
 ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
 ----
 
-To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
+To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL. 
 
-Similar to the previously discussed development mode, this development mode with
-a container allows you to run tests by pressing the `enter/return` key. 
-
+Similar to the development mode used previously in this guide, this
+development mode automatically picks up changes that you make to your
+application and allows you to run tests by pressing the `enter/return` key in the
+active command-line session
 
 When you are finished, exit development mode by pressing CTRL+C in the
 command-line session that the container was started from from, or by typing `q`

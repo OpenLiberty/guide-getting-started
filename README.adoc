@@ -472,10 +472,10 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
 
 // =================================================================================================
-// Using development mode with a container
+// Running the application in development mode with a container
 // =================================================================================================
 
-== Using development mode with a container
+== Running the application in development mode with a container
 
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container. This goal builds a Docker
@@ -521,7 +521,7 @@ application and allows you to run tests by pressing the `enter/return` key in th
 active command-line session.
 
 When you are finished, exit development mode by pressing CTRL+C in the
-command-line session that the container was started from from, or by typing `q`
+command-line session that the container was started from, or by typing `q`
 and then pressing the `enter/return` key. This will both stop and remove the
 container for you. You can check that the container was stopped by running the
 `docker ps` command.

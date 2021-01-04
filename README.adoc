@@ -520,7 +520,7 @@ development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-When you are finished, exit development mode by pressing CTRL+C in the
+When you are finished, exit development mode by pressing `CTRL+C` in the
 command-line session that the container was started from, or by typing `q`
 and then pressing the `enter/return` key. This will both stop and remove the
 container for you. You can check that the container was stopped by running the

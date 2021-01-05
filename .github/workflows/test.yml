@@ -53,11 +53,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          ref: pr-checker
       - name: Get tools
         uses: actions/checkout@v2
         with:
           path: tools/
           repository: openliberty/guides-common
+          ref: pr-checker
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:

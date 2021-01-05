@@ -36,6 +36,7 @@ jobs:
         with:
           path: tools/
           repository: openliberty/guides-common
+          ref: pr-checker
       - name: Get files
         uses: actions/checkout@v2
         with:

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *     IBM Corporation - Initial implementation
- ********************************************
+ ********************************************/
 // end::copyright[]
 package it.io.openliberty.sample;
 

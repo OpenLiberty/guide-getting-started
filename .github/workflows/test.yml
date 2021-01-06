@@ -58,6 +58,11 @@ jobs:
           path: tools/
           repository: openliberty/guides-common
           ref: pr-checker
+      - name: Update license year
+        run: |
+          sed -i "3s/.*/^ \\\* Copyright \\\(c\\\) (\\\d\\\d\\\d\\\d, )?`date +"%Y"` IBM Corporation and others.$/" \
+          tools/pr-checker/linters/config/java.header
+          cat tools/pr-checker/linters/config/java.header
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:

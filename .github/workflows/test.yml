@@ -42,6 +42,7 @@ jobs:
     - name: Post tests
       if: always()
       run: |
+           docker images
            logsPath=$(find . -name "console.log");
            cat $logsPath | grep Launching
     - name: Archive server logs if failed

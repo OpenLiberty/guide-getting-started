@@ -45,9 +45,9 @@ public class PropertiesEndpointIT {
 
       JsonObject obj = response.readEntity(JsonObject.class);
 
-      assertEquals(System.getProperty("os.name"),
-                   obj.getString("os.name"),
-                   "The system property for the local and remote JVM should match");
+      assertEquals("/opt/ol/wlp/output/defaultServer/",
+                   obj.getString("server.output.dir"),
+                   "The system property for the server output directory is incorrect.");
 
       response.close();
   }

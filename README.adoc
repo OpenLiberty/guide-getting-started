@@ -472,10 +472,10 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
 
 // =================================================================================================
-// Running the application in development mode with a container
+// Developing the application in a Docker container
 // =================================================================================================
 
-== Running the application in development mode with a container
+== Developing the application in a Docker container
 
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container. This goal builds a Docker
@@ -509,8 +509,8 @@ Make sure that your container is running and does not have `Exited` as its statu
 
 [role="no_copy"]
 ----
-CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                                                    NAMES
-ee2daf0b33e1        guide-docker-dev-mode   "/opt/ol/helpers/run…"   2 minutes ago       Up 2 minutes        0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
+CONTAINER ID        IMAGE                                 COMMAND                  CREATED             STATUS                         PORTS                                                                    NAMES
+17af26af0539        guide-getting-started-dev-mode        "/opt/ol/helpers/run…"   3 minutes ago       Up 3 minutes                   0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
 ----
 
 To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL. 

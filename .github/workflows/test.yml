@@ -9,7 +9,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     outputs:
-      canSkip: ${{ steps.checker.outputs.canSkip }}
+      canSkip: ${{ steps.Checker.outputs.canSkip }}
     steps:
       - name: Get files
         uses: actions/checkout@v2
@@ -33,8 +33,8 @@ jobs:
           LINTER_RULES_PATH: ./tools/pr-checker/linters/
   java8build:
     runs-on: ubuntu-latest
-    needs: [get-files]
-    if: "!contains(needs.get-files.outputs.canSkip, 'true')"
+    needs: [linter]
+    if: "!contains(needs.linter.outputs.canSkip, 'true')"
     defaults:
       run:
         working-directory: finish

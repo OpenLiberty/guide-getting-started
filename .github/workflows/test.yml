@@ -5,61 +5,23 @@ on:
     branches: [master, qa]
 
 jobs:
-  get-files:
+  linter:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     outputs:
-      files: ${{ steps.set-files.outputs.files }}
-      canSkip: ${{ steps.set-files.outputs.canSkip }}
+      canSkip: ${{ steps.checker.outputs.canSkip }}
     steps:
-      - id: set-files
-        run: |
-          URL="https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl -s -X GET -G $URL| jq -r '[ .[] |  .filename ]' | tr -d '\n')
-          echo "::set-output name=files::$FILES"
-          if [ ${#FILES[@]} == 1 ] && [ ${FILES[0]} == README.adoc ]; then
-             echo "Test can be skipped because only README.adoc was updated"
-             echo "::set-output name=canSkip::true"
-           else
-             echo "Need to run test"           
-             echo "::set-output name=canSkip::false"
-          fi
-  checker:
-    runs-on: ubuntu-latest
-    needs: [get-files]
-    strategy:
-      matrix:
-        files: ${{ fromJSON(needs.get-files.outputs.files) }}
-    steps:
+      - name: Get files
+        uses: actions/checkout@v2
       - name: Get tools
         uses: actions/checkout@v2
         with:
           path: tools/
           repository: openliberty/guides-common
           ref: pr-checker
-      - name: Get files
-        uses: actions/checkout@v2
-        with:
-          path: files/
-      - name: Checking file
+      - name: Checker
         run: |
-          python3 ./tools/pr-checker/checker.py --deny ./tools/pr-checker/deny_list.json\
-            --warn ./tools/pr-checker/warning_list.json ./files/${{ matrix.files }}
-  superlinter:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Get tools
-        uses: actions/checkout@v2
-        with:
-          path: tools/
-          repository: openliberty/guides-common
-          ref: pr-checker
-      - name: Update license year
-        run: |
+          sh tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }}
           sed -i "3s/.*/^ \\\* Copyright \\\(c\\\) (\\\d\\\d\\\d\\\d, )?`date +"%Y"` IBM Corporation and others.$/" \
           tools/pr-checker/linters/config/java.header
           cat tools/pr-checker/linters/config/java.header

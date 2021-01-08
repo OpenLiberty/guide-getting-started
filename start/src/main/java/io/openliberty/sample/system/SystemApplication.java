@@ -10,6 +10,7 @@
  *     IBM Corporation - Initial implementation
  *******************************************************************************/
 // end::copyright[]
+
 package io.openliberty.sample.system;
 
 import javax.ws.rs.ApplicationPath;

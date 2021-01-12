@@ -20,11 +20,7 @@ jobs:
           repository: openliberty/guides-common
           ref: pr-checker
       - name: Checker
-        run: |
-          sh tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }}
-          sed -i "3s/.*/^ \\\* Copyright \\\(c\\\) (\\\d\\\d\\\d\\\d, )?`date +"%Y"` IBM Corporation and others.$/" \
-          tools/pr-checker/linters/config/java.header
-          cat tools/pr-checker/linters/config/java.header
+        run: sh tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }}
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:

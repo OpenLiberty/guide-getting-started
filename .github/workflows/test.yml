@@ -54,5 +54,8 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: server-logs
-          path: finish/target/liberty/wlp/usr/servers/defaultServer/logs/
+          name: server-logs and checker-logs
+          path: |
+                finish/target/liberty/wlp/usr/servers/defaultServer/logs/
+                ./filtered-logs.txt
+          

@@ -194,7 +194,7 @@ To add the MicroProfile Health feature to the server, include the [hotspot=mpHea
 server.xml
 [source, xml, linenums, role='code_column hide_tags=logging']
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::assets/server.xml[]
 ----
 
 After you make the file changes, Open Liberty automatically reloads its configuration.
@@ -365,7 +365,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::assets/server.xml[]
 ----
 
 After you change the file, Open Liberty automatically reloads its configuration.
@@ -477,6 +477,13 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
+// File 0
+server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
+
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container. This goal builds a Docker
 image, mounts the required directories, binds the required ports, and then runs
@@ -519,6 +526,19 @@ Similar to the development mode used previously in this guide, this
 development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
+
+Update the [hotspot file=0]`server.xml` file to use the HTTP port `9090` instead of `9080`.
+
+[role="code_command hotspot", subs="quotes"]
+----
+#Replace the server configuration file.#
+`src/main/liberty/config/server.xml`
+----
+
+After you make the file changes, Open Liberty automatically reloads its
+configuration. You will now be able to access the application at the
+http://localhost:9090/system/properties[http://localhost:9080/system/properties^]
+URL. Notice the port number is now `9090`. 
 
 When you are finished, exit development mode by pressing `CTRL+C` in the
 command-line session that the container was started from, or by typing `q`

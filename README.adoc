@@ -538,7 +538,7 @@ Update the [hotspot file=0]`server.xml` file to use the HTTP port `9090` instead
 After you make the file changes, Open Liberty automatically reloads its
 configuration. You will now be able to access the application at the
 http://localhost:9090/system/properties[http://localhost:9080/system/properties^]
-URL. Notice the port number is now `9090`. 
+URL. Notice that the port number is now `9090`. 
 
 When you are finished, exit development mode by pressing `CTRL+C` in the
 command-line session that the container was started from, or by typing `q`

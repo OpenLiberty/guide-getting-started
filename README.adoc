@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2020 IBM Corporation and others.
+// Copyright (c) 2018, 2021 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -194,7 +194,7 @@ To add the MicroProfile Health feature to the server, include the [hotspot=mpHea
 server.xml
 [source, xml, linenums, role='code_column hide_tags=logging']
 ----
-include::assets/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you make the file changes, Open Liberty automatically reloads its configuration.
@@ -365,7 +365,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::assets/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you change the file, Open Liberty automatically reloads its configuration.
@@ -527,7 +527,7 @@ development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot file=0]`server.xml` file to use the HTTP port `9090` instead of `9080`.
+Update the [hotspot file=0]`server.xml` file to use change the context root from `/` to `/dev`.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -537,8 +537,8 @@ Update the [hotspot file=0]`server.xml` file to use the HTTP port `9090` instead
 
 After you make the file changes, Open Liberty automatically reloads its
 configuration. You will now be able to access the application at the
-http://localhost:9090/system/properties[http://localhost:9080/system/properties^]
-URL. Notice that the port number is now `9090`. 
+http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^]
+URL. Notice that context root is now `/dev`.
 
 When you are finished, exit development mode by pressing `CTRL+C` in the
 command-line session that the container was started from, or by typing `q`

@@ -5,7 +5,7 @@ on:
     branches: [master, qa]
 
 jobs:
-  pr-checker:
+  check-files:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     outputs:
@@ -32,12 +32,13 @@ jobs:
         if: always()
         run: |
             cat ./checker.log |  tail -n +2; echo "====== Super Linter ======"
-            cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/' 
+            cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
+            echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
             if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
-  java8build:
+  test-app:
     runs-on: ubuntu-latest
-    needs: [pr-checker]
-    if: "!contains(needs.pr-checker.outputs.canSkip, 'true')"
+    needs: [check-files]
+    if: "!contains(needs.check-files.outputs.canSkip, 'true')"
     defaults:
       run:
         working-directory: finish

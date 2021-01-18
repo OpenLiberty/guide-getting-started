@@ -527,7 +527,7 @@ development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot file=0]`server.xml` file to use change the context root from `/` to `/dev`.
+Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -541,10 +541,9 @@ http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/pro
 URL. Notice that context root is now `/dev`.
 
 When you are finished, exit development mode by pressing `CTRL+C` in the
-command-line session that the container was started from, or by typing `q`
-and then pressing the `enter/return` key. This will both stop and remove the
-container for you. You can check that the container was stopped by running the
-`docker ps` command.
+command-line session that the container was started from, or by typing `q` and
+then pressing the `enter/return` key. This stops and removes the container for you. You
+can check that the container was stopped by running the `docker ps` command.
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR

@@ -16,6 +16,7 @@
     <variable name="default.https.port" defaultValue="9443"/>
 
     <webApplication location="guide-getting-started.war" contextRoot="/" />
+    
     <mpMetrics authentication="false"/>
 
     <!-- tag::logging[] -->

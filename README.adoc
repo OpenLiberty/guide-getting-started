@@ -471,6 +471,17 @@ To remove the image, run the following command:
 docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
 
+=== Developing the application in a Docker container 
+
+The Open Liberty Maven plug-in includes a development mode that simplifies
+developing your application in a Docker container. This dev mode builds a Docker
+image, mounts the required directories, binds the required ports, and then runs
+the application inside of a container. This dev mode also listens for any
+changes in the application source code or configuration and rebuilds the image
+and restarts the container as necessary.
+
+To learn how to use development mode with a container, check out the https://openliberty.io/guides/docker.html[Docker guide].
+
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR

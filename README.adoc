@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2020 IBM Corporation and others.
+// Copyright (c) 2018, 2021 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -159,31 +159,45 @@ mvn liberty:stop
 
 == Updating the server configuration without restarting the server
 
-The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, 
-including application source code or configuration. The Open Liberty server automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
+The Open Liberty Maven plug-in includes a `dev` goal that listens for any
+changes in the project, including application source code or configuration. The
+Open Liberty server automatically reloads the configuration without restarting.
+This goal allows for quicker turnarounds and an improved developer experience.
 
-Stop the Open Liberty server if it is running, and start it in development mode by running the `liberty:dev` goal in the `start` directory:
+Stop the Open Liberty server if it is running, and start it in development mode
+by running the `liberty:dev` goal in the `start` directory:
 
 [role='command']
 ```
 mvn liberty:dev
 ```
 
-Development mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
+Development mode automatically picks up changes that you make to your
+application and allows you to run tests by pressing the `enter/return` key in
+the active command-line session. When you’re working on your application, rather
+than rerunning Maven commands, press the `enter/return` key to verify your
+change.
 
-As before, you can see that the application is running by going to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
+As before, you can see that the application is running by going to the
+http://localhost:9080/system/properties[http://localhost:9080/system/properties^]
+URL.
 
-Now try updating the server configuration while the server is running in development mode.
-The `system` microservice does not currently include health monitoring to report whether the server and the microservice that it runs are healthy.
-You can add health reports with the MicroProfile Health feature, which adds a `/health` endpoint to your application.
-If you try to access this endpoint now at the http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404 error because the `/health` endpoint does not yet exist:
+Now try updating the server configuration while the server is running in
+development mode. The `system` microservice does not currently include health
+monitoring to report whether the server and the microservice that it runs are
+healthy. You can add health reports with the MicroProfile Health feature, which
+adds a `/health` endpoint to your application. If you try to access this
+endpoint now at the
+http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404
+error because the `/health` endpoint does not yet exist:
 
 [source, role="no_copy"]
 ----
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the server, include the [hotspot=mpHealth]`mpHealth` feature in the [hotspot]`server.xml`.
+To add the MicroProfile Health feature to the server, include the
+[hotspot=mpHealth]`mpHealth` feature in the [hotspot]`server.xml`.
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -245,8 +259,10 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
-Try updating the source code while the server is running in development mode.
-At the moment, the `/health` endpoint reports whether the server is running, but the endpoint doesn't provide any details on the microservices that are running inside of the server.
+Try updating the source code while the server is running in development mode. At
+the moment, the `/health` endpoint reports whether the server is running, but
+the endpoint doesn't provide any details on the microservices that are running
+inside of the server.
 
 MicroProfile Health offers health checks for both readiness and liveness.
 A readiness check allows third-party services, such as Kubernetes, to know if the microservice is ready to process requests.
@@ -319,12 +335,20 @@ This time you see the overall status of your server and the aggregated data of t
 }
 ----
 
-You can also access the `/health/ready` endpoint by going to the http://localhost:9080/health/ready[http://localhost:9080/health/ready^] URL to view the data from the readiness health check.
-Similarly, access the `/health/live` endpoint by going to the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
+You can also access the `/health/ready` endpoint by going to the
+http://localhost:9080/health/ready[http://localhost:9080/health/ready^] URL to
+view the data from the readiness health check. Similarly, access the
+`/health/live` endpoint by going to the
+http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to
+view the data from the liveness health check.
 
-Making code changes and recompiling is fast and straightforward.
-The development mode of Open Liberty automatically picks up changes in the `.class` files and artifacts, without needing to be restarted.
-Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while the server is running. The development mode was added to further improve the developer experience by minimizing turnaround times.
+Making code changes and recompiling is fast and straightforward. The development
+mode of Open Liberty automatically picks up changes in the `.class` files and
+artifacts, without needing to be restarted. Alternatively, you can run the `run`
+goal and manually repackage or recompile the application by using the `mvn
+package` command or the `mvn compile` command while the server is running. The
+development mode was added to further improve the developer experience by
+minimizing turnaround times.
 
 
 // =================================================================================================

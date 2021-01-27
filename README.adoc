@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2021 IBM Corporation and others.
+// Copyright (c) 2021 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -495,7 +495,11 @@ To remove the image, run the following command:
 docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
 
-=== Developing the application in a Docker container 
+// =================================================================================================
+// Developing the application in a Docker container 
+// =================================================================================================
+
+== Developing the application in a Docker container 
 
 The Open Liberty Maven plug-in includes a development mode that simplifies
 developing your application in a Docker container. This dev mode builds a Docker

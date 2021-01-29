@@ -513,8 +513,7 @@ directory and run the `java -jar` command:
 java -jar guide-getting-started.jar
 ```
 
-When the server starts, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access
-your application that is now running out of the minimal runnable JAR file.
+When the server starts, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
 
 You can stop the server by pressing `CTRL+C` in the command-line session that the server runs in.
 

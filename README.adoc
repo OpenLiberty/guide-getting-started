@@ -194,7 +194,7 @@ To add the MicroProfile Health feature to the server, include the [hotspot=mpHea
 server.xml
 [source, xml, linenums, role='code_column hide_tags=logging']
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you make the file changes, Open Liberty automatically reloads its configuration.
@@ -365,7 +365,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you change the file, Open Liberty automatically reloads its configuration.
@@ -477,12 +477,19 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
+// File 0
+server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
+
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container. This goal builds a Docker
 image, mounts the required directories, binds the required ports, and then runs
-the application inside of a container. This development mode will also listen for
-any changes in the application source code or configuration and will rebuild the
-image and restart the container as necessary.
+the application inside of a container. This development mode, known as dev mode, also listens for
+any changes in the application source code or configuration and rebuilds the
+image and restarts the container as necessary.
 
 Build and run the container by running the devc goal from the `start` directory:
 
@@ -520,11 +527,23 @@ development mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
+Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
+
+[role="code_command hotspot", subs="quotes"]
+----
+#Replace the server configuration file.#
+`src/main/liberty/config/server.xml`
+----
+
+After you make the file changes, Open Liberty automatically reloads its
+configuration. You will now be able to access the application at the
+http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^]
+URL. Notice that context root is now `/dev`.
+
 When you are finished, exit development mode by pressing `CTRL+C` in the
-command-line session that the container was started from, or by typing `q`
-and then pressing the `enter/return` key. This will both stop and remove the
-container for you. You can check that the container was stopped by running the
-`docker ps` command.
+command-line session that the container was started from, or by typing `q` and
+then pressing the `enter/return` key. This stops and removes the container for you. You
+can check that the container was stopped by running the `docker ps` command.
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR
@@ -567,7 +586,8 @@ directory and run the `java -jar` command:
 java -jar guide-getting-started.jar
 ```
 
-When the server starts, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
+When the server starts, go to the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL to access
+your application that is now running out of the minimal runnable JAR file.
 
 You can stop the server by pressing `CTRL+C` in the command-line session that the server runs in.
 

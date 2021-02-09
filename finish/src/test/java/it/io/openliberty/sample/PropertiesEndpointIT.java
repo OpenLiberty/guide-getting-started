@@ -30,7 +30,7 @@ public class PropertiesEndpointIT {
 
       // system properties
       String port = System.getProperty("http.port");
-      String url = "http://localhost:" + port + "/" ;
+      String url = "http://localhost:" + port + "/";
 
       // client setup
       Client client = ClientBuilder.newClient();
@@ -47,5 +47,5 @@ public class PropertiesEndpointIT {
 
       response.close();
   }
-  
+
 }

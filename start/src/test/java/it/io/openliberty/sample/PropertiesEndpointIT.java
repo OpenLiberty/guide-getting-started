@@ -30,7 +30,8 @@ public class PropertiesEndpointIT {
 
       // system properties
       String port = System.getProperty("http.port");
-      String url = "http://localhost:" + port + "/";
+      String contextRoot = System.getProperty("context.root", "/");
+      String url = "http://localhost:" + port + contextRoot;
 
       // client setup
       Client client = ClientBuilder.newClient();

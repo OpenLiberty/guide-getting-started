@@ -2,7 +2,7 @@ name: Test application
 
 on:
   pull_request:
-    branches: [add-devc-section, master, qa]
+    branches: [master, qa]
 
 jobs:
   check-files:

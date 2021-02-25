@@ -14,7 +14,7 @@
 :page-essential: true
 :page-essential-order: 1
 :page-description: Learn how to develop a Java application on Open Liberty with Maven and Docker.
-:page-tags: ['Getting Started', 'microservices', 'Docker', 'Maven']
+:page-tags: ['Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -162,18 +162,18 @@ mvn liberty:stop
 The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, 
 including application source code or configuration. The Open Liberty server automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 
-Stop the Open Liberty server if it is running, and start it in development mode by running the `liberty:dev` goal in the `start` directory:
+Stop the Open Liberty server if it is running, and start it in dev mode by running the `liberty:dev` goal in the `start` directory:
 
 [role='command']
 ```
 mvn liberty:dev
 ```
 
-Development mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
+Dev mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
 
 As before, you can see that the application is running by going to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
-Now try updating the server configuration while the server is running in development mode.
+Now try updating the server configuration while the server is running in dev mode.
 The `system` microservice does not currently include health monitoring to report whether the server and the microservice that it runs are healthy.
 You can add health reports with the MicroProfile Health feature, which adds a `/health` endpoint to your application.
 If you try to access this endpoint now at the http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404 error because the `/health` endpoint does not yet exist:
@@ -194,7 +194,7 @@ To add the MicroProfile Health feature to the server, include the [hotspot=mpHea
 server.xml
 [source, xml, linenums, role='code_column hide_tags=logging']
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you make the file changes, Open Liberty automatically reloads its configuration.
@@ -245,7 +245,7 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
-Try updating the source code while the server is running in development mode.
+Try updating the source code while the server is running in dev mode.
 At the moment, the `/health` endpoint reports whether the server is running, but the endpoint doesn't provide any details on the microservices that are running inside of the server.
 
 MicroProfile Health offers health checks for both readiness and liveness.
@@ -323,8 +323,8 @@ You can also access the `/health/ready` endpoint by going to the http://localhos
 Similarly, access the `/health/live` endpoint by going to the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
 
 Making code changes and recompiling is fast and straightforward.
-The development mode of Open Liberty automatically picks up changes in the `.class` files and artifacts, without needing to be restarted.
-Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while the server is running. The development mode was added to further improve the developer experience by minimizing turnaround times.
+Open Liberty dev mode automatically picks up changes in the `.class` files and artifacts, without needing to be restarted.
+Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while the server is running. Dev mode was added to further improve the developer experience by minimizing turnaround times.
 
 
 // =================================================================================================
@@ -365,7 +365,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the
 server.xml
 [source, XML, linenums, role="code_column"]
 ----
-include::finish/src/main/liberty/config/server.xml[]
+include::staging/server.xml[]
 ----
 
 After you change the file, Open Liberty automatically reloads its configuration.
@@ -471,6 +471,78 @@ To remove the image, run the following command:
 docker rmi openliberty-getting-started:1.0-SNAPSHOT
 ```
 
+// =================================================================================================
+// Developing the application in a Docker container
+// =================================================================================================
+
+== Developing the application in a Docker container
+
+// File 0
+server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
+
+The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
+your application in a Docker container by starting dev mode with container
+support. This goal builds a Docker image, mounts the required directories, binds
+the required ports, and then runs the application inside of a container. Dev
+mode also listens for any changes in the application source code or
+configuration and rebuilds the image and restarts the container as necessary.
+
+Build and run the container by running the devc goal from the `start` directory:
+
+[role='command']
+```
+mvn liberty:devc
+```
+
+When you see the following message, Open Liberty is ready to run in dev mode:
+
+[source, role="no_copy"]
+----
+************************************************************************
+*    Liberty is running in dev mode.
+----
+
+Open another command-line session and run the `docker ps` command to verify that your container started:
+[role='command']
+```
+docker ps
+```
+
+Your container should be running and have `Up` as its status:
+
+[role="no_copy"]
+----
+CONTAINER ID        IMAGE                                 COMMAND                  CREATED             STATUS                         PORTS                                                                    NAMES
+17af26af0539        guide-getting-started-dev-mode        "/opt/ol/helpers/run…"   3 minutes ago       Up 3 minutes                   0.0.0.0:7777->7777/tcp, 0.0.0.0:9080->9080/tcp, 0.0.0.0:9443->9443/tcp   liberty-dev
+----
+
+To access the application, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL. 
+
+Dev mode automatically picks up changes that you make to your
+application and allows you to run tests by pressing the `enter/return` key in the
+active command-line session.
+
+Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
+
+[role="code_command hotspot", subs="quotes"]
+----
+#Replace the server configuration file.#
+`src/main/liberty/config/server.xml`
+----
+
+After you make the file changes, Open Liberty automatically reloads its
+configuration. You can access the application at the
+http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^]
+URL. Notice that context root is now `/dev`.
+
+When you are finished, exit dev mode by pressing `CTRL+C` in the
+command-line session that the container was started from, or by typing `q` and
+then pressing the `enter/return` key. Either of these options stops and 
+removes the container. To check that the container was stopped, run the `docker ps` command.
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR
@@ -513,7 +585,8 @@ directory and run the `java -jar` command:
 java -jar guide-getting-started.jar
 ```
 
-When the server starts, go to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
+When the server starts, go to the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL to access
+your application that is now running out of the minimal runnable JAR file.
 
 You can stop the server by pressing `CTRL+C` in the command-line session that the server runs in.
 

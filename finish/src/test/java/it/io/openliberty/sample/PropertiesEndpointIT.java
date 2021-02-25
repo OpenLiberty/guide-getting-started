@@ -30,7 +30,8 @@ public class PropertiesEndpointIT {
 
       // system properties
       String port = System.getProperty("http.port");
-      String url = "http://localhost:" + port + "/" ;
+      String contextRoot = System.getProperty("context.root", "/");
+      String url = "http://localhost:" + port + contextRoot;
 
       // client setup
       Client client = ClientBuilder.newClient();
@@ -45,11 +46,7 @@ public class PropertiesEndpointIT {
 
       JsonObject obj = response.readEntity(JsonObject.class);
 
-      assertEquals(System.getProperty("os.name"),
-                   obj.getString("os.name"),
-                   "The system property for the local and remote JVM should match");
-
       response.close();
   }
-  
+
 }

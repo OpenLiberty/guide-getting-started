@@ -493,10 +493,21 @@ configuration and rebuilds the image and restarts the container as necessary.
 
 Build and run the container by running the devc goal from the `start` directory:
 
+// Static guide instruction
+ifndef::cloud-hosted[]
+[role='command']
+```
+mvn liberty:devc
+```
+endif::[]
+
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
 [role='command']
 ```
 mvn liberty:devc -DserverStatTimeout=300
 ```
+endif::[]
 
 When you see the following message, Open Liberty is ready to run in dev mode:
 

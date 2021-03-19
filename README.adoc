@@ -504,7 +504,7 @@ endif::[]
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
 ```
-mvn liberty:devc -DserverStatTimeout=300
+mvn liberty:devc -DserverStartTimeout=300
 ```
 {: codeblock}
 endif::[]

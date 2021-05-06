@@ -28,9 +28,15 @@ fi
 docker stop gettingstarted-app && docker rm gettingstarted-app
 
 # TEST 2: Building and running the application
-mvn -q clean package liberty:create liberty:install-feature liberty:deploy
+mvn -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -q clean package liberty:create liberty:install-feature liberty:deploy
 mvn liberty:start
-mvn -Dcontext.root=/dev/ failsafe:integration-test liberty:stop
+mvn -Dhttp.keepAlive=false \
+    -Dmaven.wagon.http.pool=false \
+    -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+    -Dcontext.root=/dev/ failsafe:integration-test liberty:stop
 mvn failsafe:verify
 mvn liberty:package -Dinclude=runnable
 if [ ! -f "target/guide-getting-started.jar" ]; then

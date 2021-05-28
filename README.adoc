@@ -208,7 +208,7 @@ You can see the server being updated in the server log displayed in your command
 [INFO] [AUDIT] CWWKZ0009I: The application io.openliberty.guides.getting-started has stopped successfully.
 [INFO] [AUDIT] CWWKG0017I: The server configuration was successfully updated in 0.284 seconds.
 [INFO] [AUDIT] CWWKT0016I: Web application available (default_host): http://foo:9080/health/
-[INFO] [AUDIT] CWWKF0012I: The server installed the following features: [mpHealth-2.2].
+[INFO] [AUDIT] CWWKF0012I: The server installed the following features: [mpHealth-3.0].
 [INFO] [AUDIT] CWWKF0008I: Feature update completed in 0.285 seconds.
 [INFO] [AUDIT] CWWKT0016I: Web application available (default_host): http://foo:9080/
 [INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.173 seconds.
@@ -399,7 +399,7 @@ Run the `mvn package` command from the `start` directory so that the `.war` file
 mvn package
 ```
 
-include::{common-includes}/ol-kernel-docker-pull.adoc[]
+include::{common-includes}/ol-full-docker-pull.adoc[]
 
 To build and containerize the application, run the
 following Docker build command in the `start` directory:

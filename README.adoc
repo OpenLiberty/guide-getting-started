@@ -17,7 +17,7 @@
 :page-tags: ['Docker', 'Maven']
 :page-related-guides: ['maven-intro', 'rest-intro', 'docker']
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :page-seo-title: Getting started with Open Liberty
 :page-seo-description: A getting started tutorial with examples on how to rapidly develop, build, and package a Java application on Open Liberty using Maven and Docker.

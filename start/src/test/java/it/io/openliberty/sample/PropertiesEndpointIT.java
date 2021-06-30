@@ -38,7 +38,7 @@ public class PropertiesEndpointIT {
       client.register(JsrJsonpProvider.class);
 
       // request
-      WebTarget target = client.target(url + "system/properties");
+      WebTarget target = client.target(url + "/system/properties");
       Response response = target.request().get();
 
       // response

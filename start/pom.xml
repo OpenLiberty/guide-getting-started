@@ -88,6 +88,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
+                        <context.root>/dev</context.root>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

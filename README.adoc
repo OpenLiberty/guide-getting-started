@@ -513,7 +513,7 @@ When you see the following message, Open Liberty is ready to run in dev mode:
 
 [source, role="no_copy"]
 ----
-************************************************************************
+**************************************************************
 *    Liberty is running in dev mode.
 ----
 

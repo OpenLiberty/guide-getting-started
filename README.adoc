@@ -477,6 +477,20 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
+Update the [hotspot file=3]mpData.js file to change the [hotspot=jsUrl file=3]`url` to reflect the new context root.
+
+mpData.js
+[source, javascript, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/src/main/webapp/js/mpData.js[]
+----
+
+[role="code_command hotspot file=3" subs="quotes"]
+----
+#Replace the mpData.js file.#
+`src/main/webapp/js/mpData.js`
+----
+
 // File 0
 server.xml
 [source, xml, linenums, role='code_column']

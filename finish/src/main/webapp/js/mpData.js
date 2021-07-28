@@ -85,7 +85,9 @@ function displaySystemProperties() {
 
 function getSystemPropertiesRequest() {
     var propToDisplay = ["java.vendor", "java.version", "user.name", "os.name", "wlp.install.dir", "wlp.server.name" ];
-    var url = "http://localhost:9080/system/properties";
+    // tag::jsUrl[]
+    var url = "http://localhost:9080/dev/system/properties";
+    // end::jsUrl[]
     var req = new XMLHttpRequest();
     var table = document.getElementById("systemPropertiesTable");
     // Create the callback:

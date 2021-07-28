@@ -537,7 +537,7 @@ Dev mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
+Update the [hotspot=webApplication file=0]`server.xml` file to change the context root from `/` to `/dev`.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -555,7 +555,7 @@ include::finish/src/main/webapp/js/mpData.js[]
 
 [role="code_command hotspot file=1" subs="quotes"]
 ----
-#Update the mpData.js file.#
+#Replace the mpData.js file.#
 `src/main/webapp/js/mpData.js`
 ----
 

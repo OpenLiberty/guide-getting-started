@@ -85,8 +85,11 @@ function displaySystemProperties() {
     getSystemPropertiesRequest();
 }
 
+// tag::getSystemPropertiesRequest[]
 function getSystemPropertiesRequest() {
-    var propToDisplay = ["java.vendor", "java.version", "user.name", "os.name", "wlp.install.dir", "wlp.server.name" ];
+// end::getSystemPropertiesRequest[]
+    var propToDisplay = ["java.vendor", "java.version", "user.name",
+                         "os.name", "wlp.install.dir", "wlp.server.name" ];
     // tag::jsUrl[]
     var url = "http://localhost:9080/dev/system/properties";
     // end::jsUrl[]

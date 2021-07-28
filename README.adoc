@@ -539,7 +539,7 @@ active command-line session.
 
 Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot file=0", subs="quotes"]
 ----
 #Replace the server configuration file.#
 `src/main/liberty/config/server.xml`

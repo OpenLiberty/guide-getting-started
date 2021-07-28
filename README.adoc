@@ -477,7 +477,7 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
-Update the [hotspot file=3]mpData.js file to change the [hotspot=jsUrl file=3]`url` to reflect the new context root.
+Update the [hotspot file=0]`mpData.js` file to change the [hotspot=jsUrl file=0]`url` to reflect the new context root.
 
 mpData.js
 [source, javascript, linenums, role='code_column hide_tags=copyright']
@@ -485,13 +485,13 @@ mpData.js
 include::finish/src/main/webapp/js/mpData.js[]
 ----
 
-[role="code_command hotspot file=3" subs="quotes"]
+[role="code_command hotspot file=0" subs="quotes"]
 ----
 #Replace the mpData.js file.#
 `src/main/webapp/js/mpData.js`
 ----
 
-// File 0
+// File 1
 server.xml
 [source, xml, linenums, role='code_column']
 ----
@@ -551,7 +551,7 @@ Dev mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
+Update the [hotspot file=1]`server.xml` file to change the context root from `/` to `/dev`.
 
 [role="code_command hotspot", subs="quotes"]
 ----

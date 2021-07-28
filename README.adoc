@@ -487,7 +487,7 @@ include::finish/src/main/webapp/js/mpData.js[]
 
 [role="code_command hotspot file=0" subs="quotes"]
 ----
-#Replace the mpData.js file.#
+#Update the mpData.js file.#
 `src/main/webapp/js/mpData.js`
 ----
 

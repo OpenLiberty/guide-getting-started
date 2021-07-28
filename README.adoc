@@ -537,7 +537,7 @@ Dev mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot=webApplication file=0]`server.xml` file to change the context root from `/` to `/dev`.
+Update the [hotspot file=0]`server.xml` file to change the context root from `/` to [hotspot=webApplication file=0]`/dev`.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----

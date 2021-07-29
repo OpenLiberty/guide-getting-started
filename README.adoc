@@ -477,13 +477,6 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
-// File 0
-server.xml
-[source, xml, linenums, role='code_column']
-----
-include::finish/src/main/liberty/config/server.xml[]
-----
-
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container by starting dev mode with container
 support. This goal builds a Docker image, mounts the required directories, binds
@@ -545,18 +538,25 @@ Update the [hotspot file=0]`server.xml` file to change the context root from `/`
 `src/main/liberty/config/server.xml`
 ----
 
-Update the [hotspot file=1]`mpData.js` file to change the [hotspot=jsUrl file=1]`url` in the [hotspot=getSystemPropertiesRequest file=1]`getSystemPropertiesRequest` method to reflect the new context root.
+// File 0
+server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
 
-mpData.js
-[source, javascript, linenums, role='code_column hide_tags=copyright']
-----
-include::finish/src/main/webapp/js/mpData.js[]
-----
+Update the [hotspot file=1]`mpData.js` file to change the [hotspot=jsUrl file=1]`url` in the [hotspot=getSystemPropertiesRequest file=1]`getSystemPropertiesRequest` method to reflect the new context root.
 
 [role="code_command hotspot file=1" subs="quotes"]
 ----
 #Replace the mpData.js file.#
 `src/main/webapp/js/mpData.js`
+----
+
+mpData.js
+[source, javascript, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/src/main/webapp/js/mpData.js[]
 ----
 
 After you make the file changes, Open Liberty automatically reloads its

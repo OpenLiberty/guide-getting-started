@@ -477,13 +477,6 @@ docker rmi openliberty-getting-started:1.0-SNAPSHOT
 
 == Developing the application in a Docker container
 
-// File 0
-server.xml
-[source, xml, linenums, role='code_column']
-----
-include::finish/src/main/liberty/config/server.xml[]
-----
-
 The Open Liberty Maven plug-in includes a `devc` goal that simplifies developing
 your application in a Docker container by starting dev mode with container
 support. This goal builds a Docker image, mounts the required directories, binds
@@ -537,13 +530,54 @@ Dev mode automatically picks up changes that you make to your
 application and allows you to run tests by pressing the `enter/return` key in the
 active command-line session.
 
-Update the [hotspot file=0]`server.xml` file to change the context root from `/` to `/dev`.
+Update the [hotspot file=0]`server.xml` file to change the context root from `/` to [hotspot=webApplication file=0]`/dev`.
 
-[role="code_command hotspot", subs="quotes"]
+[role="code_command hotspot file=0", subs="quotes"]
 ----
 #Replace the server configuration file.#
 `src/main/liberty/config/server.xml`
 ----
+
+// File 0
+server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
+
+Update the [hotspot file=1]`mpData.js` file to change the [hotspot=jsUrl file=1]`url` in the [hotspot=getSystemPropertiesRequest file=1]`getSystemPropertiesRequest` method to reflect the new context root.
+
+// Static guide instruction
+ifndef::cloud-hosted[]
+[role="code_command hotspot file=1" subs="quotes"]
+----
+#Replace the mpData.js file.#
+`src/main/webapp/js/mpData.js`
+----
+
+mpData.js
+[source, javascript, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/src/main/webapp/js/mpData.js[]
+----
+endif::[]
+
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+Update the mpData.js file.
+
+> From the menu of the IDE, select 
+> **File** > **Open** > guide-getting-started/start/src/main/webapp/js/mpData.js
+
+```
+function getSystemPropertiesRequest() {
+    var propToDisplay = ["java.vendor", "java.version", "user.name", "os.name", "wlp.install.dir", "wlp.server.name" ];
+    var url = "http://localhost:9080/dev/system/properties";
+    var req = new XMLHttpRequest();
+    var table = document.getElementById("systemPropertiesTable");
+    ...
+```
+endif::[]
 
 After you make the file changes, Open Liberty automatically reloads its
 configuration. You can access the application at the

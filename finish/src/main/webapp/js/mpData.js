@@ -1,5 +1,6 @@
+// tag::copyright[]
 /*******************************************************************************
-* Copyright (c) 2018, 2019 IBM Corporation and others.
+* Copyright (c) 2018, 2021 IBM Corporation and others.
 * All rights reserved. This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -8,6 +9,7 @@
 * Contributors:
 *     IBM Corporation - initial API and implementation
 *******************************************************************************/
+// end::copyright[]
 function displayMetrics() {
     getSystemMetrics();
 }
@@ -83,9 +85,14 @@ function displaySystemProperties() {
     getSystemPropertiesRequest();
 }
 
+// tag::getSystemPropertiesRequest[]
 function getSystemPropertiesRequest() {
-    var propToDisplay = ["java.vendor", "java.version", "user.name", "os.name", "wlp.install.dir", "wlp.server.name" ];
-    var url = "http://localhost:9080/system/properties";
+// end::getSystemPropertiesRequest[]
+    var propToDisplay = ["java.vendor", "java.version", "user.name",
+                         "os.name", "wlp.install.dir", "wlp.server.name" ];
+    // tag::jsUrl[]
+    var url = "http://localhost:9080/dev/system/properties";
+    // end::jsUrl[]
     var req = new XMLHttpRequest();
     var table = document.getElementById("systemPropertiesTable");
     // Create the callback:

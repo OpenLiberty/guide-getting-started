@@ -34,7 +34,7 @@ public class SystemResource {
     @Counted(absolute = true, description
 	         = "Number of times the JVM system properties are requested")
     public Response getProperties() {
-	    return Response.ok(System.getProperties()).build();
+        return Response.ok(System.getProperties()).build();
     }
 
 }

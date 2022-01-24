@@ -28,13 +28,13 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 public class SystemResource {
 
     @GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Timed(name = "getPropertiesTime",
+    @Produces(MediaType.APPLICATION_JSON)
+    @Timed(name = "getPropertiesTime",
            description = "Time needed to get the JVM system properties")
-	@Counted(absolute = true, description
+    @Counted(absolute = true, description
 	         = "Number of times the JVM system properties are requested")
-	public Response getProperties() {
+    public Response getProperties() {
 	    return Response.ok(System.getProperties()).build();
-	}
+    }
 
 }

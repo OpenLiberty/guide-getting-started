@@ -26,28 +26,28 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class HealthEndpointIT {
-    
+
     private static String baseUrl;
     private static final String HEALTH_ENDPOINT = "/health";
     private static final String LIVENESS_ENDPOINT = "/health/live";
     private static final String READINESS_ENDPOINT = "/health/ready";
-    
+
     private Client client;
     private Response response;
-    
+
     @BeforeAll
     public static void oneTimeSetup() {
         String port = System.getProperty("http.port");
         baseUrl = "http://localhost:" + port;
     }
-    
+
     @BeforeEach
     public void setup() {
         response = null;
         client = ClientBuilder.newClient();
         client.register(JsrJsonpProvider.class);
     }
-    
+
     @AfterEach
     public void teardown() {
         response.close();
@@ -59,21 +59,23 @@ public class HealthEndpointIT {
         String healthURL = baseUrl + HEALTH_ENDPOINT;
         response = this.getResponse(baseUrl + HEALTH_ENDPOINT);
         this.assertResponse(healthURL, response);
-        
+
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
         assertEquals(expectedOutcome, actualOutcome, "Application should be healthy");
-       
+
         JsonObject healthCheck = healthJson.getJsonArray("checks").getJsonObject(0);
         String healthCheckName = healthCheck.getString("name");
         actualOutcome = healthCheck.getString("status");
-        assertEquals(expectedOutcome, actualOutcome, healthCheckName + " wasn't healthy");
+        assertEquals(expectedOutcome, actualOutcome,
+                     healthCheckName + " wasn't healthy");
 
         healthCheck = healthJson.getJsonArray("checks").getJsonObject(1);
         healthCheckName = healthCheck.getString("name");
         actualOutcome = healthCheck.getString("status");
-        assertEquals(expectedOutcome, actualOutcome, healthCheckName + " wasn't healthy");
+        assertEquals(expectedOutcome, actualOutcome,
+                     healthCheckName + " wasn't healthy");
     }
 
     @Test
@@ -81,11 +83,12 @@ public class HealthEndpointIT {
         String livenessURL = baseUrl + LIVENESS_ENDPOINT;
         response = this.getResponse(baseUrl + LIVENESS_ENDPOINT);
         this.assertResponse(livenessURL, response);
-        
+
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
-        assertEquals(expectedOutcome, actualOutcome, "Applications liveness check passed");
+        assertEquals(expectedOutcome, actualOutcome,
+                     "Applications liveness check passed");
     }
 
     @Test
@@ -93,13 +96,14 @@ public class HealthEndpointIT {
         String readinessURL = baseUrl + READINESS_ENDPOINT;
         response = this.getResponse(baseUrl + READINESS_ENDPOINT);
         this.assertResponse(readinessURL, response);
-        
+
         JsonObject healthJson = response.readEntity(JsonObject.class);
         String expectedOutcome = "UP";
         String actualOutcome = healthJson.getString("status");
-        assertEquals(expectedOutcome, actualOutcome, "Applications readiness check passed");
+        assertEquals(expectedOutcome, actualOutcome,
+                     "Applications readiness check passed");
     }
-   
+
     /**
      * <p>
      * Returns response information from the specified URL.

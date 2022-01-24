@@ -32,7 +32,7 @@ public class SystemResource {
     @Timed(name = "getPropertiesTime",
            description = "Time needed to get the JVM system properties")
     @Counted(absolute = true, description
-	         = "Number of times the JVM system properties are requested")
+             = "Number of times the JVM system properties are requested")
     public Response getProperties() {
         return Response.ok(System.getProperties()).build();
     }

@@ -1,8 +1,8 @@
 <server description="Sample Liberty server">
     <!-- tag::features[] -->
     <featureManager>
-        <feature>jaxrs-2.1</feature>
-        <feature>jsonp-2.1</feature>
+        <feature>restfulWS-3.0</feature>
+        <feature>jsonp-2.0</feature>
         <feature>cdi-4.0</feature>
         <feature>mpMetrics-4.0</feature>
         <!-- tag::mpHealth[] -->

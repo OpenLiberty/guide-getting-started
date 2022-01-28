@@ -16,11 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import jakarta.json.JsonObject;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuild;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.plugins.providers.jsonb.JsonBindingProvider;
 import org.junit.jupiter.api.Test;
 
 public class PropertiesEndpointIT {
@@ -47,6 +46,7 @@ public class PropertiesEndpointIT {
       JsonObject obj = response.readEntity(JsonObject.class);
 
       response.close();
+      client.close();
   }
 
 }

@@ -34,7 +34,6 @@ public class PropertiesEndpointIT {
 
       // client setup
       Client client = ClientBuilder.newClient();
-      
 
       // request
       WebTarget target = client.target(url + "/system/properties");

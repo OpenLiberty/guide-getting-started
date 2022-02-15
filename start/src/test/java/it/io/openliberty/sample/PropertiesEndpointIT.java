@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import jakarta.json.JsonObject;
 import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuild;
+import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 
@@ -33,8 +33,8 @@ public class PropertiesEndpointIT {
       String url = "http://localhost:" + port + contextRoot;
 
       // client setup
-      Client client = ResteasyResteasyClientBuilder.newClient();
-      client.register(JsonBindingProvider.class);
+      Client client = ClientBuilder.newClient();
+      
 
       // request
       WebTarget target = client.target(url + "/system/properties");

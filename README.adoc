@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2021 IBM Corporation and others.
+// Copyright (c) 2018, 2022 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -307,10 +307,7 @@ This time you see the overall status of your server and the aggregated data of t
          "status":"UP"
       },
       {  
-         "data":{
-            "memory used":40434888,
-            "memory max":4294967296
-         },
+         "data":{},
          "name":"SystemResource Liveness Check",
          "status":"UP"
       }

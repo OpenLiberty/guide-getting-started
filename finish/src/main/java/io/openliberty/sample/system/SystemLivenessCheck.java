@@ -35,7 +35,7 @@ public class SystemLivenessCheck implements HealthCheck {
         return HealthCheckResponse.named(
             SystemResource.class.getSimpleName() + " Liveness Check")
                                   .status(memUsed < memMax * 0.9).build();
-    } 
+    }
 
 }
 // end::systemLivenessCheck[]

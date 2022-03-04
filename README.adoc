@@ -264,10 +264,7 @@ Access the `/health` endpoint again by going to the http://localhost:9080/health
          "status":"UP"
       },
       {  
-         "data":{
-            "memory used":40434888,
-            "memory max":4294967296
-         },
+         "data":{},
          "name":"SystemResource Liveness Check",
          "status":"UP"
       }

@@ -12,7 +12,7 @@
 // end::copyright[]
 package io.openliberty.sample.system;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.lang.management.MemoryMXBean;
 import java.lang.management.ManagementFactory;

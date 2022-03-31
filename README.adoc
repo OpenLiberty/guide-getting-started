@@ -196,7 +196,7 @@ Now you can verify whether your server is up and running.
 
 == Updating the source code without restarting the server
 
-The restfulWS application that contains your `system` microservice runs in a server from its `.class` file and other artifacts. Open Liberty automatically monitors these artifacts, and whenever they are updated, it updates the running server without the need for the server to be restarted.
+The RESTful application that contains your `system` microservice runs in a server from its `.class` file and other artifacts. Open Liberty automatically monitors these artifacts, and whenever they are updated, it updates the running server without the need for the server to be restarted.
 
 Look at your [hotspot file=0]`pom.xml` file.
 

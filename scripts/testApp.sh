@@ -4,7 +4,7 @@ set -euxo pipefail
 # TEST 1:  Running the application in a Docker container
 mvn -q clean package
 
-docker pull icr.io/appcafe/open-liberty:kernel-java11-openj9-ubi
+docker pull icr.io/appcafe/open-liberty:full-java11-openj9-ubi
 
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 

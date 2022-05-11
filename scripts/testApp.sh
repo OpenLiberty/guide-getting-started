@@ -38,8 +38,24 @@ mvn -Dhttp.keepAlive=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -Dcontext.root=/dev/ failsafe:integration-test liberty:stop
 mvn failsafe:verify
+
+# TEST 3: packaging and running the application jar
 mvn liberty:package -Dinclude=runnable
 if [ ! -f "target/guide-getting-started.jar" ]; then
     echo "target/guide-getting-started.jar was not generated!"
     exit 1
+fi
+java -jar target/guide-getting-started.jar &
+GGS_PID=$!
+echo "GGS_PID=$GGS_PID"
+sleep 60
+status="$(curl --write-out "%{http_code}\n" --silent --output /dev/null "http://localhost:9080/dev/system/properties")"
+kill $GGS_PID
+if [ "$status" == "200" ]
+then
+  echo ENDPOINT OK
+else
+  echo "$status"
+  echo ENDPOINT NOT OK
+  exit 1
 fi

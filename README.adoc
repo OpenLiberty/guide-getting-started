@@ -37,7 +37,7 @@ Open Liberty is an open application framework designed for the cloud. It's small
 
 Maven is an automation build tool that provides an efficient way to develop Java applications. Using Maven, you will build a simple microservice, called `system`, that collects basic system properties from your laptop and displays them on an endpoint that you can access in your web browser. 
 
-You'll also explore how to package your application with Open Liberty so that it can be deployed anywhere in one go. You will then make Liberty configuration and code changes and see howthey are immediately picked up by a running instance.
+You'll also explore how to package your application with Open Liberty so that it can be deployed anywhere in one go. You will then make Liberty configuration and code changes and see how they are immediately picked up by a running instance.
 
 Finally, you will package the application along with the server configuration into a Docker image and run that image as a container.
 

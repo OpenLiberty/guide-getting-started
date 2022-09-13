@@ -506,6 +506,20 @@ function getSystemPropertiesRequest() {
 ```
 endif::[]
 
+Update the [hotspot file=2]`pom.xml` file to change the context root from `/` to [hotspot=contextRoot file=2]`/dev` in the [hotspot=maven-failsafe-plugin file=2]`maven-failsafe-plugin` to reflect the new context root when running functional tests.
+
+[role="code_command hotspot file=2" subs="quotes"]
+----
+#Replace the pom.xml file.#
+`pom.xml`
+----
+
+pom.xml
+[source, XML, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/pom.xml[]
+----
+
 After you make the file changes, Open Liberty automatically reloads its configuration. You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that context root is now `/dev`.
 
 When you are finished, exit dev mode by pressing `CTRL+C` in the command-line session that the container was started from, or by typing `q` and then pressing the `enter/return` key. Either of these options stops and removes the container. To check that the container was stopped, run the `docker ps` command.

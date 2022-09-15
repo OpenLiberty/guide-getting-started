@@ -97,7 +97,7 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-            <!-- tag::maven-failsafe-plugin[] -->
+            <!-- end::maven-failsafe-plugin[] -->
         </plugins>
     </build>
 </project>

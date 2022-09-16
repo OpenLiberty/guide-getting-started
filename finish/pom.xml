@@ -83,6 +83,7 @@
                 <version>2.22.2</version>
             </plugin>
             <!-- Plugin to run functional tests -->
+            <!-- tag::maven-failsafe-plugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -90,10 +91,13 @@
                 <configuration>
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
+                        <!-- tag::contextRoot[] -->
                         <context.root>/dev</context.root>
+                        <!-- end::contextRoot[] -->
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <!-- end::maven-failsafe-plugin[] -->
         </plugins>
     </build>
 </project>

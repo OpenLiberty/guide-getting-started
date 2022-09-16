@@ -515,7 +515,7 @@ function getSystemPropertiesRequest() {
 ```
 endif::[]
 
-Update the [hotspot file=2]`pom.xml` file to change the context root from `/` to [hotspot=contextRoot file=2]`/dev` in the [hotspot=maven-failsafe-plugin file=2]`maven-failsafe-plugin` to reflect the new context root when running functional tests.
+Update the [hotspot file=2]`pom.xml` file to change the context root from `/` to [hotspot=contextRoot file=2]`/dev` in the [hotspot=maven-failsafe-plugin file=2]`maven-failsafe-plugin` to reflect the new context root when you run functional tests.
 
 [role="code_command hotspot file=2" subs="quotes"]
 ----

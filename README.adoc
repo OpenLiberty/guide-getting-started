@@ -472,6 +472,13 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[]
 ----
 
+After you make the file changes, Open Liberty automatically reloads its configuration. You can see the server being updated in the server log displayed in your command-line session:
+
+```
+**************************************************************
+*    Liberty is running in dev mode.
+```
+
 Update the [hotspot file=1]`mpData.js` file to change the [hotspot=jsUrl file=1]`url` in the [hotspot=getSystemPropertiesRequest file=1]`getSystemPropertiesRequest` method to reflect the new context root.
 
 // Static guide instruction
@@ -520,7 +527,9 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-After you make the file changes, Open Liberty automatically reloads its configuration. You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that context root is now `/dev`.
+You can run the tests by pressing the `enter/return` key from the command-line session where you started dev mode to verify your change.
+
+You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that context root is now `/dev`.
 
 When you are finished, exit dev mode by pressing `CTRL+C` in the command-line session that the container was started from, or by typing `q` and then pressing the `enter/return` key. Either of these options stops and removes the container. To check that the container was stopped, run the `docker ps` command.
 

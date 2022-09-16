@@ -531,7 +531,7 @@ include::finish/pom.xml[]
 
 You can run the tests by pressing the `enter/return` key from the command-line session where you started dev mode to verify your change.
 
-You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that context root is now `/dev`.
+You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that the context root is now `/dev`.
 
 When you are finished, exit dev mode by pressing `CTRL+C` in the command-line session that the container was started from, or by typing `q` and then pressing the `enter/return` key. Either of these options stops and removes the container. To check that the container was stopped, run the `docker ps` command.
 

@@ -472,7 +472,7 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[]
 ----
 
-After you make the file changes, Open Liberty automatically reloads its configuration. You can see the server being updated in the server log displayed in your command-line session:
+After you make the file changes, Open Liberty automatically reloads its configuration. When you see the following message in your command-line session, Open Liberty is ready to run again:
 
 ```
 **************************************************************

@@ -474,10 +474,12 @@ include::finish/src/main/liberty/config/server.xml[]
 
 After you make the file changes, Open Liberty automatically reloads its configuration. When you see the following message in your command-line session, Open Liberty is ready to run again:
 
-```
-**************************************************************
+[source, role="no_copy"]
+----
+The server has been restarted.
+************************************************************************
 *    Liberty is running in dev mode.
-```
+----
 
 Update the [hotspot file=1]`mpData.js` file to change the [hotspot=jsUrl file=1]`url` in the [hotspot=getSystemPropertiesRequest file=1]`getSystemPropertiesRequest` method to reflect the new context root.
 

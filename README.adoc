@@ -52,7 +52,7 @@ include::{common-includes}/gitclone.adoc[]
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-In this IBM cloud environment, you need to change the user home to ***/home/project*** by running the following command:
+In this IBM Cloud environment, you need to change the user home to ***/home/project*** by running the following command:
 ```bash
 sudo usermod -d /home/project theia
 ```

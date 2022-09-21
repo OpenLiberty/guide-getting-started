@@ -50,6 +50,14 @@ include::{common-includes}/gitclone.adoc[]
 
 // no "try what you'll build" necessary in this guide
 
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+In this IBM Cloud environment, you need to change the user home to ***/home/project*** by running the following command:
+```bash
+sudo usermod -d /home/project theia
+```
+endif::[]
+
 
 // =================================================================================================
 // Building and running the application
@@ -426,9 +434,9 @@ endif::[]
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
 ```bash
+chmod 777 /home/project/guide-getting-started/start/target/liberty/wlp/usr/servers/defaultServer/logs
 mvn liberty:devc -DserverStartTimeout=300
 ```
-{: codeblock}
 endif::[]
 
 When you see the following message, Open Liberty is ready to run in dev mode:

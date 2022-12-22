@@ -2,9 +2,9 @@
 set -euxo pipefail
 
 # TEST 1:  Running the application in a Docker container
-mvn -q clean package
+mvn -ntp -q clean package
 
-docker pull icr.io/appcafe/open-liberty:full-java11-openj9-ubi
+docker pull -q icr.io/appcafe/open-liberty:full-java11-openj9-ubi
 
 docker build -t openliberty-getting-started:1.0-SNAPSHOT .
 
@@ -28,19 +28,19 @@ fi
 docker stop gettingstarted-app && docker rm gettingstarted-app
 
 # TEST 2: Building and running the application
-mvn -Dhttp.keepAlive=false \
+mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -q clean package liberty:create liberty:install-feature liberty:deploy
-mvn liberty:start
-mvn -Dhttp.keepAlive=false \
+mvn -ntp liberty:start
+mvn -ntp -Dhttp.keepAlive=false \
     -Dmaven.wagon.http.pool=false \
     -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
     -Dcontext.root=/dev/ failsafe:integration-test liberty:stop
-mvn failsafe:verify
+mvn -ntp failsafe:verify
 
 # TEST 3: packaging and running the application jar
-mvn liberty:package -Dinclude=runnable
+mvn -ntp liberty:package -Dinclude=runnable
 if [ ! -f "target/guide-getting-started.jar" ]; then
     echo "target/guide-getting-started.jar was not generated!"
     exit 1

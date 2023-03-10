@@ -303,7 +303,7 @@ In addition to the log files that are generated automatically, you can enable lo
 
 The `component` element is a Java package or class, and the `level` element is one of the following logging levels: `off`, `fatal`, `severe`, `warning`, `audit`, `info`, `config`, `detail`, `fine`, `finer`, `finest`, `all`.
 
-For more information about logging, see the https://www.openliberty.io/docs/latest/log-trace-configuration.html#log_details[Trace log detail levels^],  https://www.openliberty.io/docs/latest/reference/config/logging.html[logging element^], and https://www.openliberty.io/docs/latest/log-trace-configuration.html[Log and trace configuration] documentations.
+For more information about logging, see the https://www.openliberty.io/docs/latest/log-trace-configuration.html#log_details[Trace log detail levels^],  https://www.openliberty.io/docs/latest/reference/config/logging.html[logging element^], and https://www.openliberty.io/docs/latest/log-trace-configuration.html[Log and trace configuration] documentation.
 
 Try enabling detailed logging of the MicroProfile Health feature by adding the [hotspot=logging]`logging` element to your configuration file.
 

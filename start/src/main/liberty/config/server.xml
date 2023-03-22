@@ -8,6 +8,10 @@
         <feature>mpConfig-3.0</feature>
     </featureManager>
 
+    <!-- When running via liberty-maven-plugin these defaultValue(s) will be 
+         overridden by values generated from pom.xml properties, and so changing them 
+         will have no effect on the plugin-managed server.  These values are used 
+         within the container built via the project Dockerfile. -->
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
 

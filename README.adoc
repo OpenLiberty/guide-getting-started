@@ -345,7 +345,7 @@ Run the `mvn package` command from the `start` directory so that the `.war` file
 mvn package
 ```
 
-include::{common-includes}/ol-icr-full-docker-pull.adoc[]
+
 
 To build and containerize the application, run the following Docker build command in the `start` directory:
 

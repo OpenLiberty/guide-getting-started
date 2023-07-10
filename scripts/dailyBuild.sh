@@ -16,6 +16,7 @@ sed -i "\#<artifactId>liberty-maven-plugin</artifactId>#a<configuration><install
 cat pom.xml
 
 sed -i "s;FROM icr.io/appcafe/open-liberty:kernel-slim-java11-openj9-ubi;FROM $DOCKER_USERNAME/olguides:$BUILD;g" Dockerfile
+sed -i "s;RUN features.sh;#RUN features.sh;g" Dockerfile
 cat Dockerfile
 
 ../scripts/testApp.sh

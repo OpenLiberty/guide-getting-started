@@ -1,0 +1,24 @@
+apiVersion: apps.openliberty.io/v1
+kind: OpenLibertyApplication
+metadata:
+  name: getting-started-instanton
+  namespace: dev
+spec:
+  applicationImage: image-registry.openshift-image-registry.svc:5000/dev/getting-started-instanton:1.0-SNAPSHOT
+  pullPolicy: Always
+  createKnativeService: true
+  manageTLS: false
+  expose: true
+  securityContext:
+    runAsNonRoot: true
+    privileged: false
+    allowPrivilegeEscalation: true
+    capabilities:
+     add:
+     - CHECKPOINT_RESTORE
+     - SETPCAP
+     drop:
+     - ALL
+  env:
+  - name: WLP_CHECKPOINT
+    value: "applications"

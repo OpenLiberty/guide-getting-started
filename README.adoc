@@ -85,7 +85,7 @@ mvn liberty:run
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created to store all build-related files.
 
-The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance instance in the foreground. As part of this phase, an Open Liberty instance runtime is downloaded and installed into the `target/liberty/wlp` directory, a server instance is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that server via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
+The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance in the foreground. As part of this phase, an Open Liberty runtime is downloaded and installed into the `target/liberty/wlp` directory, a server instance is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that server via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
 For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
@@ -553,7 +553,7 @@ When you are finished, exit dev mode by pressing `CTRL+C` in the command-line se
 
 == Running the application from a minimal runnable JAR
 
-So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty instance installation and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
+So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty instance and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the servers and application to be extracted onto an Open Liberty installation.
 

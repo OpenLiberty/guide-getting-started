@@ -85,7 +85,7 @@ mvn liberty:run
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created to store all build-related files.
 
-The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty server instance in the foreground. As part of this phase, an Open Liberty server runtime is downloaded and installed into the `target/liberty/wlp` directory, a server instance is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that server via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
+The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance instance in the foreground. As part of this phase, an Open Liberty instance runtime is downloaded and installed into the `target/liberty/wlp` directory, a server instance is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that server via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
 For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
@@ -116,10 +116,10 @@ mvn liberty:stop
 
 
 // =================================================================================================
-// Starting and stopping the Open Liberty server in the background
+// Starting and stopping the Open Liberty instance in the background
 // =================================================================================================
 
-== Starting and stopping the Open Liberty server in the background
+== Starting and stopping the Open Liberty instance in the background
 
 Although you can start and stop the server in the foreground by using the Maven `liberty:run` goal, you can also start and stop the server in the background with the Maven `liberty:start` and `liberty:stop` goals:
 
@@ -136,9 +136,9 @@ mvn liberty:stop
 
 == Updating the server configuration without restarting the server
 
-The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, including application source code or configuration. The Open Liberty server automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
+The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, including application source code or configuration. The Open Liberty instance automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 
-Stop the Open Liberty server if it is running, and start it in https://openliberty.io/docs/latest/development-mode.html[dev mode^] by running the `liberty:dev` goal in the `start` directory:
+Stop the Open Liberty instance if it is running, and start it in https://openliberty.io/docs/latest/development-mode.html[dev mode^] by running the `liberty:dev` goal in the `start` directory:
 
 [role='command']
 ```
@@ -287,10 +287,10 @@ Making code changes and recompiling is fast and straightforward. Open Liberty de
 
 
 // =================================================================================================
-// Checking the Open Liberty server logs
+// Checking the Open Liberty instance logs
 // =================================================================================================
 
-== Checking the Open Liberty server logs
+== Checking the Open Liberty instance logs
 
 While the server is running in the foreground, it displays various console messages in the command-line session. These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log` file. You can find the complete server logs in the `target/liberty/wlp/usr/servers/defaultServer/logs` directory. The `console.log` and `messages.log` files are the primary log files that contain console output of the running application and the server. More logs are created when runtime errors occur or whenever tracing is enabled. You can find the error logs in the `ffdc` directory and the tracing logs in the `trace.log` file.
 
@@ -336,7 +336,7 @@ To run the application in a container, Docker needs to be installed. For install
 
 Make sure to start your Docker daemon before you proceed.
 
-To containerize the application, you need a `Dockerfile`. This file contains a collection of instructions that define how a Docker image is built, what files are packaged into it, what commands run when the image runs as a container, and other information. You can find a complete `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker image that contains the Java runtime and a preconfigured Open Liberty server.
+To containerize the application, you need a `Dockerfile`. This file contains a collection of instructions that define how a Docker image is built, what files are packaged into it, what commands run when the image runs as a container, and other information. You can find a complete `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker image that contains the Java runtime and a preconfigured Open Liberty instance.
 
 Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
 
@@ -553,7 +553,7 @@ When you are finished, exit dev mode by pressing `CTRL+C` in the command-line se
 
 == Running the application from a minimal runnable JAR
 
-So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty server installation and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
+So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty instance installation and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the servers and application to be extracted onto an Open Liberty installation.
 
@@ -597,7 +597,7 @@ include::finish/src/main/liberty/config/server.xml[]
 
 == Great work! You're done!
 
-You've learned the basics of deploying and updating an application on an Open Liberty server.
+You've learned the basics of deploying and updating an application on an Open Liberty instance.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]

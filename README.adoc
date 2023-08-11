@@ -134,7 +134,7 @@ mvn liberty:stop
 // Updating the runtime configuration without restarting the instance
 // =================================================================================================
 
-== Updating the runtime configuration without restarting the instance
+== Updating Liberty's configuration without restarting
 
 The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, including application source code or configuration. The Open Liberty instance automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 

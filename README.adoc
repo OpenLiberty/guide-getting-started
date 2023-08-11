@@ -292,7 +292,7 @@ Making code changes and recompiling is fast and straightforward. Open Liberty de
 
 == Checking the Open Liberty logs
 
-While the instance is running in the foreground, it displays various console messages in the command-line session. These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log` file. You can find the complete instance logs in the `target/liberty/wlp/usr/servers/defaultServer/logs` directory. The `console.log` and `messages.log` files are the primary log files that contain console output of the running application and the Liberty instance. More logs are created when runtime errors occur or whenever tracing is enabled. You can find the error logs in the `ffdc` directory and the tracing logs in the `trace.log` file.
+While Liberty is running in the foreground, it displays various console messages in the command-line session. These messages are also logged to the `target/liberty/wlp/usr/servers/defaultServer/logs/console.log` file. You can find the complete Liberty logs in the `target/liberty/wlp/usr/servers/defaultServer/logs` directory. The `console.log` and `messages.log` files are the primary log files that contain console output of the running application and the Liberty instance. More logs are created when runtime errors occur or whenever tracing is enabled. You can find the error logs in the `ffdc` directory and the tracing logs in the `trace.log` file.
 
 In addition to the log files that are generated automatically, you can enable logging of specific Java packages or classes by using the `logging` element:
 

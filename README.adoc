@@ -287,7 +287,7 @@ Making code changes and recompiling is fast and straightforward. Open Liberty de
 
 
 // =================================================================================================
-// Checking the Open Liberty instance logs
+// Checking the Open Liberty logs
 // =================================================================================================
 
 == Checking the Open Liberty instance logs

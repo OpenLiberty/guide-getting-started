@@ -557,7 +557,7 @@ So far, Open Liberty was running out of the `target/liberty/wlp` directory, whic
 
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the Liberty runtime and application to be extracted onto an Open Liberty installation.
 
-Instead of creating a server package, you can generate a runnable JAR file that contains the application along with a runtime. This JAR file can then be run anywhere and deploy your application and runtime at the same time. To generate a runnable JAR file, override the  `include` property: 
+Instead of creating a server package, you can generate a runnable JAR file that contains the application along with a Liberty runtime. This JAR file can then be run anywhere and deploy your application and runtime at the same time. To generate a runnable JAR file, override the  `include` property: 
 [role='command']
 ```
 mvn liberty:package -Dinclude=runnable

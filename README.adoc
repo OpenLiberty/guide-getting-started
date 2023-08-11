@@ -214,7 +214,7 @@ pom.xml
 include::finish/pom.xml[tags=**]
 ----
 
-Try updating the source code while the instance is running in dev mode. At the moment, the `/health` endpoint reports whether the instance is running, but the endpoint doesn't provide any details on the microservices that are running inside of the instance.
+Try updating the source code while Liberty is running in dev mode. At the moment, the `/health` endpoint reports whether the Liberty instance is running, but the endpoint doesn't provide any details on the microservices that are running inside of the instance.
 
 MicroProfile Health offers health checks for both readiness and liveness. A readiness check allows third-party services, such as Kubernetes, to know if the microservice is ready to process requests. A liveness check allows third-party services to determine if the microservice is running.
 

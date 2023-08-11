@@ -309,7 +309,7 @@ Try enabling detailed logging of the MicroProfile Health feature by adding the [
 
 [role="code_command hotspot" subs="quotes"]
 ----
-#Replace the runtime configuration file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 

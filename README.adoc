@@ -131,7 +131,7 @@ mvn liberty:stop
 
 
 // =================================================================================================
-// Updating the runtime configuration without restarting the instance
+// Updating the runtime configuration without restarting Liberty
 // =================================================================================================
 
 == Updating Liberty's configuration without restarting

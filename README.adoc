@@ -260,7 +260,7 @@ The following messages display in your first command-line session:
 [INFO] [AUDIT] CWWKZ0003I: The application io.openliberty.guides.getting-started updated in 0.136 seconds.
 ----
 
-Access the `/health` endpoint again by going to the http://localhost:9080/health[http://localhost:9080/health^] URL. This time you see the overall status of your instance and the aggregated data of the liveness and readiness checks for the `system` microservice:
+Access the `/health` endpoint again by going to the http://localhost:9080/health[http://localhost:9080/health^] URL. This time you see the overall status of your Liberty instance and the aggregated data of the liveness and readiness checks for the `system` microservice:
 
 [source, JSON, role="no_copy"]
 ----

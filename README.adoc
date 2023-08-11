@@ -195,7 +195,7 @@ Try to access the `/health` endpoint again by visiting the http://localhost:9080
 }
 ----
 
-Now you can verify whether your instance is up and running.
+Now you can verify whether your Liberty instance is up and running.
 
 
 // =================================================================================================

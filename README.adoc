@@ -170,7 +170,7 @@ server.xml
 include::staging/server.xml[]
 ----
 
-After you make the file changes, Open Liberty automatically reloads its configuration. When enabled, the [hotspot=mpHealth]`mpHealth` feature automatically adds a `/health` endpoint to the application. You can see the instance being updated in the instance log displayed in your command-line session:
+After you make the file changes, Open Liberty automatically reloads its configuration. When enabled, the [hotspot=mpHealth]`mpHealth` feature automatically adds a `/health` endpoint to the application. You can see the instance being updated in the Liberty log displayed in your command-line session:
 
 [source, role="no_copy"]
 ----

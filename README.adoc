@@ -553,7 +553,7 @@ When you are finished, exit dev mode by pressing `CTRL+C` in the command-line se
 
 == Running the application from a minimal runnable JAR
 
-So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty instance and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
+So far, Open Liberty was running out of the `target/liberty/wlp` directory, which effectively contains an Open Liberty installation and the deployed application. The final product of the Maven build is a server package for use in a continuous integration pipeline and, ultimately, a production deployment.
 
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the runtime and application to be extracted onto an Open Liberty installation.
 

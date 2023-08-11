@@ -116,7 +116,7 @@ mvn liberty:stop
 
 
 // =================================================================================================
-// Starting and stopping the Open Liberty instance in the background
+// Starting and stopping Open Liberty in the background
 // =================================================================================================
 
 == Starting and stopping the Open Liberty instance in the background

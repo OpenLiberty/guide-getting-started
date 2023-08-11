@@ -283,7 +283,7 @@ Access the `/health` endpoint again by going to the http://localhost:9080/health
 
 You can also access the `/health/ready` endpoint by going to the http://localhost:9080/health/ready[http://localhost:9080/health/ready^] URL to view the data from the readiness health check. Similarly, access the `/health/live` endpoint by going to the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
 
-Making code changes and recompiling is fast and straightforward. Open Liberty dev mode automatically picks up changes in the `.class` files and artifacts, without needing to be restarted. Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while the instance is running. Dev mode was added to further improve the developer experience by minimizing turnaround times.
+Making code changes and recompiling is fast and straightforward. Open Liberty dev mode automatically picks up changes in the `.class` files and artifacts, without needing to be restarted. Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while Liberty is running. Dev mode was added to further improve the developer experience by minimizing turnaround times.
 
 
 // =================================================================================================

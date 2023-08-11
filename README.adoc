@@ -471,7 +471,7 @@ Update the [hotspot file=0]`server.xml` file to change the context root from `/`
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Replace the runtime configuration file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 

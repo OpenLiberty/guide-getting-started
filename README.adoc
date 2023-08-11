@@ -574,7 +574,7 @@ To run the JAR file, first stop the Liberty instance if it's running. Then, navi
 java -jar guide-getting-started.jar
 ```
 
-When the instance starts, go to the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
+When Liberty starts, go to the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
 
 You can stop the instance by pressing `CTRL+C` in the command-line session that the instance runs in.
 

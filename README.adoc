@@ -39,7 +39,7 @@ Maven is an automation build tool that provides an efficient way to develop Java
 
 You'll also explore how to package your application with Open Liberty so that it can be deployed anywhere in one go. You will then make Liberty configuration and code changes and see how they are immediately picked up by a running instance.
 
-Finally, you will package the application along with the runtime configuration into a Docker image and run that image as a container.
+Finally, you will package the application along with Liberty's configuration into a Docker image and run that image as a container.
 
 
 // =================================================================================================

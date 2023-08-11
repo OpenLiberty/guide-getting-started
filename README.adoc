@@ -85,7 +85,7 @@ mvn liberty:run
 
 The `mvn` command initiates a Maven build, during which the `target` directory is created to store all build-related files.
 
-The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance in the foreground. As part of this phase, an Open Liberty runtime is downloaded and installed into the `target/liberty/wlp` directory, a Liberty instance is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that instance via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
+The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance in the foreground. As part of this phase, an Open Liberty runtime is downloaded and installed into the `target/liberty/wlp` directory, an instance of Liberty is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that instance via https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
 For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 

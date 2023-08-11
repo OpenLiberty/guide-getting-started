@@ -149,7 +149,7 @@ Dev mode automatically picks up changes that you make to your application and al
 
 As before, you can see that the application is running by going to the http://localhost:9080/system/properties[http://localhost:9080/system/properties^] URL.
 
-Now try updating the runtime configuration while the instance is running in dev mode. The `system` microservice does not currently include health monitoring to report whether the instance and the microservice that it runs are healthy. You can add health reports with the MicroProfile Health feature, which adds a `/health` endpoint to your application. If you try to access this endpoint now at the http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404 error because the `/health` endpoint does not yet exist:
+Now try updating Liberty's `server.xml` configuration file while the instance is running in dev mode. The `system` microservice does not currently include health monitoring to report whether the instance and the microservice that it runs are healthy. You can add health reports with the MicroProfile Health feature, which adds a `/health` endpoint to your application. If you try to access this endpoint now at the http://localhost:9080/health/[http://localhost:9080/health/^] URL, you see a 404 error because the `/health` endpoint does not yet exist:
 
 [source, role="no_copy"]
 ----

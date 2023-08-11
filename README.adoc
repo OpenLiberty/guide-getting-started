@@ -576,7 +576,7 @@ java -jar guide-getting-started.jar
 
 When Liberty starts, go to the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL to access your application that is now running out of the minimal runnable JAR file.
 
-You can stop the instance by pressing `CTRL+C` in the command-line session that the instance runs in.
+You can stop the Liberty instance by pressing `CTRL+C` in the command-line session that the instance runs in.
 
 pom.xml
 [source, XML, linenums, role="code_column"]

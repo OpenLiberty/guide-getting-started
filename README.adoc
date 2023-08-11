@@ -199,7 +199,7 @@ Now you can verify whether your Liberty instance is up and running.
 
 
 // =================================================================================================
-// Updating the source code without restarting the instance
+// Updating the source code without restarting Liberty
 // =================================================================================================
 
 == Updating the source code without restarting the instance

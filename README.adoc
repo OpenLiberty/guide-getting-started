@@ -597,7 +597,7 @@ include::finish/src/main/liberty/config/server.xml[]
 
 == Great work! You're done!
 
-You've learned the basics of deploying and updating an application on an Open Liberty instance.
+You've learned the basics of deploying and updating an application on Open Liberty.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]

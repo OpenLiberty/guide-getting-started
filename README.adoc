@@ -567,7 +567,7 @@ The packaging type is overridden from the `usr` package to the `runnable` packag
 
 When the build completes, you can find the minimal runnable `guide-getting-started.jar` file in the `target` directory. This JAR file contains only the [hotspot=features file=1]`features` that you explicitly enabled in your [hotspot file=1]`server.xml` file. As a result, the generated JAR file is only about 50 MB.
 
-To run the JAR file, first stop the instance if it's running. Then, navigate to the `target` directory and run the `java -jar` command:
+To run the JAR file, first stop the Liberty instance if it's running. Then, navigate to the `target` directory and run the `java -jar` command:
 
 [role='command']
 ```

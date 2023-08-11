@@ -156,7 +156,7 @@ Now try updating Liberty's `server.xml` configuration file while the instance is
 Error 404: java.io.FileNotFoundException: SRVE0190E: File not found: /health
 ----
 
-To add the MicroProfile Health feature to the instance, include the [hotspot=mpHealth]`mpHealth` feature in the [hotspot]`server.xml`.
+To add the MicroProfile Health feature to the Liberty instance, include the [hotspot=mpHealth]`mpHealth` feature in the [hotspot]`server.xml`.
 
 [role="code_command hotspot", subs="quotes"]
 ----

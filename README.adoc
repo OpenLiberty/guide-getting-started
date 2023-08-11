@@ -121,7 +121,7 @@ mvn liberty:stop
 
 == Starting and stopping the Open Liberty instance in the background
 
-Although you can start and stop the instance in the foreground by using the Maven `liberty:run` goal, you can also start and stop the instance in the background with the Maven `liberty:start` and `liberty:stop` goals:
+Although you can start and stop Liberty in the foreground by using the Maven `liberty:run` goal, you can also start and stop the instance in the background with the Maven `liberty:start` and `liberty:stop` goals:
 
 [role='command']
 ----

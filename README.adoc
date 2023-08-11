@@ -202,7 +202,7 @@ Now you can verify whether your Liberty instance is up and running.
 // Updating the source code without restarting Liberty
 // =================================================================================================
 
-== Updating the source code without restarting the instance
+== Updating the source code without restarting Liberty
 
 The RESTful application that contains your `system` microservice runs in an instance from its `.class` file and other artifacts. Open Liberty automatically monitors these artifacts, and whenever they are updated, it updates the running instance without the need for the instance to be restarted.
 

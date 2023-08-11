@@ -89,7 +89,7 @@ The `liberty:run` argument specifies the Open Liberty `run` goal, which starts a
 
 For more information about the Liberty Maven plug-in, see its https://github.com/WASdev/ci.maven[GitHub repository^].
 
-When the runtime instance begins starting up, various messages display in your command-line session. Wait for the following message, which indicates that the instance startup is complete:
+When the Liberty instance begins starting up, various messages display in your command-line session. Wait for the following message, which indicates that Liberty's startup is complete:
 
 [source, role="no_copy"]
 ----

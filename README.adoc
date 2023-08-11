@@ -107,7 +107,7 @@ To access the `system` microservice, see the http://localhost:9080/system/proper
 }
 ----
 
-When you need to stop the instance, press `CTRL+C` in the command-line session where you ran the instance, or run the `liberty:stop` goal from the `start` directory in another command-line session:
+When you need to stop the Liberty instance, press `CTRL+C` in the command-line session where you ran Liberty, or run the `liberty:stop` goal from the `start` directory in another command-line session:
 
 [role='command']
 ```

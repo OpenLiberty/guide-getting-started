@@ -160,7 +160,7 @@ To add the MicroProfile Health feature to the Liberty instance, include the [hot
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Replace the `server.xml` configuration file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 

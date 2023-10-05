@@ -107,7 +107,12 @@ To access the `system` microservice, see the http://localhost:9080/system/proper
 }
 ----
 
-When you need to stop the Liberty instance, press `CTRL+C` in the command-line session where you ran Liberty.
+When you need to stop the Liberty instance, press `CTRL+C` in the command-line session where you ran Liberty, or run the `liberty:stop` goal from the `start` directory in another command-line session:
+
+[role='command']
+```
+mvn liberty:stop
+```
 
 // =================================================================================================
 // Starting and stopping Open Liberty in the background
@@ -318,7 +323,7 @@ After you change the file, Open Liberty automatically reloads its configuration.
 Now, when you visit the `/health` endpoint, additional traces are logged in the `trace.log` file.
 
 [role='command']
-include::{common-includes}/devmode-quit.adoc[]
+include::{common-includes}/devmode-quit-ctrlc.adoc[]
 
 // =================================================================================================
 // Running the application in a Docker container
@@ -539,7 +544,7 @@ You can run the tests by pressing the `enter/return` key from the command-line s
 
 You can access the application at the http://localhost:9080/dev/system/properties[http://localhost:9080/dev/system/properties^] URL. Notice that the context root is now `/dev`.
 
-When you are finished, exit dev mode by pressing `CTRL+C` in the command-line session that the container was started from. To check that the container was stopped, run the `docker ps` command.
+When you are finished, exit dev mode by pressing `CTRL+C` in the command-line session that the container was started from. This stops and removes the container. To check that the container was stopped, run the `docker ps` command.
 
 // =================================================================================================
 // Running the application from a minimal runnable JAR

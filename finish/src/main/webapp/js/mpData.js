@@ -31,10 +31,10 @@ function getSystemMetrics() {
         metricToMatch += metricKey + "|"
     }
     // remove the last |
-    metricToMatch = metricToMatch.substring(0, metricToMatch.length - 1);
+    metricToMatch = metricToMatch.substring(0, metricToMatch.length-1);
     metricToMatch += ")\\s*(\\S*)$"
 
-    req.onreadystatechange = function () {
+    req.onreadystatechange = function() {
         if (req.readyState != 4) return; // Not there yet
         if (req.status != 200) {
             document.getElementById("metricsText").innerHTML = req.statusText;
@@ -47,7 +47,7 @@ function getSystemMetrics() {
 
         var keyValPairs = {};
         for (var metricKey in metricToDisplay) {
-            matchMetrics.forEach(function (line) {
+            matchMetrics.forEach(function(line) {
                 var keyToMatch = metricKey + " (.*)";
                 var keyVal = line.match(new RegExp(keyToMatch));
                 if (keyVal) {
@@ -243,7 +243,7 @@ function addSourceRow(table, url) {
     sourceRow.classList.add("sourceRow");
     var sourceText = document.createElement("td");
     sourceText.setAttribute("colspan", "100%");
-    sourceText.innerHTML = "API Source\: <a href='" + url + "'>" + url + "</a>";
+    sourceText.innerHTML = "API Source\: <a href='"+url+"'>"+url+"</a>";
     sourceRow.appendChild(sourceText);
     table.appendChild(sourceRow);
 }

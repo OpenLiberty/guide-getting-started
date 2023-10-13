@@ -18,12 +18,13 @@ function getSystemMetrics() {
     var req = new XMLHttpRequest();
 
     var metricToDisplay = {};
-    metricToDisplay["application_getProperties_total"] = "Request Count";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_one_min_rate_per_second"] = "Min Request Time (ms)";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_mean_seconds"] = "Mean Request Time (ms)";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_max_seconds"] = "Max Request Time (ms)";
-    metricToDisplay["base_cpu_processCpuLoad_percent"] = "System CPU Usage (%)";
-    metricToDisplay["base_memory_usedHeap_bytes"] = "System Heap Usage (MB)";
+    var SRgetPropertiesTime = "io_openliberty_sample_system_SystemResource_getPropertiesTime";
+    metricToDisplay["getProperties_total{mp_scope=\"application\",}"] = "Request Count";
+    metricToDisplay[SRgetPropertiesTime + "_seconds{mp_scope=\"application\",quantile=\"0.999\",}"] = "Request Time (ms) at Quantile 0.999";
+    metricToDisplay[SRgetPropertiesTime + "_seconds{mp_scope=\"application\",quantile=\"0.5\",}"] = "Request Time (ms) at Quantile 0.5";
+    metricToDisplay[SRgetPropertiesTime + "_seconds_max{mp_scope=\"application\",}"] = "Max Request Time (ms)";
+    metricToDisplay["cpu_processCpuLoad_percent{mp_scope=\"base\",}"] = "System CPU Usage (%)";
+    metricToDisplay["memory_usedHeap_bytes{mp_scope=\"base\",}"] = "System Heap Usage (MB)";
 
     var metricToMatch = "^(";
     for (var metricKey in metricToDisplay) {

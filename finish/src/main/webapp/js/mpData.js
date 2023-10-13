@@ -18,22 +18,23 @@ function getSystemMetrics() {
     var req = new XMLHttpRequest();
 
     var metricToDisplay = {};
-    metricToDisplay["application_getProperties_total"] = "Request Count";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_one_min_rate_per_second"] = "Min Request Time (ms)";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_mean_seconds"] = "Mean Request Time (ms)";
-    metricToDisplay["application_io_openliberty_sample_system_SystemResource_getPropertiesTime_max_seconds"] = "Max Request Time (ms)";
-    metricToDisplay["base_cpu_processCpuLoad_percent"] = "System CPU Usage (%)";
-    metricToDisplay["base_memory_usedHeap_bytes"] = "System Heap Usage (MB)";
+    var SRgetPropertiesTime = "io_openliberty_sample_system_SystemResource_getPropertiesTime";
+    metricToDisplay["getProperties_total{mp_scope=\"application\",}"] = "Request Count";
+    metricToDisplay[SRgetPropertiesTime + "_seconds{mp_scope=\"application\",quantile=\"0.999\",}"] = "Request Time (ms) at Quantile 0.999";
+    metricToDisplay[SRgetPropertiesTime + "_seconds{mp_scope=\"application\",quantile=\"0.5\",}"] = "Request Time (ms) at Quantile 0.5";
+    metricToDisplay[SRgetPropertiesTime + "_seconds_max{mp_scope=\"application\",}"] = "Max Request Time (ms)";
+    metricToDisplay["cpu_processCpuLoad_percent{mp_scope=\"base\",}"] = "System CPU Usage (%)";
+    metricToDisplay["memory_usedHeap_bytes{mp_scope=\"base\",}"] = "System Heap Usage (MB)";
 
     var metricToMatch = "^(";
     for (var metricKey in metricToDisplay) {
         metricToMatch += metricKey + "|"
     }
     // remove the last |
-    metricToMatch = metricToMatch.substring(0, metricToMatch.length-1);
+    metricToMatch = metricToMatch.substring(0, metricToMatch.length - 1);
     metricToMatch += ")\\s*(\\S*)$"
 
-    req.onreadystatechange = function() {
+    req.onreadystatechange = function () {
         if (req.readyState != 4) return; // Not there yet
         if (req.status != 200) {
             document.getElementById("metricsText").innerHTML = req.statusText;
@@ -46,7 +47,7 @@ function getSystemMetrics() {
 
         var keyValPairs = {};
         for (var metricKey in metricToDisplay) {
-            matchMetrics.forEach(function(line) {
+            matchMetrics.forEach(function (line) {
                 var keyToMatch = metricKey + " (.*)";
                 var keyVal = line.match(new RegExp(keyToMatch));
                 if (keyVal) {
@@ -242,7 +243,7 @@ function addSourceRow(table, url) {
     sourceRow.classList.add("sourceRow");
     var sourceText = document.createElement("td");
     sourceText.setAttribute("colspan", "100%");
-    sourceText.innerHTML = "API Source\: <a href='"+url+"'>"+url+"</a>";
+    sourceText.innerHTML = "API Source\: <a href='" + url + "'>" + url + "</a>";
     sourceRow.appendChild(sourceText);
     table.appendChild(sourceRow);
 }

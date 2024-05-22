@@ -23,7 +23,7 @@ jobs:
         run: bash ./tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }} | tee checker.log
       - id: Lint-Code-Base
         if: always()
-        uses: github/super-linter@v3.17.0
+        uses: github/super-linter@latest
         env:
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_JAVASCRIPT_STANDARD: false
@@ -33,8 +33,8 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          cat ./checker.log |  tail -n +2; echo "====== Super Linter ======"
-          cat ./super-linter.log | sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
+          < ./checker.log tail -n +2; echo "====== Super Linter ======"
+          < ./super-linter.log sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'
           echo "====== Examine logs in Checker and Super-Linter steps for more details ======"
           if [ '${{ steps.Checker.outcome }}' != 'success' ] || [ '${{ steps.Lint-Code-Base.outcome }}' != 'success' ]; then exit 1; fi
   test-app:
@@ -58,7 +58,7 @@ jobs:
         run: |
           docker images
           logsPath=$(find . -name "console.log");
-          cat $logsPath | grep Launching
+          sudo cat "$logsPath" | grep Launching
       - name: Archive server logs if failed
         if: failure()
         uses: actions/upload-artifact@v2

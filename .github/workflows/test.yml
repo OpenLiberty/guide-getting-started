@@ -54,7 +54,7 @@ jobs:
       - name: Run tests
         run: ../scripts/testApp.sh
       - name: Post tests
-        if: always()
+        if: "! github.event.pull_request.head.repo.fork"
         run: |
           docker images
           logsPath=$(find . -name "console.log");

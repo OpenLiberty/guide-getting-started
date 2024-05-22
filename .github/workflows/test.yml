@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: bash ./tools/pr-checker/checker.sh ${{ github.repository }} ${{ github.event.pull_request.number }} | tee checker.log
       - id: Lint-Code-Base
-        if: always()
+        if: "! github.event.pull_request.head.repo.fork"
         uses: github/super-linter@latest
         env:
           VALIDATE_ALL_CODEBASE: false
@@ -31,7 +31,7 @@ jobs:
           LINTER_RULES_PATH: ./tools/pr-checker/linters/
           DEFAULT_BRANCH: prod
       - name: Summary
-        if: always()
+        if: "! github.event.pull_request.head.repo.fork"
         run: |
           < ./checker.log tail -n +2; echo "====== Super Linter ======"
           < ./super-linter.log sed -n '/.*The script has completed.*/,$p' | tail -n +4 | sed  's/.*\(\[[A-Z]\+\]\)/\1/'

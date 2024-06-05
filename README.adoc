@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2023 IBM Corporation and others.
+// Copyright (c) 2018, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -41,14 +41,17 @@ You'll also explore how to package your application with Open Liberty so that it
 
 Finally, you will package the application along with Liberty's configuration into a Docker image and run that image as a container.
 
+To learn how to create a Liberty Maven project and edit your application using the Liberty Tools in IntelliJ IDEA from scratch, check out the [Developing a cloud-native Java application with Liberty Tools in IntelliJ IDEA^] blog.
+
 
 // =================================================================================================
 // Getting Started
 // =================================================================================================
+
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
-// no "try what you'll build" necessary in this guide
+The project that you have cloned is prepared Maven project. To learn how to create a Liberty Maven project and edit your application using the Liberty Tools in IntelliJ IDEA from scratch, check out the [Developing a cloud-native Java application with Liberty Tools in IntelliJ IDEA^] blog.
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]

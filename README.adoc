@@ -49,7 +49,7 @@ Finally, you will package the application along with Liberty's configuration int
 [role='command']
 include::{common-includes}/gitclone.adoc[]
 
-The project that you have cloned is prepared Maven project. To learn how to create a Liberty Maven project and edit your application using the Liberty Tools in IntelliJ IDEA from scratch, check out the https://openliberty.io/blog/2024/05/31/liberty-project-starter-guide-IntelliJ.html[Developing a cloud-native Java application with Liberty Tools in IntelliJ IDEA^] blog.
+The project that you have cloned is a prepared Maven project. To learn how to create a Liberty Maven project and edit your application using the Liberty Tools in IntelliJ IDEA from scratch, check out the https://openliberty.io/blog/2024/05/31/liberty-project-starter-guide-IntelliJ.html[Developing a cloud-native Java application with Liberty Tools in IntelliJ IDEA^] blog.
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]

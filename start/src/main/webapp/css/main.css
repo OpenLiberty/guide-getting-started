@@ -19,7 +19,7 @@
 }
 
 body {
-  font-family: Asap;
+  font-family: BunueloSemiBold;
   font-size: 16px;
   color: #24243b;
   background-color: white;
@@ -224,7 +224,7 @@ button {
   height: 44px;
   color: #24253a;
   text-align: center;
-  font-family: Asap;
+  font-family: BunueloSemiBold;
   margin-top: 25px;
   margin-bottom: 70px;
   cursor: pointer;
@@ -390,7 +390,7 @@ td {
 }
 
 .bodyFooterLink {
-  font-family: Asap;
+  font-family: BunueloSemiBold;
   font-weight: 300;
   font-size: 14px;
   letter-spacing: 0;

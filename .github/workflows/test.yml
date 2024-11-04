@@ -16,6 +16,7 @@ jobs:
       - name: Get tools
         uses: actions/checkout@v2
         with:
+          ref: gkwan-ibm-test-pr-checker
           path: tools/
           repository: openliberty/guides-common
       - id: Checker

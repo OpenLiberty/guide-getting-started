@@ -7,11 +7,11 @@
         <feature>jsonp</feature>
         <feature>jsonb</feature>
         <feature>cdi</feature>
-        <feature>mpMetrics</feature>
         <!-- tag::mpHealth[] -->
         <feature>mpHealth</feature>
         <!-- end::mpHealth[] -->
         <feature>mpConfig</feature>
+        <feature>mpMetrics-5.1</feature>
     </featureManager>
     <!-- end::features[] -->
 

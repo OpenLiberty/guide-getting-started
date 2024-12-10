@@ -6,8 +6,8 @@
         <feature>jsonp</feature>
         <feature>jsonb</feature>
         <feature>cdi</feature>
-        <feature>mpMetrics</feature>
         <feature>mpConfig</feature>
+        <feature>mpMetrics-5.1</feature>
     </featureManager>
 
     <variable name="http.port" defaultValue="9080"/>

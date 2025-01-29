@@ -11,7 +11,7 @@
         <feature>mpHealth</feature>
         <!-- end::mpHealth[] -->
         <feature>mpConfig</feature>
-        <feature>mpMetrics-5.1</feature>
+        <feature>mpMetrics</feature>
     </featureManager>
     <!-- end::features[] -->
 

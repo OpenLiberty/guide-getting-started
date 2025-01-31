@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2025 IBM Corporation and others.
+// Copyright (c) 2018, 2024 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -140,19 +140,10 @@ The Open Liberty Maven plug-in includes a `dev` goal that listens for any change
 
 Stop the Open Liberty instance if it is running, and start it in https://openliberty.io/docs/latest/development-mode.html[dev mode^] by running the `liberty:dev` goal in the `start` directory:
 
-ifndef::cloud-hosted[]
 [role='command']
 ```
 mvn liberty:dev
 ```
-endif::[]
-
-ifdef::cloud-hosted[]
-```bash
-cd /home/project/guide-getting-started/start
-mvn liberty:dev
-```
-endif::[]
 
 Dev mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
 

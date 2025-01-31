@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2024 IBM Corporation and others.
+// Copyright (c) 2018, 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -322,6 +322,12 @@ include::staging/server.xml[]
 After you change the file, Open Liberty automatically reloads its configuration.
 
 Now, when you visit the `/health` endpoint, additional traces are logged in the `trace.log` file.
+
+ifdef::cloud-hosted[]
+```bash
+ls /home/project/guide-getting-started/start/target/liberty/wlp/usr/servers/defaultServer/logs
+```
+endif::[]
 
 [role='command']
 include::{common-includes}/devmode-quit-ctrlc.adoc[]

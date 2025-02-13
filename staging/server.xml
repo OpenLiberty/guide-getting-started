@@ -1,15 +1,17 @@
 <server description="Sample Liberty server">
     <!-- tag::features[] -->
     <featureManager>
-        <feature>restfulWS-3.1</feature>
-        <feature>jsonp-2.1</feature>
-        <feature>jsonb-3.0</feature>
-        <feature>cdi-4.0</feature>
-        <feature>mpMetrics-5.1</feature>
+        <platform>jakartaee-10.0</platform>
+        <platform>microprofile-7.0</platform>
+        <feature>restfulWS</feature>
+        <feature>jsonp</feature>
+        <feature>jsonb</feature>
+        <feature>cdi</feature>
         <!-- tag::mpHealth[] -->
-        <feature>mpHealth-4.0</feature>
+        <feature>mpHealth</feature>
         <!-- end::mpHealth[] -->
-        <feature>mpConfig-3.1</feature>
+        <feature>mpConfig</feature>
+        <feature>mpMetrics</feature>
     </featureManager>
     <!-- end::features[] -->
 
@@ -24,7 +26,7 @@
     <logging traceSpecification="com.ibm.ws.microprofile.health.*=all" />
     <!-- end::logging[] -->
 
-    <httpEndpoint host="*" httpPort="${http.port}" 
+    <httpEndpoint host="*" httpPort="${http.port}"
         httpsPort="${https.port}" id="defaultHttpEndpoint"/>
 
     <variable name="io_openliberty_guides_system_inMaintenance" value="false"/>

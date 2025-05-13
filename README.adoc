@@ -78,13 +78,34 @@ include::finish/pom.xml[]
 
 To begin, navigate to the `start` directory. Build the `system` microservice that is provided and deploy it to Open Liberty by running the Maven `liberty:run` goal:
 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
 cd start
-mvn liberty:run
+mvnw.cmd liberty:run
 ```
+--
 
-The `mvn` command initiates a Maven build, during which the `target` directory is created to store all build-related files.
+[.tab_content.mac_section]
+--
+[role='command']
+```
+cd start
+./mvnw liberty:run
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+cd start
+./mvnw liberty:run
+```
+--
+
+The Maven command initiates a Maven build, during which the `target` directory is created to store all build-related files.
 
 The `liberty:run` argument specifies the Open Liberty `run` goal, which starts an Open Liberty instance in the foreground. As part of this phase, an Open Liberty runtime is downloaded and installed into the `target/liberty/wlp` directory, an instance of Liberty is created and configured in the `target/liberty/wlp/usr/servers/defaultServer` directory, and the application is installed into that instance using https://www.ibm.com/support/knowledgecenter/en/SSEQTP_liberty/com.ibm.websphere.wlp.doc/ae/rwlp_loose_applications.html[loose config^].
 
@@ -110,9 +131,27 @@ To access the `system` microservice, see the http://localhost:9080/system/proper
 
 When you need to stop the Liberty instance, press `CTRL+C` in the command-line session where you ran Liberty, or run the `liberty:stop` goal from the `start` directory in another command-line session:
 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
-mvn liberty:stop
+mvnw.cmd liberty:stop
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw liberty:stop
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:stop
 ```
 
 // =================================================================================================
@@ -123,11 +162,31 @@ mvn liberty:stop
 
 Although you can start and stop Liberty in the foreground by using the Maven `liberty:run` goal, you can also start and stop the Liberty instance in the background with the Maven `liberty:start` and `liberty:stop` goals:
 
+[.tab_content.windows_section]
+--
 [role='command']
-----
-mvn liberty:start
-mvn liberty:stop
-----
+```
+mvnw.cmd liberty:start
+mvnw.cmd liberty:stop
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw liberty:start
+./mvnw liberty:stop
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:start
+./mvnw liberty:stop
+```
 
 
 // =================================================================================================
@@ -140,9 +199,27 @@ The Open Liberty Maven plug-in includes a `dev` goal that listens for any change
 
 Stop the Open Liberty instance if it is running, and start it in https://openliberty.io/docs/latest/development-mode.html[dev mode^] by running the `liberty:dev` goal in the `start` directory:
 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
-mvn liberty:dev
+mvnw.cmd liberty:dev
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw liberty:dev
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:dev
 ```
 
 Dev mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
@@ -283,7 +360,7 @@ Access the `/health` endpoint again by going to the http://localhost:9080/health
 
 You can also access the `/health/ready` endpoint by going to the http://localhost:9080/health/ready[http://localhost:9080/health/ready^] URL to view the data from the readiness health check. Similarly, access the `/health/live` endpoint by going to the http://localhost:9080/health/live[http://localhost:9080/health/live^] URL to view the data from the liveness health check.
 
-Making code changes and recompiling is fast and straightforward. Open Liberty dev mode automatically picks up changes in the `.class` files and artifacts, without needing to be restarted. Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the `mvn package` command or the `mvn compile` command while Liberty is running. Dev mode was added to further improve the developer experience by minimizing turnaround times.
+Making code changes and recompiling is fast and straightforward. Open Liberty dev mode automatically picks up changes in the `.class` files and artifacts, without needing to be restarted. Alternatively, you can run the `run` goal and manually repackage or recompile the application by using the Maven `package` goal or the Maven `compile` goal while Liberty is running. Dev mode was added to further improve the developer experience by minimizing turnaround times.
 
 
 // =================================================================================================
@@ -346,11 +423,29 @@ endif::[]
 
 To containerize the application, you need a `Dockerfile`. This file contains a collection of instructions that define how a Docker image is built, what files are packaged into it, what commands run when the image runs as a container, and other information. You can find a complete `Dockerfile` in the `start` directory. This `Dockerfile` copies the `.war` file into a Docker image that contains the Java runtime and a preconfigured Open Liberty runtime.
 
-Run the `mvn package` command from the `start` directory so that the `.war` file resides in the `target` directory.
+Run the Maven `package` goal from the `start` directory so that the `.war` file resides in the `target` directory.
 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
-mvn package
+mvnw.cmd package
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw package
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw package
 ```
 
 
@@ -435,9 +530,27 @@ Build and run the container by running the devc goal from the `start` directory:
 
 // Static guide instruction
 ifndef::cloud-hosted[]
+[.tab_content.windows_section]
+--
 [role='command']
 ```
-mvn liberty:devc
+mvnw.cmd liberty:devc
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw liberty:devc
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:devc
 ```
 endif::[]
 
@@ -445,7 +558,7 @@ endif::[]
 ifdef::cloud-hosted[]
 ```bash
 chmod 777 /home/project/guide-getting-started/start/target/liberty/wlp/usr/servers/defaultServer/logs
-mvn liberty:devc -DserverStartTimeout=300
+./mvnw liberty:devc -DserverStartTimeout=300
 ```
 endif::[]
 
@@ -566,9 +679,27 @@ So far, Open Liberty was running out of the `target/liberty/wlp` directory, whic
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the Liberty runtime and application to be extracted onto an Open Liberty installation.
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the application along with a Liberty runtime. This JAR file can then be run anywhere and deploy your application and runtime at the same time. To generate a runnable JAR file, override the  `include` property: 
+[.tab_content.windows_section]
+--
 [role='command']
 ```
-mvn liberty:package -Dinclude=runnable
+mvnw.cmd liberty:package -Dinclude=runnable
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw liberty:package -Dinclude=runnable
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:package -Dinclude=runnable
 ```
 
 The packaging type is overridden from the `usr` package to the `runnable` package. This property then propagates to the [hotspot=libertyMavenPlugin file=0]`liberty-maven-plugin` plug-in, which generates the server package based on the `openliberty-kernel` package.

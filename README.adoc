@@ -158,6 +158,8 @@ mvnw.cmd liberty:stop
 ./mvnw liberty:stop
 ```
 
+--
+
 // =================================================================================================
 // Starting and stopping Open Liberty in the background
 // =================================================================================================
@@ -194,6 +196,8 @@ mvnw.cmd liberty:stop
 ./mvnw liberty:stop
 ```
 
+--
+
 
 // =================================================================================================
 // Updating the runtime configuration without restarting Liberty
@@ -229,6 +233,8 @@ mvnw.cmd liberty:dev
 ```
 ./mvnw liberty:dev
 ```
+
+--
 
 Dev mode automatically picks up changes that you make to your application and allows you to run tests by pressing the `enter/return` key in the active command-line session. When you’re working on your application, rather than rerunning Maven commands, press the `enter/return` key to verify your change.
 
@@ -458,6 +464,7 @@ mvnw.cmd package
 ./mvnw package
 ```
 
+--
 
 
 To build and containerize the application, run the following Docker build command in the `start` directory:
@@ -697,6 +704,9 @@ mvnw.cmd liberty:package -Dinclude=runnable
 ```
 ./mvnw liberty:package -Dinclude=runnable
 ```
+
+--
+
 
 The packaging type is overridden from the `usr` package to the `runnable` package. This property then propagates to the [hotspot=libertyMavenPlugin file=0]`liberty-maven-plugin` plug-in, which generates the server package based on the `openliberty-kernel` package.
 

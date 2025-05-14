@@ -281,8 +281,8 @@ Try to access the `/health` endpoint again by visiting the http://localhost:9080
 [source, JSON, role="no_copy"]
 ----
 {
-    "checks":[],
-    "status":"UP"
+    "status":"UP",
+    "checks":[]
 }
 ----
 
@@ -355,20 +355,20 @@ Access the `/health` endpoint again by going to the http://localhost:9080/health
 
 [source, JSON, role="no_copy"]
 ----
-{  
-   "checks":[  
-      {  
-         "data":{},
-         "name":"SystemResource Readiness Check",
-         "status":"UP"
-      },
-      {  
-         "data":{},
-         "name":"SystemResource Liveness Check",
-         "status":"UP"
-      }
-   ],
-   "status":"UP"
+{
+  "status": "UP",
+  "checks": [
+    {
+      "name": "SystemResource Liveness Check",
+      "status": "UP",
+      "data": {}
+    },
+    {
+      "name": "SystemResource Readiness Check",
+      "status": "UP",
+      "data": {}
+    }
+  ]
 }
 ----
 

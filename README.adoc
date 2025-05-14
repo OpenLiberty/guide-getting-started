@@ -78,6 +78,8 @@ include::finish/pom.xml[]
 
 To begin, navigate to the `start` directory. Build the `system` microservice that is provided and deploy it to Open Liberty by running the Maven `liberty:run` goal:
 
+include::{common-includes}/os-tabs.adoc[]
+
 [.tab_content.windows_section]
 --
 [role='command']
@@ -131,6 +133,8 @@ To access the `system` microservice, see the http://localhost:9080/system/proper
 
 When you need to stop the Liberty instance, press `CTRL+C` in the command-line session where you ran Liberty, or run the `liberty:stop` goal from the `start` directory in another command-line session:
 
+include::{common-includes}/os-tabs.adoc[]
+
 [.tab_content.windows_section]
 --
 [role='command']
@@ -161,6 +165,8 @@ mvnw.cmd liberty:stop
 == Starting and stopping Open Liberty in the background
 
 Although you can start and stop Liberty in the foreground by using the Maven `liberty:run` goal, you can also start and stop the Liberty instance in the background with the Maven `liberty:start` and `liberty:stop` goals:
+
+include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section]
 --
@@ -198,6 +204,8 @@ mvnw.cmd liberty:stop
 The Open Liberty Maven plug-in includes a `dev` goal that listens for any changes in the project, including application source code or configuration. The Open Liberty instance automatically reloads the configuration without restarting. This goal allows for quicker turnarounds and an improved developer experience.
 
 Stop the Open Liberty instance if it is running, and start it in https://openliberty.io/docs/latest/development-mode.html[dev mode^] by running the `liberty:dev` goal in the `start` directory:
+
+include::{common-includes}/os-tabs.adoc[]
 
 [.tab_content.windows_section]
 --
@@ -425,6 +433,8 @@ To containerize the application, you need a `Dockerfile`. This file contains a c
 
 Run the Maven `package` goal from the `start` directory so that the `.war` file resides in the `target` directory.
 
+include::{common-includes}/os-tabs.adoc[]
+
 [.tab_content.windows_section]
 --
 [role='command']
@@ -530,23 +540,6 @@ Build and run the container by running the devc goal from the `start` directory:
 
 // Static guide instruction
 ifndef::cloud-hosted[]
-[.tab_content.windows_section]
---
-[role='command']
-```
-mvnw.cmd liberty:devc
-```
---
-
-[.tab_content.mac_section]
---
-[role='command']
-```
-./mvnw liberty:devc
-```
---
-
-[.tab_content.linux_section]
 --
 [role='command']
 ```
@@ -679,6 +672,9 @@ So far, Open Liberty was running out of the `target/liberty/wlp` directory, whic
 Open Liberty supports a number of different server packages. The sample application currently generates a `usr` package that contains the Liberty runtime and application to be extracted onto an Open Liberty installation.
 
 Instead of creating a server package, you can generate a runnable JAR file that contains the application along with a Liberty runtime. This JAR file can then be run anywhere and deploy your application and runtime at the same time. To generate a runnable JAR file, override the  `include` property: 
+
+include::{common-includes}/os-tabs.adoc[]
+
 [.tab_content.windows_section]
 --
 [role='command']

@@ -547,11 +547,31 @@ Build and run the container by running the devc goal from the `start` directory:
 
 // Static guide instruction
 ifndef::cloud-hosted[]
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd liberty:devc
+```
+--
+
+[.tab_content.mac_section]
 --
 [role='command']
 ```
 ./mvnw liberty:devc
 ```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw liberty:devc
+```
+--
 endif::[]
 
 // Cloud hosted guide instruction
